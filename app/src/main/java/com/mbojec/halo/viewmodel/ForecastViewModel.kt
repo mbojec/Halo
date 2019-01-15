@@ -1,4 +1,4 @@
-package com.mbojec.halo
+package com.mbojec.halo.viewmodel
 
 import androidx.lifecycle.ViewModel;
 

@@ -1,7 +1,8 @@
-package com.mbojec.halo
+package com.mbojec.halo.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.mbojec.halo.R
 
 class MainActivity : AppCompatActivity() {
 
