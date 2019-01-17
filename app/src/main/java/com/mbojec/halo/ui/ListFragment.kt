@@ -15,7 +15,6 @@ class ListFragment : Fragment() {
     private lateinit var viewModel: ListViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.list_fragment, container, false)
     }
 
@@ -23,10 +22,6 @@ class ListFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(ListViewModel::class.java)
         // TODO: Use the ViewModel
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        menu.clear()
     }
 
     override fun onResume() {

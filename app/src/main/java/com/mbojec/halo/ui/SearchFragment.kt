@@ -2,10 +2,9 @@ package com.mbojec.halo.ui
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.mbojec.halo.R
 import com.mbojec.halo.viewmodel.SearchViewModel
@@ -20,6 +19,7 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.search_fragment, container, false)
     }
 
@@ -35,6 +35,13 @@ class SearchFragment : Fragment() {
             val navController = findNavController()
             navController.navigate(R.id.main_dest)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_search, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+        val searchView = ((menu.findItem(R.id.app_bar_search)).actionView as SearchView)
+        searchView.isIconified = false
     }
 
 }
