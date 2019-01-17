@@ -2,7 +2,7 @@ package com.mbojec.halo
 
 import android.app.Application
 
-class Halo : Application(){
+class HaloApplication : Application(){
 
     override fun onCreate() {
         super.onCreate()

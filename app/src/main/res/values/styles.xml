@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionOverflowMenuStyle">@style/Widget.Halo.OverflowMenu</item>
     </style>
 
     <style name="Widget.Halo.Toolbar" parent="Widget.MaterialComponents.Toolbar">
@@ -14,6 +15,13 @@
 
     <style name="TextAppearance.Halo.Toolbar" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Widget.Halo.OverflowMenu" parent="android:Widget.Material.PopupMenu.Overflow">
+        <item name="android:windowDisablePreview">true</item>
+        <item name="overlapAnchor">false</item>
+        <item name="android:dropDownVerticalOffset">5.0dp</item>
+        <item name="android:background">@color/colorPrimary</item>
     </style>
 
 </resources>

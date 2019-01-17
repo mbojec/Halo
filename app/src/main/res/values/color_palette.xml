@@ -40,7 +40,7 @@
     <color name="sapphireBlue_54">#8A0F52BA</color>
     <color name="sapphireBlue_38">#610F52BA</color>
 
-    <color name="azureBlue">#0080FF</color>
+    <color name="azureBlue">#0080ff</color>
     <color name="azureBlue_87">#DE0080FF</color>
     <color name="azureBlue_54">#8A0080FF</color>
     <color name="azureBlue_38">#610080FF</color>
@@ -74,6 +74,7 @@
     <color name="black_87">#DE000000</color>
     <color name="black_54">#8A000000</color>
     <color name="black_38">#61000000</color>
+    <color name="public_bright_foreground_light_disabled">#80000000</color>
 
 
     <color name="purple">#040E29</color>
@@ -101,7 +102,7 @@
     <color name="lightGray_54">#8AF1F1F1</color>
     <color name="lightGray_38">#61F1F1F1</color>
 
-    <color name="white">#FFFFFF</color>
+    <color name="white">#ffffff</color>
     <color name="white_87">#DEFFFFFF</color>
     <color name="white_54">#8AFFFFFF</color>
     <color name="white_38">#61FFFFFF</color>

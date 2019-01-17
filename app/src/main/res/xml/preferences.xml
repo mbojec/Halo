@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <Preference
+            android:icon="@drawable/ic_launcher_foreground"
+            android:title="Preference title"
+            android:summary="Preference summary">
+    </Preference>
+    <SwitchPreference
+            android:defaultValue="true"
+            android:title="Switch preference title"
+            android:icon="@drawable/ic_launcher_foreground"/>
 </PreferenceScreen>
