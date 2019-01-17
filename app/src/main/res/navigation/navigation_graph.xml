@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/navigation_graph"
+            app:startDestination="@id/main_dest">
+
+    <fragment
+            android:id="@+id/main_dest"
+            android:name="com.mbojec.halo.ui.MainFragment"
+            android:label="MainFragment">
+        <action
+                android:id="@+id/action_main_dest_to_list_dest"
+                app:destination="@id/list_dest"/>
+        <action
+                android:id="@+id/action_main_dest_to_settings_dest"
+                app:destination="@id/settings_dest"/>
+        <action
+                android:id="@+id/action_main_dest_to_about_dest"
+                app:destination="@id/about_dest"/>
+    </fragment>
+    <fragment
+            android:id="@+id/list_dest"
+            android:name="com.mbojec.halo.ui.ListFragment"
+            android:label="ListFragment">
+        <action
+                android:id="@+id/action_list_dest_to_search_dest"
+                app:destination="@id/search_dest"/>
+    </fragment>
+    <fragment
+            android:id="@+id/search_dest"
+            android:name="com.mbojec.halo.ui.SearchFragment"
+            android:label="SearchFragment">
+        <action
+                android:id="@+id/action_search_dest_to_main_dest"
+                app:destination="@id/main_dest"/>
+    </fragment>
+    <fragment
+            android:id="@+id/settings_dest"
+            android:name="com.mbojec.halo.ui.SettingsFragment"
+            android:label="SettingsFragment"/>
+    <fragment
+            android:id="@+id/about_dest"
+            android:name="com.mbojec.halo.ui.AboutFragment"
+            android:label="AboutFragment"/>
+</navigation>

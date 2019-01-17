@@ -9,6 +9,16 @@
     <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Hello"/>
+            android:text="Search"
+            android:gravity="center"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:src="@drawable/ic_launcher_foreground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/floatingActionButton2"/>
 
 </FrameLayout>

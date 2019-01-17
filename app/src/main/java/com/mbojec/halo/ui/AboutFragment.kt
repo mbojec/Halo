@@ -5,7 +5,7 @@ import androidx.preference.PreferenceFragmentCompat
 import com.mbojec.halo.R
 
 class AboutFragment : PreferenceFragmentCompat() {
-    override fun onCreatePreferences(savedInstanceState: Bundle, rootKey: String) {
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.about, rootKey)
     }
 }

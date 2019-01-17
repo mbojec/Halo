@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+            android:id="@+id/list_dest"
+            android:orderInCategory="300"
+            android:title="List"
+            android:icon="@drawable/ic_launcher_foreground"
+            app:showAsAction="ifRoom"/>
+
+    <item
+            android:id="@+id/settings_dest"
+            android:orderInCategory="300"
+            android:title="Ustawienia"
+            app:showAsAction="collapseActionView"/>
+
+    <item
+            android:id="@+id/about_dest"
+            android:orderInCategory="300"
+            android:title="O aplikacji"
+            app:showAsAction="collapseActionView"/>
+
+</menu>
