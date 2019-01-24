@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'androidx.navigation.safeargs'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -39,17 +39,17 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0-alpha02'
 
     // Architecture components
-    implementation 'android.arch.navigation:navigation-fragment-ktx:1.0.0-alpha09'
-    implementation 'android.arch.navigation:navigation-ui-ktx:1.0.0-alpha09'
+    implementation 'android.arch.navigation:navigation-fragment-ktx:1.0.0-alpha11'
+    implementation 'android.arch.navigation:navigation-ui-ktx:1.0.0-alpha11'
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.1.0-alpha01'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0-alpha01'
 
     // Open source dependencies
-    implementation "com.google.dagger:dagger:2.15"
-    implementation "com.google.dagger:dagger-android-support:2.15"
-    kapt "com.google.dagger:dagger-android-processor:2.15"
-    kapt "com.google.dagger:dagger-compiler:2.15"
-    implementation "com.jakewharton.timber:timber:4.6.0"
+    implementation "com.google.dagger:dagger:2.18"
+    implementation "com.google.dagger:dagger-android-support:2.18"
+    kapt "com.google.dagger:dagger-android-processor:2.18"
+    kapt "com.google.dagger:dagger-compiler:2.18"
+    implementation "com.jakewharton.timber:timber:4.7.1"
 
     // Testing dependencies
     testImplementation "junit:junit:4.12"
