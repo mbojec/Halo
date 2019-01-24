@@ -45,10 +45,10 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0-alpha01'
 
     // Open source dependencies
-    implementation "com.google.dagger:dagger:2.18"
-    implementation "com.google.dagger:dagger-android-support:2.18"
-    kapt "com.google.dagger:dagger-android-processor:2.18"
-    kapt "com.google.dagger:dagger-compiler:2.18"
+    implementation "com.google.dagger:dagger:2.16"
+    implementation "com.google.dagger:dagger-android-support:2.16"
+    kapt "com.google.dagger:dagger-android-processor:2.16"
+    kapt "com.google.dagger:dagger-compiler:2.16"
     implementation "com.jakewharton.timber:timber:4.7.1"
 
     // Testing dependencies

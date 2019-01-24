@@ -2,9 +2,12 @@ package com.mbojec.halo
 
 import android.app.Activity
 import android.app.Application
+import android.app.Fragment
 import com.mbojec.halo.dagger.AppInjector
+import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import dagger.android.HasFragmentInjector
 import timber.log.Timber
 import javax.inject.Inject
 
