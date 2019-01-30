@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Halo</string>
+    <string name="location_permission_denied_info">Permission denied. Change them in the settings.</string>
+    <string name="location_permission_denied_positive">Go to settings</string>
+    <string name="location_permission_denied_negative">Exit</string>
+    <string name="network_connection_failed">No Internet Connection</string>
+    <string name="network_connection_alert_message">Please check your internet connection and try again</string>
 </resources>

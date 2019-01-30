@@ -6,6 +6,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="actionOverflowMenuStyle">@style/Widget.Halo.OverflowMenu</item>
+        <item name="alertDialogStyle">@style/DialogStyle</item>
     </style>
 
     <style name="Widget.Halo.Toolbar" parent="Widget.MaterialComponents.Toolbar">
@@ -22,6 +23,10 @@
         <item name="overlapAnchor">false</item>
         <item name="android:dropDownVerticalOffset">5.0dp</item>
         <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <style name="DialogStyle" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
     </style>
 
 </resources>

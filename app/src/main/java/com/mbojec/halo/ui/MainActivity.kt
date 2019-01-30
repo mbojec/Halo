@@ -1,12 +1,12 @@
 package com.mbojec.halo.ui
 
+import android.Manifest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.app.ActivityCompat
-import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
-import com.mbojec.halo.R
+import com.mbojec.halo.*
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_main.*
@@ -14,8 +14,8 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
-    @Inject lateinit var dispatchingAndroidFragmentInjector: DispatchingAndroidInjector<Fragment>
-
+    @Inject lateinit var dispatchingAndroidFragmentInjector: DispatchingAndroidInjector<androidx.fragment.app.Fragment>
+    @Inject lateinit var application: HaloApplication
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         supportActionBar!!.setDisplayShowTitleEnabled(true)
         val navController = findNavController(R.id.nav_host_fragment)
         NavigationUI.setupWithNavController(toolbar_mainActivity, navController)
+        MainActivityStateManager.bindMainActivityStateListener(application, this, this, this)
     }
 
     override fun onBackPressed() {
@@ -34,6 +35,10 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         } else {
             super.onBackPressed()
         }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        PermissionUtils.requestPermissionResultSolution(grantResults, this, this, application, this)
     }
 
     override fun supportFragmentInjector() = dispatchingAndroidFragmentInjector
