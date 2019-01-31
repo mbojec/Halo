@@ -1,4 +1,4 @@
-package com.mbojec.halo
+package com.mbojec.halo.model
 
 enum class Status {
     LOADING,

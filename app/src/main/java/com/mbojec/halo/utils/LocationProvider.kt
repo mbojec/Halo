@@ -1,9 +1,9 @@
-package com.mbojec.halo
+package com.mbojec.halo.utils
 
 import android.annotation.SuppressLint
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.mbojec.halo.utils.PermissionUtils
+import com.mbojec.halo.HaloApplication
 import timber.log.Timber
 
 object LocationProvider{

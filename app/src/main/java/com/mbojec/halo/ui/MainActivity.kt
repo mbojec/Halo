@@ -6,6 +6,8 @@ import androidx.core.app.ActivityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.mbojec.halo.*
+import com.mbojec.halo.utils.LocationProvider
+import com.mbojec.halo.utils.NetworkUtils
 import com.mbojec.halo.utils.PermissionUtils
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector

@@ -1,5 +1,5 @@
-package com.mbojec.halo
-import com.mbojec.halo.Status.*
+package com.mbojec.halo.model
+import com.mbojec.halo.model.Status.*
 
 class Response private constructor(val status: Status, val data: String?, val error: Throwable?) {
     companion object {
@@ -13,7 +13,7 @@ class Response private constructor(val status: Status, val data: String?, val er
         }
 
         fun failure(): Response {
-            return Response(Status.FAILURE, null, null)
+            return Response(FAILURE, null, null)
         }
 
         fun error(error: Throwable): Response {

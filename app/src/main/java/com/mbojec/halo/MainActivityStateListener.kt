@@ -2,7 +2,9 @@ package com.mbojec.halo
 
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import com.mbojec.halo.model.SingletonHolder
 import com.mbojec.halo.ui.MainActivity
+import com.mbojec.halo.utils.LocationProvider
 import com.mbojec.halo.utils.NetworkUtils
 import com.mbojec.halo.utils.PermissionUtils
 
@@ -21,5 +23,9 @@ class MainActivityStateListener(val application: HaloApplication, lifecycleOwner
         if (!NetworkUtils.isNetworkConnected(activity)) {
             NetworkUtils.showInfo(activity.findViewById(R.id.activity_main_layout))
         }
+    }
+
+    override fun onStop(owner: LifecycleOwner) {
+        MainActivityStateListener.clearInstance()
     }
 }

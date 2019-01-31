@@ -14,7 +14,6 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import com.mbojec.halo.Const.Companion.REQUEST_LOCATION_PERMISSIONS
 import com.mbojec.halo.HaloApplication
-import com.mbojec.halo.LocationProvider
 import com.mbojec.halo.R
 import com.mbojec.halo.ui.MainActivity
 import java.util.ArrayList

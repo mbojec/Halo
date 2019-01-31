@@ -1,7 +1,6 @@
-package com.mbojec.halo
+package com.mbojec.halo.model
 
-open class SingletonHolder<out T, in A, B, C>(creator: (A, B, C) -> T) {
-    private var creator: ((A, B, C) -> T)? = creator
+open class SingletonHolder<out T, in A, B, C>(private var creator: (A, B, C) -> T) {
     @Volatile private var instance: T? = null
 
     fun getInstance(arg: A, arg2: B, arg3: C): T {
@@ -15,12 +14,15 @@ open class SingletonHolder<out T, in A, B, C>(creator: (A, B, C) -> T) {
             if (i2 != null) {
                 i2
             } else {
-                val created = creator!!(arg, arg2, arg3)
+                val created = creator(arg, arg2, arg3)
                 instance = created
-                creator = null
                 created
             }
         }
+    }
+
+    fun clearInstance(){
+        instance = null
     }
 }
 
