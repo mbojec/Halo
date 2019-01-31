@@ -6,7 +6,7 @@ import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 import com.mbojec.halo.AppExecutors
 import com.mbojec.halo.HaloApplication
-import com.mbojec.halo.SharedPreferencesUtils
+import com.mbojec.halo.utils.SharedPreferencesUtils
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
@@ -35,5 +35,6 @@ class AppModule {
 
     @Provides
     @Reusable
-    fun provideSharedPreferencesUtils(app: Application, sharedPreferences: SharedPreferences, editor: SharedPreferences.Editor) = SharedPreferencesUtils(app as HaloApplication, sharedPreferences, editor)
+    fun provideSharedPreferencesUtils(app: Application, sharedPreferences: SharedPreferences, editor: SharedPreferences.Editor) =
+        SharedPreferencesUtils(app as HaloApplication, sharedPreferences, editor)
 }

@@ -18,6 +18,15 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning"
             android:fullBackupContent="true">
+
+        <meta-data
+                android:name="firebase_analytics_collection_enabled"
+                android:value="false" />
+
+        <meta-data
+                android:name="google_analytics_adid_collection_enabled"
+                android:value="false" />
+
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

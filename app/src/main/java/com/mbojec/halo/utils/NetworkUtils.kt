@@ -1,10 +1,12 @@
-package com.mbojec.halo
+package com.mbojec.halo.utils
 
 import android.app.Activity
 import android.content.Context
 import android.net.ConnectivityManager
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
+import com.mbojec.halo.HaloApplication
+import com.mbojec.halo.R
 
 object NetworkUtils {
     fun isNetworkConnected(application: HaloApplication): Boolean {

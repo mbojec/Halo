@@ -1,4 +1,4 @@
-package com.mbojec.halo
+package com.mbojec.halo.utils
 
 import android.Manifest
 import android.app.Application
@@ -13,6 +13,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import com.mbojec.halo.Const.Companion.REQUEST_LOCATION_PERMISSIONS
+import com.mbojec.halo.HaloApplication
+import com.mbojec.halo.LocationProvider
+import com.mbojec.halo.R
 import com.mbojec.halo.ui.MainActivity
 import java.util.ArrayList
 
@@ -46,7 +49,7 @@ object PermissionUtils {
 
     fun requestPermissionResultSolution(grantResults: IntArray, activity: MainActivity, context: Context, application: Application, lifecycleOwner: LifecycleOwner){
         if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
+            LocationProvider.getCurrentLocation(application as HaloApplication)
         } else if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_DENIED){
             navigateToPermissionSettings(context, activity)
         }
@@ -56,9 +59,10 @@ object PermissionUtils {
 
         val dialog: AlertDialog = AlertDialog.Builder(ContextThemeWrapper(context, R.style.DialogStyle))
             .setMessage(context.getString(R.string.location_permission_denied_info))
-            .setPositiveButton(context.getString(R.string.location_permission_denied_positive)){_, _ ->
-                redirectSettings(context, activity)}
-            .setNegativeButton(context.getString(R.string.location_permission_denied_negative)){_, _ -> activity.finish()}
+            .setPositiveButton(context.getString(R.string.location_permission_denied_positive)){ _, _ ->
+                redirectSettings(context, activity)
+            }
+            .setNegativeButton(context.getString(R.string.location_permission_denied_negative)){ _, _ -> activity.finish()}
             .create()
         dialog.show()
     }
