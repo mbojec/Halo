@@ -35,7 +35,6 @@ class NetworkModule{
     @Named(MAPBOX_ACCESS_TOKEN)
     fun provideMapBoxAccessToken() = BuildConfig.MAPBOX_ACCESS_TOKEN
 
-
     @Provides
     @Singleton
     @Named(MAPBOX_OKHTTP_CLIENT)
