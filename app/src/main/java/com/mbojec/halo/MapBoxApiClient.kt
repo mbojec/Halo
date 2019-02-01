@@ -12,6 +12,7 @@ interface MapBoxApiClient {
         @Path("cityName") cityName: String,
         @Query("language") targetLanguage: String,
         @Query("types") types: String,
-        @Query("autocomplete") autocomplete: String
-    ): Observable<CitySearchList>
+        @Query("autocomplete") autocomplete: String,
+        @Query("limit") limit: String
+    ): Observable<SearchCityList>
 }

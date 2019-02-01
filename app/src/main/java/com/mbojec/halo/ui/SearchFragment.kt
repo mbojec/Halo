@@ -10,10 +10,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mbojec.halo.R
+import com.mbojec.halo.SearchCityListAdapter
 import com.mbojec.halo.dagger.Injectable
+import com.mbojec.halo.model.Status
 import com.mbojec.halo.utils.NetworkUtils
 import com.mbojec.halo.viewmodel.SearchViewModel
 import io.reactivex.Observable
@@ -31,6 +36,7 @@ class SearchFragment : Fragment(), Injectable {
 
     private lateinit var disposable: Disposable
     private var searchView: SearchView? = null
+    private var adapter: SearchCityListAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         setHasOptionsMenu(true)
@@ -40,6 +46,7 @@ class SearchFragment : Fragment(), Injectable {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SearchViewModel::class.java)
+        submitViewModel()
     }
 
     override fun onResume() {
@@ -54,7 +61,6 @@ class SearchFragment : Fragment(), Injectable {
         super.onStart()
         searchView?.let { createSearchViewObserver()
             searchView!!.isIconified = false}
-        clearList()
     }
 
     override fun onStop() {
@@ -62,7 +68,7 @@ class SearchFragment : Fragment(), Injectable {
         if (!disposable.isDisposed) {
             disposable.dispose()
         }
-        hideSoftKeyboard(activity as Activity)
+        hideSoftKeyboard()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -73,6 +79,31 @@ class SearchFragment : Fragment(), Injectable {
         createSearchViewObserver()
     }
 
+    private fun submitViewModel(){
+        viewModel.searchCityList.observe(this, Observer {it ->
+            if (adapter == null){
+                it?.let { adapter = SearchCityListAdapter(it)}.also {createAdapter()}
+            } else {
+                it?.let { adapter!!.updateList(it) }.also { adapter!!.notifyDataSetChanged() }
+            }
+        })
+        viewModel.responseStatus.observe(this, Observer {
+            it?.let { it ->
+                when(it.status){
+                Status.SUCCESS -> progressBar.visibility = View.INVISIBLE
+                Status.FAILURE -> progressBar.visibility = View.INVISIBLE
+                Status.ERROR -> progressBar.visibility = View.INVISIBLE
+                Status.LOADING ->progressBar.visibility = View.VISIBLE
+            } }
+        })
+    }
+
+    private fun createAdapter(){
+        val layoutManager = LinearLayoutManager(activity!!, RecyclerView.VERTICAL, false)
+        searchCityListRecycleView.layoutManager = layoutManager
+        searchCityListRecycleView.adapter = adapter
+    }
+
     private fun createSearchViewObserver(){
         val searchViewTextObservable = createSearchViewObservable()
         disposable = searchViewTextObservable
@@ -81,7 +112,7 @@ class SearchFragment : Fragment(), Injectable {
             .map { it.trim { it <= ' ' } }
             .subscribe {
                 if (NetworkUtils.isNetworkConnected(activity as Activity)){
-                    searchTextView.text = it
+                    viewModel.searchCity(it)
                 }
             }
     }
@@ -111,15 +142,16 @@ class SearchFragment : Fragment(), Injectable {
         }
 
         return textChangeObservable
-            .filter { it.length >= 2 }
-            .debounce(1000, TimeUnit.MILLISECONDS)
+            .filter { it.length > 2 }
+            .debounce(500, TimeUnit.MILLISECONDS)
     }
 
-    private fun hideSoftKeyboard(activity: Activity){
-        val inputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(activity.currentFocus?.windowToken, 0)
+    private fun hideSoftKeyboard(){
+        val inputMethodManager = (activity as Activity).getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow((activity as Activity).currentFocus?.windowToken, 0)
     }
 
     private fun clearList(){
+        adapter?.let{ it.clearList()}.let { adapter?.notifyDataSetChanged()  }
     }
 }

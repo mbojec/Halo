@@ -1,10 +1,9 @@
 package com.mbojec.halo
 
-import android.content.Context
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class CitySearchList {
+class SearchCityList {
     @SerializedName("type")
     @Expose
     var type: String? = null
@@ -31,7 +30,7 @@ class CitySearchList {
         var placeType: List<String>? = null
         @SerializedName("relevance")
         @Expose
-        var relevance: Int? = null
+        var relevance: Double? = null
         @SerializedName("properties")
         @Expose
         var properties: Properties? = null
@@ -82,6 +81,32 @@ class CitySearchList {
             @SerializedName("wikidata")
             @Expose
             var wikidata: String? = null
+
+        }
+
+        inner class Context {
+
+            @SerializedName("id")
+            @Expose
+            var id: String? = null
+            @SerializedName("text_pl")
+            @Expose
+            var textPl: String? = null
+            @SerializedName("text")
+            @Expose
+            var text: String? = null
+            @SerializedName("wikidata")
+            @Expose
+            var wikidata: String? = null
+            @SerializedName("language_pl")
+            @Expose
+            var languagePl: String? = null
+            @SerializedName("language")
+            @Expose
+            var language: String? = null
+            @SerializedName("short_code")
+            @Expose
+            var shortCode: String? = null
 
         }
 
