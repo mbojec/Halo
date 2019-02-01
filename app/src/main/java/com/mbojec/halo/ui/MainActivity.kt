@@ -6,8 +6,6 @@ import androidx.core.app.ActivityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.mbojec.halo.*
-import com.mbojec.halo.utils.LocationProvider
-import com.mbojec.halo.utils.NetworkUtils
 import com.mbojec.halo.utils.PermissionUtils
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
@@ -27,7 +25,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         supportActionBar!!.setDisplayShowTitleEnabled(true)
         val navController = findNavController(R.id.nav_host_fragment)
         NavigationUI.setupWithNavController(toolbar_mainActivity, navController)
-        MainActivityStateListener.getInstance(application, this, this)
+        MainActivityStateListener.getInstanceAndInit(application, this, this)
     }
 
     override fun onBackPressed() {

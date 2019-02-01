@@ -2,6 +2,7 @@ package com.mbojec.halo.dagger
 
 import com.mbojec.halo.BuildConfig
 import com.mbojec.halo.Const
+import com.mbojec.halo.MapBoxApiClient
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
@@ -73,4 +74,15 @@ class NetworkModule{
                                    @Named(MAPBOX_OKHTTP_CLIENT) okHttpClient: OkHttpClient.Builder,
                                    @Named(MAPBOX_LOGGING_INTERCEPTOR) loggingInterceptor: HttpLoggingInterceptor ) : Retrofit =
         builder.client(okHttpClient.addInterceptor(interceptor).addInterceptor(loggingInterceptor).build()).build()
+
+
+    @Provides
+    @Singleton
+    fun provideAccuWeatherClientClass(): Class<MapBoxApiClient> = MapBoxApiClient::class.java
+
+    @Provides
+    @Singleton
+    fun provideAccuWeatherApiClient(@Named(MAPBOX_RETROFIT) retrofit: Retrofit,
+                                    serviceClass: Class<MapBoxApiClient>): MapBoxApiClient =
+        retrofit.create(serviceClass)
 }
