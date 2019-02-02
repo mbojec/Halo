@@ -13,8 +13,8 @@ import dagger.android.support.HasSupportFragmentInjector
 
 object AppInjector {
     fun init(haloApplication: HaloApplication) {
-        DaggerAppComponent.builder().application(haloApplication)
-            .build().inject(haloApplication)
+        val appComponent = DaggerAppComponent.builder().application(haloApplication).build()
+        appComponent.inject(haloApplication)
 
         haloApplication.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
