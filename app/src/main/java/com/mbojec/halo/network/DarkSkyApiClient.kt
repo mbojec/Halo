@@ -1,4 +1,4 @@
-package com.mbojec.halo
+package com.mbojec.halo.network
 
 import com.mbojec.halo.model.Forecast
 import io.reactivex.Observable

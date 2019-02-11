@@ -3,6 +3,7 @@ package com.mbojec.halo
 import android.app.Activity
 import android.app.Application
 import com.mbojec.halo.dagger.AppInjector
+import com.mbojec.halo.network.NetworkRepository
 import com.mbojec.halo.utils.SharedPreferencesUtils
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector

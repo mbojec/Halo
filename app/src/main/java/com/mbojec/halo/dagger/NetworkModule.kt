@@ -1,6 +1,9 @@
 package com.mbojec.halo.dagger
 
 import com.mbojec.halo.*
+import com.mbojec.halo.network.DarkSkyApiClient
+import com.mbojec.halo.network.MapBoxApiClient
+import com.mbojec.halo.network.NetworkRepository
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
@@ -147,5 +150,6 @@ class NetworkModule{
 
     @Provides
     @Singleton
-    fun provideNetworkRepository(mapBoxApiClient: MapBoxApiClient, darkSkyApiClient: DarkSkyApiClient): NetworkRepository = NetworkRepository(mapBoxApiClient, darkSkyApiClient)
+    fun provideNetworkRepository(mapBoxApiClient: MapBoxApiClient, darkSkyApiClient: DarkSkyApiClient): NetworkRepository =
+        NetworkRepository(mapBoxApiClient, darkSkyApiClient)
 }

@@ -1,7 +1,9 @@
-package com.mbojec.halo
+package com.mbojec.halo.network
 
 import android.location.Location
 import androidx.lifecycle.MutableLiveData
+import com.mbojec.halo.BuildConfig
+import com.mbojec.halo.SearchCityList
 import com.mbojec.halo.model.DisposingObserver
 import com.mbojec.halo.model.Forecast
 import com.mbojec.halo.model.Response

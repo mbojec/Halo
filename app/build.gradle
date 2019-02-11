@@ -19,6 +19,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField 'String', "MAPBOX_ACCESS_TOKEN", localProperties['mapboxAccessToken']
         buildConfigField 'String', "DARK_SKY_API_KEY", localProperties['darkskyKey']
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -50,6 +55,9 @@ dependencies {
     implementation 'android.arch.navigation:navigation-ui-ktx:1.0.0-alpha11'
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.1.0-alpha01'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0-alpha01'
+    implementation 'androidx.room:room-runtime:2.1.0-alpha04'
+    kapt 'androidx.room:room-compiler:2.1.0-alpha04'
+    implementation 'androidx.room:room-rxjava2:2.1.0-alpha04'
 
     // Open source dependencies
     implementation "com.google.dagger:dagger:2.16"
