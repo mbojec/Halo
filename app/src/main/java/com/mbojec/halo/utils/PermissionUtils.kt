@@ -46,7 +46,7 @@ object PermissionUtils {
         return hasPermissions
     }
 
-    fun requestPermissionResultSolution(grantResults: IntArray, activity: MainActivity, context: Context, application: Application, lifecycleOwner: LifecycleOwner){
+    fun requestPermissionResultSolution(grantResults: IntArray, activity: MainActivity, context: Context, application: Application){
         if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             LocationProvider.getCurrentLocation(application as HaloApplication)
         } else if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_DENIED){

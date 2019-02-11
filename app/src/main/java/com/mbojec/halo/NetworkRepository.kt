@@ -30,17 +30,15 @@ class NetworkRepository @Inject constructor(private val mapBoxApiClient: MapBoxA
         )
     }
 
-    fun fetchForecast(location: Location, responseStatus: MutableLiveData<Response>, forecast: MutableLiveData<Forecast>){
-        responseStatus.postValue(Response.loading())
-        val observable: Observable<Forecast> = darkSkyApiClient.getCityForecast("${location.longitude},${location.latitude}", "pl", "si")
+    fun fetchForecast(location: Location){
+        val observable: Observable<Forecast> = darkSkyApiClient.getCityForecast(BuildConfig.DARK_SKY_API_KEY, "${location.latitude},${location.longitude}", "pl", "si")
         val observer: DisposingObserver<Forecast> = DisposingObserver()
         observer.onSubscribe(
             observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext { responseStatus.postValue(Response.loading()) }
                 .subscribe(
-                    { it -> it?.let {forecast.postValue(it)}.also { responseStatus.postValue(Response.success())} },
-                    {throwable: Throwable ->  managingFailureResponse(throwable).also { responseStatus.postValue(Response.error(throwable)) }},
+                    { it -> it?.let {Timber.i("time zone: ${it.timezone}")} },
+                    {throwable: Throwable ->  managingFailureResponse(throwable)},
                     {}
                 )
         )

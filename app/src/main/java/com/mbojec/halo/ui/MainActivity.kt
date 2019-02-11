@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        PermissionUtils.requestPermissionResultSolution(grantResults, this, this, application, this)
+        PermissionUtils.requestPermissionResultSolution(grantResults, this, this, application)
     }
 
     override fun supportFragmentInjector() = dispatchingAndroidFragmentInjector

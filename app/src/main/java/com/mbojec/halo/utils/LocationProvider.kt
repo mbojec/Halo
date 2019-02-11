@@ -10,8 +10,7 @@ import timber.log.Timber
 object LocationProvider{
 
     @SuppressLint("MissingPermission")
-    fun getCurrentLocation(application: HaloApplication): Location?{
-        var currentLocation: Location? = null
+    fun getCurrentLocation(application: HaloApplication){
         val mFusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(application.applicationContext)
         if (PermissionUtils.checkIfPermissionGranted(application.applicationContext)) {
             mFusedLocationClient.locationAvailability.addOnSuccessListener { locationAvailability ->
@@ -24,7 +23,7 @@ object LocationProvider{
                             Timber.i("location obtained")
                             Timber.i("location latitude: ${location.latitude}")
                             Timber.i("location longitude: ${location.longitude}")
-                            currentLocation = location
+                            application.networkRepository.fetchForecast(location)
                         } else {
                             Timber.i("location null")
                         }
@@ -32,6 +31,5 @@ object LocationProvider{
                 }
             }
         }
-        return currentLocation
     }
 }
