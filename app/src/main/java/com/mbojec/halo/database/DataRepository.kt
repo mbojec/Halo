@@ -1,10 +1,11 @@
-package com.mbojec.halo
+package com.mbojec.halo.database
 
 import android.location.Location
 import androidx.lifecycle.LiveData
+import com.mbojec.halo.AppExecutors
 import javax.inject.Inject
 
-class DataRepository @Inject constructor(private val database: Database,private val locationDao: LocationDao, private val appExecutors: AppExecutors) {
+class DataRepository @Inject constructor(private val database: Database, private val locationDao: LocationDao, private val appExecutors: AppExecutors) {
 
     val location: LiveData<LocationEntity> = locationDao.loadCurrentLocation()
 

@@ -1,4 +1,4 @@
-package com.mbojec.halo
+package com.mbojec.halo.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

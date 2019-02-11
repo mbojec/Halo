@@ -1,9 +1,9 @@
 package com.mbojec.halo.utils
 
 import android.annotation.SuppressLint
-import android.location.Location
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.mbojec.halo.Const.Companion.CURRENT_LOCATION_ID
 import com.mbojec.halo.HaloApplication
 import timber.log.Timber
 
@@ -24,6 +24,7 @@ object LocationProvider{
                             Timber.i("location latitude: ${location.latitude}")
                             Timber.i("location longitude: ${location.longitude}")
                             application.networkRepository.fetchForecast(location)
+                            application.dataRepository.saveLocation(location, CURRENT_LOCATION_ID)
                         } else {
                             Timber.i("location null")
                         }

@@ -3,9 +3,9 @@ package com.mbojec.halo.dagger
 import android.content.Context
 import androidx.room.Room
 import com.mbojec.halo.AppExecutors
-import com.mbojec.halo.DataRepository
-import com.mbojec.halo.Database
-import com.mbojec.halo.LocationDao
+import com.mbojec.halo.database.DataRepository
+import com.mbojec.halo.database.Database
+import com.mbojec.halo.database.LocationDao
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
@@ -27,7 +27,7 @@ class RoomModule {
 
     @Provides
     @Singleton
-    fun provideDataRepository(database: Database,locationDao: LocationDao, appExecutors: AppExecutors): DataRepository =
+    fun provideDataRepository(database: Database, locationDao: LocationDao, appExecutors: AppExecutors): DataRepository =
         DataRepository(database, locationDao, appExecutors)
 
 

@@ -1,4 +1,4 @@
-package com.mbojec.halo
+package com.mbojec.halo.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
