@@ -37,7 +37,7 @@ class Forecast {
 
         @SerializedName("time")
         @Expose
-        var time: Int? = null
+        var time: Long? = null
         @SerializedName("summary")
         @Expose
         var summary: String? = null
@@ -52,10 +52,10 @@ class Forecast {
         var nearestStormBearing: Int? = null
         @SerializedName("precipIntensity")
         @Expose
-        var precipIntensity: Int? = null
+        var precipIntensity: Double? = null
         @SerializedName("precipProbability")
         @Expose
-        var precipProbability: Int? = null
+        var precipProbability: Double? = null
         @SerializedName("temperature")
         @Expose
         var temperature: Double? = null
@@ -88,7 +88,7 @@ class Forecast {
         var uvIndex: Int? = null
         @SerializedName("visibility")
         @Expose
-        var visibility: Int? = null
+        var visibility: Double? = null
         @SerializedName("ozone")
         @Expose
         var ozone: Double? = null
@@ -114,7 +114,7 @@ class Forecast {
 
         @SerializedName("time")
         @Expose
-        var time: Int? = null
+        var time: Long? = null
         @SerializedName("precipIntensity")
         @Expose
         var precipIntensity: Double? = null
@@ -135,7 +135,7 @@ class Forecast {
 
         @SerializedName("time")
         @Expose
-        var time: Int? = null
+        var time: Long? = null
         @SerializedName("summary")
         @Expose
         var summary: String? = null
@@ -174,7 +174,7 @@ class Forecast {
         var windBearing: Int? = null
         @SerializedName("cloudCover")
         @Expose
-        var cloudCover: Int? = null
+        var cloudCover: Double? = null
         @SerializedName("uvIndex")
         @Expose
         var uvIndex: Int? = null
@@ -195,7 +195,7 @@ class Forecast {
 
         @SerializedName("time")
         @Expose
-        var time: Int? = null
+        var time: Long? = null
         @SerializedName("summary")
         @Expose
         var summary: String? = null
@@ -204,25 +204,25 @@ class Forecast {
         var icon: String? = null
         @SerializedName("sunriseTime")
         @Expose
-        var sunriseTime: Int? = null
+        var sunriseTime: Long? = null
         @SerializedName("sunsetTime")
         @Expose
-        var sunsetTime: Int? = null
+        var sunsetTime: Long? = null
         @SerializedName("moonPhase")
         @Expose
         var moonPhase: Double? = null
         @SerializedName("precipIntensity")
         @Expose
-        var precipIntensity: Int? = null
+        var precipIntensity: Double? = null
         @SerializedName("precipIntensityMax")
         @Expose
         var precipIntensityMax: Double? = null
         @SerializedName("precipIntensityMaxTime")
         @Expose
-        var precipIntensityMaxTime: Int? = null
+        var precipIntensityMaxTime: Long? = null
         @SerializedName("precipProbability")
         @Expose
-        var precipProbability: Int? = null
+        var precipProbability: Double? = null
         @SerializedName("precipType")
         @Expose
         var precipType: String? = null
@@ -231,25 +231,25 @@ class Forecast {
         var temperatureHigh: Double? = null
         @SerializedName("temperatureHighTime")
         @Expose
-        var temperatureHighTime: Int? = null
+        var temperatureHighTime: Long? = null
         @SerializedName("temperatureLow")
         @Expose
         var temperatureLow: Double? = null
         @SerializedName("temperatureLowTime")
         @Expose
-        var temperatureLowTime: Int? = null
+        var temperatureLowTime: Long? = null
         @SerializedName("apparentTemperatureHigh")
         @Expose
         var apparentTemperatureHigh: Double? = null
         @SerializedName("apparentTemperatureHighTime")
         @Expose
-        var apparentTemperatureHighTime: Int? = null
+        var apparentTemperatureHighTime: Long? = null
         @SerializedName("apparentTemperatureLow")
         @Expose
         var apparentTemperatureLow: Double? = null
         @SerializedName("apparentTemperatureLowTime")
         @Expose
-        var apparentTemperatureLowTime: Int? = null
+        var apparentTemperatureLowTime: Long? = null
         @SerializedName("dewPoint")
         @Expose
         var dewPoint: Double? = null
@@ -267,7 +267,7 @@ class Forecast {
         var windGust: Double? = null
         @SerializedName("windGustTime")
         @Expose
-        var windGustTime: Int? = null
+        var windGustTime: Long? = null
         @SerializedName("windBearing")
         @Expose
         var windBearing: Int? = null
@@ -282,7 +282,7 @@ class Forecast {
         var uvIndexTime: Int? = null
         @SerializedName("visibility")
         @Expose
-        var visibility: Int? = null
+        var visibility: Double? = null
         @SerializedName("ozone")
         @Expose
         var ozone: Double? = null
@@ -291,25 +291,25 @@ class Forecast {
         var temperatureMin: Double? = null
         @SerializedName("temperatureMinTime")
         @Expose
-        var temperatureMinTime: Int? = null
+        var temperatureMinTime: Long? = null
         @SerializedName("temperatureMax")
         @Expose
         var temperatureMax: Double? = null
         @SerializedName("temperatureMaxTime")
         @Expose
-        var temperatureMaxTime: Int? = null
+        var temperatureMaxTime: Long? = null
         @SerializedName("apparentTemperatureMin")
         @Expose
         var apparentTemperatureMin: Double? = null
         @SerializedName("apparentTemperatureMinTime")
         @Expose
-        var apparentTemperatureMinTime: Int? = null
+        var apparentTemperatureMinTime: Long? = null
         @SerializedName("apparentTemperatureMax")
         @Expose
         var apparentTemperatureMax: Double? = null
         @SerializedName("apparentTemperatureMaxTime")
         @Expose
-        var apparentTemperatureMaxTime: Int? = null
+        var apparentTemperatureMaxTime: Long? = null
 
     }
 

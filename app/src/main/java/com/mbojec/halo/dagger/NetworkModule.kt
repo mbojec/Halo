@@ -24,7 +24,6 @@ class NetworkModule{
         private const val MAPBOX_LOGGING_INTERCEPTOR = "MAPBOX_LOGGING_INTERCEPTOR"
 
         private const val DARK_SKY_BASE_URL = "DARK_SKY_BASE_URL"
-        private const val DARK_SKY_API_KEY = "DARK_SKY_API_KEY"
         private const val DARK_SKY_API_KEY_INTERCEPTOR = "DARK_SKY_API_KEY_INTERCEPTOR"
         private const val DARK_SKY_RETROFIT_BUILDER = "DARK_SKY_RETROFIT_BUILDER"
         private const val DARK_SKY_RETROFIT = "DARK_SKY_RETROFIT"
@@ -43,10 +42,6 @@ class NetworkModule{
     @Provides
     @Named(MAPBOX_ACCESS_TOKEN)
     fun provideMapBoxAccessToken() = BuildConfig.MAPBOX_ACCESS_TOKEN
-
-    @Provides
-    @Named(DARK_SKY_API_KEY)
-    fun provideDarkSkyAccessToken() = BuildConfig.DARK_SKY_API_KEY
 
     @Provides
     @Singleton
@@ -85,10 +80,10 @@ class NetworkModule{
     @Provides
     @Singleton
     @Named(DARK_SKY_API_KEY_INTERCEPTOR)
-    fun provideDarkSkyAccessTokenInterceptor(@Named(DARK_SKY_API_KEY) api_key: String) = Interceptor { chain ->
+    fun provideDarkSkyAccessTokenInterceptor() = Interceptor { chain ->
         val original = chain.request()
         val httpUrl = original.url()
-        val newHttpUrl = httpUrl.newBuilder().addPathSegment(api_key).build()
+        val newHttpUrl = httpUrl.newBuilder().build()
         val requestBuilder = original.newBuilder().url(newHttpUrl)
         val request = requestBuilder.build()
         chain.proceed(request)

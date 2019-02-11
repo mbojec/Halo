@@ -8,8 +8,9 @@ import retrofit2.http.Query
 
 interface DarkSkyApiClient {
 
-    @GET("{location}")
+    @GET("{api_key}/{location}")
     fun getCityForecast(
+        @Path("api_key") apiKey: String,
         @Path("location") location: String,
         @Query("lang") targetLanguage: String,
         @Query("units") unitType: String
