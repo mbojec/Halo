@@ -1,7 +1,9 @@
 package com.mbojec.halo
 
+import android.location.Location
 import androidx.lifecycle.MutableLiveData
 import com.mbojec.halo.model.DisposingObserver
+import com.mbojec.halo.model.Forecast
 import com.mbojec.halo.model.Response
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -10,7 +12,7 @@ import timber.log.Timber
 import java.io.IOException
 import javax.inject.Inject
 
-class NetworkRepository @Inject constructor(private val mapBoxApiClient: MapBoxApiClient){
+class NetworkRepository @Inject constructor(private val mapBoxApiClient: MapBoxApiClient, private val  darkSkyApiClient: DarkSkyApiClient){
 
     fun fetchCityList(searchCityName: String, responseStatus: MutableLiveData<Response>, searchCityList: MutableLiveData<SearchCityList>){
         responseStatus.postValue(Response.loading())
@@ -28,6 +30,22 @@ class NetworkRepository @Inject constructor(private val mapBoxApiClient: MapBoxA
         )
     }
 
+    fun fetchForecast(location: Location, responseStatus: MutableLiveData<Response>, forecast: MutableLiveData<Forecast>){
+        responseStatus.postValue(Response.loading())
+        val observable: Observable<Forecast> = darkSkyApiClient.getCityForecast("${location.longitude},${location.latitude}", "pl", "si")
+        val observer: DisposingObserver<Forecast> = DisposingObserver()
+        observer.onSubscribe(
+            observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext { responseStatus.postValue(Response.loading()) }
+                .subscribe(
+                    { it -> it?.let {forecast.postValue(it)}.also { responseStatus.postValue(Response.success())} },
+                    {throwable: Throwable ->  managingFailureResponse(throwable).also { responseStatus.postValue(Response.error(throwable)) }},
+                    {}
+                )
+        )
+    }
+
     private fun managingFailureResponse(throwable: Throwable) {
         if (throwable is IOException) {
             Timber.d(throwable, "network error")
@@ -35,4 +53,5 @@ class NetworkRepository @Inject constructor(private val mapBoxApiClient: MapBoxA
             Timber.d(throwable, "conversion error")
         }
     }
+
 }
