@@ -40,7 +40,7 @@ class SearchCityListAdapter(lifecycleOwner: LifecycleOwner, viewModel: SearchVie
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchCityListViewHolder = SearchCityListViewHolder(parent)
 
-    fun clearList(){
+    private fun clearList(){
         list = null
         notifyDataSetChanged()
     }
