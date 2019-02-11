@@ -16,6 +16,8 @@ class HaloApplication : Application(), HasActivityInjector {
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
     @Inject lateinit var sharedPreferencesUtils: SharedPreferencesUtils
     @Inject lateinit var networkRepository: NetworkRepository
+    @Inject lateinit var database: Database
+    @Inject lateinit var dataRepository: DataRepository
 
     override fun onCreate() {
         super.onCreate()
