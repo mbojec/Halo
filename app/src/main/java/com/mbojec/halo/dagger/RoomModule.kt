@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.mbojec.halo.AppExecutors
 import com.mbojec.halo.database.DataRepository
 import com.mbojec.halo.database.Database
+import com.mbojec.halo.database.ForecastDao
 import com.mbojec.halo.database.LocationDao
 import dagger.Module
 import dagger.Provides
@@ -19,6 +20,7 @@ class RoomModule {
     @Singleton
     fun provideAppDatabase(context: Context): Database =
         Room.databaseBuilder(context, Database::class.java, "halo-app-dp")
+            .fallbackToDestructiveMigration()
             .build()
 
     @Provides
@@ -26,9 +28,13 @@ class RoomModule {
     fun providesLocationDao(database: Database): LocationDao = database.locationDao()
 
     @Provides
+    @Reusable
+    fun providesForecastDao(database: Database): ForecastDao = database.forecastDao()
+
+    @Provides
     @Singleton
-    fun provideDataRepository(database: Database, locationDao: LocationDao, appExecutors: AppExecutors): DataRepository =
-        DataRepository(database, locationDao, appExecutors)
+    fun provideDataRepository(database: Database, locationDao: LocationDao, forecastDao: ForecastDao, appExecutors: AppExecutors): DataRepository =
+        DataRepository(database, locationDao, forecastDao, appExecutors)
 
 
 }

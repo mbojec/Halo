@@ -3,9 +3,10 @@ package com.mbojec.halo.database
 import android.location.Location
 import androidx.lifecycle.LiveData
 import com.mbojec.halo.AppExecutors
+import com.mbojec.halo.model.Forecast
 import javax.inject.Inject
 
-class DataRepository @Inject constructor(private val database: Database, private val locationDao: LocationDao, private val appExecutors: AppExecutors) {
+class DataRepository @Inject constructor(private val database: Database, private val locationDao: LocationDao, private val forecastDao: ForecastDao, private val appExecutors: AppExecutors) {
 
     val location: LiveData<LocationEntity> = locationDao.loadCurrentLocation()
 
@@ -30,5 +31,29 @@ class DataRepository @Inject constructor(private val database: Database, private
             run { locationDao.clearTable() }
         }}
     }
+
+    val forecast: LiveData<ForecastEntity> = forecastDao.loadForecast()
+
+    fun saveForecast(forecast: Forecast){
+        appExecutors.diskIO.execute{database.runInTransaction{
+            run {
+                forecastDao.saveForecast(
+                    ForecastEntity(
+                        1,
+                        forecast)
+                )
+            }
+        }}
+
+    }
+
+    fun clearForecastData(){
+        appExecutors.diskIO.execute{database.runInTransaction{
+            run { forecastDao.clearTable() }
+        }}
+    }
+
+
+
 
 }

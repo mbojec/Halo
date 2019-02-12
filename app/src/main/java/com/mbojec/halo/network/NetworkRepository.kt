@@ -3,6 +3,7 @@ package com.mbojec.halo.network
 import android.location.Location
 import androidx.lifecycle.MutableLiveData
 import com.mbojec.halo.BuildConfig
+import com.mbojec.halo.HaloApplication
 import com.mbojec.halo.SearchCityList
 import com.mbojec.halo.model.DisposingObserver
 import com.mbojec.halo.model.Forecast
@@ -14,7 +15,7 @@ import timber.log.Timber
 import java.io.IOException
 import javax.inject.Inject
 
-class NetworkRepository @Inject constructor(private val mapBoxApiClient: MapBoxApiClient, private val  darkSkyApiClient: DarkSkyApiClient){
+class NetworkRepository @Inject constructor(private val mapBoxApiClient: MapBoxApiClient, private val  darkSkyApiClient: DarkSkyApiClient, private val application: HaloApplication){
 
     fun fetchCityList(searchCityName: String, responseStatus: MutableLiveData<Response>, searchCityList: MutableLiveData<SearchCityList>){
         responseStatus.postValue(Response.loading())
@@ -39,7 +40,7 @@ class NetworkRepository @Inject constructor(private val mapBoxApiClient: MapBoxA
             observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                    { it -> it?.let {Timber.i("time zone: ${it.timezone}")} },
+                    { it -> it?.let {Timber.i("time zone: ${it.timezone}")}.run {application.dataRepository.saveForecast(it)} },
                     {throwable: Throwable ->  managingFailureResponse(throwable)},
                     {}
                 )

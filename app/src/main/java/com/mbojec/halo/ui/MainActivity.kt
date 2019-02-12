@@ -60,6 +60,15 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
              * */
             location?.let { Toast.makeText(this, it.latitude.toString(), Toast.LENGTH_SHORT).show()}
         })
+
+        viewModel.forecast.observe(this, Observer { forecast ->
+            /**
+             * Przy pierwszym uruchomieniu
+             * @param forecast
+             * jest null dlatego jest null-check
+             * */
+            forecast?.let { Toast.makeText(this, it.forecast.timezone, Toast.LENGTH_SHORT).show()}
+        })
     }
 
     override fun supportFragmentInjector() = dispatchingAndroidFragmentInjector

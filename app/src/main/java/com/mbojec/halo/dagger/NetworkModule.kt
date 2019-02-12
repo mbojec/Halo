@@ -150,6 +150,6 @@ class NetworkModule{
 
     @Provides
     @Singleton
-    fun provideNetworkRepository(mapBoxApiClient: MapBoxApiClient, darkSkyApiClient: DarkSkyApiClient): NetworkRepository =
-        NetworkRepository(mapBoxApiClient, darkSkyApiClient)
+    fun provideNetworkRepository(mapBoxApiClient: MapBoxApiClient, darkSkyApiClient: DarkSkyApiClient, application: HaloApplication): NetworkRepository =
+        NetworkRepository(mapBoxApiClient, darkSkyApiClient, application)
 }
