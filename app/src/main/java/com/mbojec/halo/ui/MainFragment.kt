@@ -28,7 +28,6 @@ class MainFragment : Fragment(), Injectable {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
-        submitViewModel()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -38,16 +37,5 @@ class MainFragment : Fragment(), Injectable {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val navController = findNavController()
         return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
-    }
-
-    private fun submitViewModel(){
-        viewModel.location.observe(this, Observer {
-            /**
-             * Przy pierwszym uruchomieniu
-             * @param location
-             * jest null dlatego jest null-check
-             * */
-            it?.let {Toast.makeText(activity, it.latitude.toString(), Toast.LENGTH_SHORT).show()}
-        })
     }
 }

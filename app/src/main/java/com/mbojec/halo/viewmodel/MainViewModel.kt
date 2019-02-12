@@ -8,11 +8,4 @@ import javax.inject.Inject
 
 class MainViewModel @Inject constructor(haloApplication: HaloApplication): ViewModel() {
 
-    var location: MediatorLiveData<LocationEntity> = MediatorLiveData()
-
-    init {
-        location.addSource(haloApplication.dataRepository.location){
-            this.location.postValue(it)
-        }
-    }
 }

@@ -12,6 +12,11 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
+    @ViewModelKey(ActivityViewModel::class)
+    abstract fun bindActivityViewModel(activityViewModel: ActivityViewModel): ViewModel
+
+    @Binds
+    @IntoMap
     @ViewModelKey(MainViewModel::class)
     abstract fun bindMainViewModel(mainViewModel: MainViewModel): ViewModel
 
