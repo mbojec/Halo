@@ -3,10 +3,7 @@ package com.mbojec.halo.dagger
 import android.content.Context
 import androidx.room.Room
 import com.mbojec.halo.AppExecutors
-import com.mbojec.halo.database.DataRepository
-import com.mbojec.halo.database.Database
-import com.mbojec.halo.database.ForecastDao
-import com.mbojec.halo.database.LocationDao
+import com.mbojec.halo.database.*
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
@@ -32,9 +29,13 @@ class RoomModule {
     fun providesForecastDao(database: Database): ForecastDao = database.forecastDao()
 
     @Provides
+    @Reusable
+    fun providesForecastListDao(database: Database): ForecastListDao = database.forecastListDao()
+
+    @Provides
     @Singleton
-    fun provideDataRepository(database: Database, locationDao: LocationDao, forecastDao: ForecastDao, appExecutors: AppExecutors): DataRepository =
-        DataRepository(database, locationDao, forecastDao, appExecutors)
+    fun provideDataRepository(database: Database, locationDao: LocationDao, forecastDao: ForecastDao, forecastListDao: ForecastListDao, appExecutors: AppExecutors): DataRepository =
+        DataRepository(database, locationDao, forecastDao, forecastListDao, appExecutors)
 
 
 }

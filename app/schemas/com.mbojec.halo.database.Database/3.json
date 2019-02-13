@@ -1,0 +1,308 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 3,
+    "identityHash": "decfcf5c6b2acaef12bee15587f7d401",
+    "entities": [
+      {
+        "tableName": "location",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `longitude` REAL NOT NULL, `latitude` REAL NOT NULL, `updateTime` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "longitude",
+            "columnName": "longitude",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "latitude",
+            "columnName": "latitude",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updateTime",
+            "columnName": "updateTime",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "forecast",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`cityId` INTEGER NOT NULL, `latitude` REAL, `longitude` REAL, `timezone` TEXT, `offset` INTEGER, `currentlytime` INTEGER, `currentlysummary` TEXT, `currentlyicon` TEXT, `currentlynearestStormDistance` INTEGER, `currentlynearestStormBearing` INTEGER, `currentlyprecipIntensity` REAL, `currentlyprecipProbability` REAL, `currentlytemperature` REAL, `currentlyapparentTemperature` REAL, `currentlydewPoint` REAL, `currentlyhumidity` REAL, `currentlypressure` REAL, `currentlywindSpeed` REAL, `currentlywindGust` REAL, `currentlywindBearing` INTEGER, `currentlycloudCover` REAL, `currentlyuvIndex` INTEGER, `currentlyvisibility` REAL, `currentlyozone` REAL, `minutelysummary` TEXT, `minutelyicon` TEXT, `minutelydataMinutelies` TEXT, `hourlysummary` TEXT, `hourlyicon` TEXT, `hourlydataHourlies` TEXT, `dailysummary` TEXT, `dailyicon` TEXT, `dailydataDailies` TEXT, `sources` TEXT, `nearestStation` REAL, `units` TEXT, PRIMARY KEY(`cityId`))",
+        "fields": [
+          {
+            "fieldPath": "cityId",
+            "columnName": "cityId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "forecast.latitude",
+            "columnName": "latitude",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.longitude",
+            "columnName": "longitude",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.timezone",
+            "columnName": "timezone",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.offset",
+            "columnName": "offset",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.currently.time",
+            "columnName": "currentlytime",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.currently.summary",
+            "columnName": "currentlysummary",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.currently.icon",
+            "columnName": "currentlyicon",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.currently.nearestStormDistance",
+            "columnName": "currentlynearestStormDistance",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.currently.nearestStormBearing",
+            "columnName": "currentlynearestStormBearing",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.currently.precipIntensity",
+            "columnName": "currentlyprecipIntensity",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.currently.precipProbability",
+            "columnName": "currentlyprecipProbability",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.currently.temperature",
+            "columnName": "currentlytemperature",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.currently.apparentTemperature",
+            "columnName": "currentlyapparentTemperature",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.currently.dewPoint",
+            "columnName": "currentlydewPoint",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.currently.humidity",
+            "columnName": "currentlyhumidity",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.currently.pressure",
+            "columnName": "currentlypressure",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.currently.windSpeed",
+            "columnName": "currentlywindSpeed",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.currently.windGust",
+            "columnName": "currentlywindGust",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.currently.windBearing",
+            "columnName": "currentlywindBearing",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.currently.cloudCover",
+            "columnName": "currentlycloudCover",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.currently.uvIndex",
+            "columnName": "currentlyuvIndex",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.currently.visibility",
+            "columnName": "currentlyvisibility",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.currently.ozone",
+            "columnName": "currentlyozone",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.minutely.summary",
+            "columnName": "minutelysummary",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.minutely.icon",
+            "columnName": "minutelyicon",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.minutely.dataMinutelies",
+            "columnName": "minutelydataMinutelies",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.hourly.summary",
+            "columnName": "hourlysummary",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.hourly.icon",
+            "columnName": "hourlyicon",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.hourly.dataHourlies",
+            "columnName": "hourlydataHourlies",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.daily.summary",
+            "columnName": "dailysummary",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.daily.icon",
+            "columnName": "dailyicon",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.daily.dataDailies",
+            "columnName": "dailydataDailies",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.flags.sources",
+            "columnName": "sources",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.flags.nearestStation",
+            "columnName": "nearestStation",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecast.flags.units",
+            "columnName": "units",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "cityId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "list",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `forecastList` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "forecastList",
+            "columnName": "forecastList",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"decfcf5c6b2acaef12bee15587f7d401\")"
+    ]
+  }
+}
