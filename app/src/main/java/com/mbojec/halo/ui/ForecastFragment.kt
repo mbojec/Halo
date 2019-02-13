@@ -18,16 +18,18 @@ class ForecastFragment : Fragment(), Injectable {
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject lateinit var viewModel: ForecastViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.forecast_fragment, container, false)
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ForecastViewModel::class.java)
     }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val arguments: Bundle? = arguments
+        val cityId :Int = arguments?.getInt("CITY_ID")?:1
+        viewModel.setId(cityId)
+        return inflater.inflate(R.layout.forecast_fragment, container, false)
+    }
+
+
 
 }
