@@ -12,6 +12,8 @@ import androidx.navigation.ui.onNavDestinationSelected
 import com.mbojec.halo.viewmodel.MainViewModel
 import com.mbojec.halo.R
 import com.mbojec.halo.dagger.Injectable
+import com.mbojec.halo.utils.ForecastAdapter
+import kotlinx.android.synthetic.main.main_fragment.*
 import javax.inject.Inject
 
 
@@ -19,9 +21,11 @@ class MainFragment : Fragment(), Injectable {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject lateinit var viewModel: MainViewModel
+    private var adapter: ForecastAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         setHasOptionsMenu(true)
+        submitToViewModel()
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
@@ -37,5 +41,14 @@ class MainFragment : Fragment(), Injectable {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val navController = findNavController()
         return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
+    }
+
+    private fun submitToViewModel(){
+        viewModel.forecastList.observe(this, Observer {
+            it?.let {
+                adapter = ForecastAdapter(childFragmentManager, it.forecastList)
+                view_pager.adapter = adapter
+            }
+        })
     }
 }

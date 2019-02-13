@@ -6,10 +6,9 @@
         android:layout_height="match_parent"
         tools:context=".ui.MainFragment">
 
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Main fragment"
-            android:gravity="center"/>
 
+    <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
