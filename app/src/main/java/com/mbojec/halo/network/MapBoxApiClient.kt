@@ -16,4 +16,14 @@ interface MapBoxApiClient {
         @Query("autocomplete") autocomplete: String,
         @Query("limit") limit: String
     ): Observable<SearchCityList>
+
+    @GET("{longitude},{latitude}.json")
+    fun getCurrentCityData(
+        @Path("longitude") longitude: String,
+        @Path("latitude") latitude: String,
+        @Query("language") targetLanguage: String,
+        @Query("types") types: String
+    ): Observable<SearchCityList>
+
+
 }

@@ -1,10 +1,7 @@
 package com.mbojec.halo.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface ForecastListDao{
@@ -12,8 +9,15 @@ interface ForecastListDao{
     fun saveForecastList(forecastList: ForecastListEntity)
 
     @Query("SELECT * FROM list")
-    fun loadForecastList(): LiveData<ForecastListEntity>
+    fun loadForecastList(): LiveData<List<ForecastListEntity>>
 
     @Query("DELETE FROM list")
     fun clearTable()
+
+    @Transaction
+    fun updateData(forecastList: List<ForecastListEntity>) {
+        clearTable()
+        forecastList.forEach { saveForecastList(it)}
+    }
+
 }

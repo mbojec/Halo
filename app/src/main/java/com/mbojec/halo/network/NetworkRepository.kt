@@ -33,14 +33,27 @@ class NetworkRepository @Inject constructor(private val mapBoxApiClient: MapBoxA
         )
     }
 
-    fun fetchForecast(location: Location){
+    fun currentCityData(location: Location){
+        val observable: Observable<SearchCityList> = mapBoxApiClient.getCurrentCityData("${location.longitude}", "${location.latitude}", "pl", "place")
+        val observer: DisposingObserver<SearchCityList> = DisposingObserver()
+        observer.onSubscribe(
+            observable.subscribeOn(Schedulers.io())
+                .subscribe(
+                    { searchCityList -> searchCityList?.let { searchCityList.features?.get(0)?.let { feature -> fetchCurrentForecast(location, feature) } }},
+                    {throwable: Throwable ->  managingFailureResponse(throwable)},
+                    {}
+                )
+        )
+    }
+
+    private fun fetchCurrentForecast(location: Location, feature: SearchCityList.Feature){
         val observable: Observable<Forecast> = darkSkyApiClient.getCityForecast(BuildConfig.DARK_SKY_API_KEY, "${location.latitude},${location.longitude}", "pl", "si")
         val observer: DisposingObserver<Forecast> = DisposingObserver()
         observer.onSubscribe(
             observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                    { it -> it?.let {Timber.i("time zone: ${it.timezone}")}.run {application.dataRepository.saveForecast(it)} },
+                    { it -> it?.let {Timber.i("time zone: ${it.timezone}")}.run {application.dataRepository.saveForecast(feature, it)}.run { application.dataRepository.saveForecastList(1, 1) } },
                     {throwable: Throwable ->  managingFailureResponse(throwable)},
                     {}
                 )

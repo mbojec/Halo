@@ -44,9 +44,9 @@ class MainFragment : Fragment(), Injectable {
     }
 
     private fun submitToViewModel(){
-        viewModel.forecastList.observe(this, Observer {
+        viewModel.forecastList.observe(this, Observer { it ->
             it?.let {
-                adapter = ForecastAdapter(childFragmentManager, it.forecastList)
+                adapter = ForecastAdapter(childFragmentManager, it)
                 view_pager.adapter = adapter
             }
         })

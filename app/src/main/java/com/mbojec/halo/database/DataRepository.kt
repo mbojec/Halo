@@ -3,8 +3,8 @@ package com.mbojec.halo.database
 import android.location.Location
 import androidx.lifecycle.LiveData
 import com.mbojec.halo.AppExecutors
+import com.mbojec.halo.SearchCityList
 import com.mbojec.halo.model.Forecast
-import com.mbojec.halo.model.ForecastListItem
 import javax.inject.Inject
 
 class DataRepository @Inject constructor(private val database: Database, private val locationDao: LocationDao, val forecastDao: ForecastDao, private val forecastListDao: ForecastListDao, private val appExecutors: AppExecutors) {
@@ -35,14 +35,18 @@ class DataRepository @Inject constructor(private val database: Database, private
 
 
 
-    val forecast: LiveData<ForecastEntity> = forecastDao.loadSimpleForecast()
 
-    fun saveForecast(forecast: Forecast){
+
+    val forecast: LiveData<ForecastEntity> = forecastDao.loadSimpleForecast()
+    val forecasts: LiveData<List<ForecastEntity>> = forecastDao.loadAllForecasts()
+
+    fun saveForecast(feature: SearchCityList.Feature, forecast: Forecast){
         appExecutors.diskIO.execute{database.runInTransaction{
             run {
                 forecastDao.saveForecast(
                     ForecastEntity(
                         1,
+                        feature,
                         forecast)
                 )
             }
@@ -62,15 +66,17 @@ class DataRepository @Inject constructor(private val database: Database, private
 
 
 
-    val forecastList: LiveData<ForecastListEntity> = forecastListDao.loadForecastList()
 
-    fun saveForecastList(forecastList: List<ForecastListItem>){
+
+    val forecastList: LiveData<List<ForecastListEntity>> = forecastListDao.loadForecastList()
+
+    fun saveForecastList(rowId: Int, cityId: Int){
         appExecutors.diskIO.execute { database.runInTransaction {
             run {
                 forecastListDao.saveForecastList(
                     ForecastListEntity(
-                        1,
-                        forecastList
+                        rowId,
+                        cityId
                     )
                 )
             }

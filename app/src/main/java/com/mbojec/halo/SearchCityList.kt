@@ -12,10 +12,10 @@ class SearchCityList {
     @SerializedName("type")
     @Expose
     var type: String? = null
-
-    @SerializedName("query")
-    @Expose
-    var query: List<String>? = null
+//
+//    @SerializedName("query")
+//    @Expose
+//    var query: List<String>? = null
 
     @SerializedName("features")
     @Expose
@@ -25,7 +25,7 @@ class SearchCityList {
     @Expose
     var attribution: String? = null
 
-    inner class Feature {
+    class Feature {
 
         @SerializedName("id")
         @Expose
@@ -77,7 +77,7 @@ class SearchCityList {
 
         @SerializedName("geometry")
         @Expose
-        @Embedded
+        @Embedded(prefix = "geometry")
         var geometry: Geometry? = null
 
         @SerializedName("context")
@@ -93,7 +93,7 @@ class SearchCityList {
         @Expose
         var language: String? = null
 
-        inner class Geometry {
+        class Geometry {
 
             @SerializedName("type")
             @Expose
@@ -106,7 +106,7 @@ class SearchCityList {
 
         }
 
-        inner class Properties {
+        class Properties {
 
             @SerializedName("wikidata")
             @Expose
@@ -114,7 +114,7 @@ class SearchCityList {
 
         }
 
-        inner class Context {
+        class Context {
 
             @SerializedName("id")
             @Expose

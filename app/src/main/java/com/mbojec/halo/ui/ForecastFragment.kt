@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.mbojec.halo.viewmodel.ForecastViewModel
 import com.mbojec.halo.R
 import com.mbojec.halo.dagger.Injectable
+import kotlinx.android.synthetic.main.forecast_fragment.*
 import javax.inject.Inject
 
 
@@ -35,7 +36,8 @@ class ForecastFragment : Fragment(), Injectable {
 
     private fun submitToViewModel(){
         viewModel.forecast.observe(this, Observer {
-            it?.let { Toast.makeText(activity, it.forecast.timezone, Toast.LENGTH_SHORT).show() }
+//            it?.let { Toast.makeText(activity, it.forecast.timezone, Toast.LENGTH_SHORT).show() }
+            it?.let { text_view.text = it.feature.placeName }
         })
     }
 

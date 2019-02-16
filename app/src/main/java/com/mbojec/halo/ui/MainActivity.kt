@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
              * @param location
              * jest null dlatego jest null-check
              * */
-            location?.let { Toast.makeText(this, it.latitude.toString(), Toast.LENGTH_SHORT).show()}
+//            location?.let { Toast.makeText(this, it.latitude.toString(), Toast.LENGTH_SHORT).show()}
         })
 
         viewModel.forecast.observe(this, Observer { forecast ->
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
              * @param forecast
              * jest null dlatego jest null-check
              * */
-            forecast?.let { Toast.makeText(this, it.forecast.timezone, Toast.LENGTH_SHORT).show()}
+//            forecast?.let { Toast.makeText(this, it.forecast.timezone, Toast.LENGTH_SHORT).show()}
         })
     }
 

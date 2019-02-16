@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class MainViewModel @Inject constructor(haloApplication: HaloApplication): ViewModel() {
 
-    var forecastList: MediatorLiveData<ForecastListEntity> = MediatorLiveData()
+    var forecastList: MediatorLiveData<List<ForecastListEntity>> = MediatorLiveData()
 
     init {
         forecastList.addSource(haloApplication.dataRepository.forecastList){

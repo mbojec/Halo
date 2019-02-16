@@ -4,11 +4,11 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import com.mbojec.halo.model.ForecastListItem
+import com.mbojec.halo.database.ForecastListEntity
 import com.mbojec.halo.ui.ForecastFragment
 
 
-class ForecastAdapter(fragmentManager: FragmentManager, private val cityListForecast: List<ForecastListItem>): FragmentStatePagerAdapter(fragmentManager){
+class ForecastAdapter(fragmentManager: FragmentManager, private val cityListForecast: List<ForecastListEntity>): FragmentStatePagerAdapter(fragmentManager){
 
     override fun getItem(position: Int): Fragment {
         return if (position == 0 ){

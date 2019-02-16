@@ -23,7 +23,7 @@ object LocationProvider{
                             Timber.i("location obtained")
                             Timber.i("location latitude: ${location.latitude}")
                             Timber.i("location longitude: ${location.longitude}")
-                            application.networkRepository.fetchForecast(location)
+                            application.networkRepository.currentCityData(location)
                             application.dataRepository.saveLocation(location, CURRENT_LOCATION_ID)
                         } else {
                             Timber.i("location null")
