@@ -10,10 +10,10 @@ import javax.inject.Inject
 
 class ForecastViewModel @Inject constructor(haloApplication: HaloApplication): ViewModel() {
 
-    private val cityId: MutableLiveData<Int> = MutableLiveData()
+    private val cityId: MutableLiveData<Long> = MutableLiveData()
     var forecast: LiveData<ForecastEntity> = object : LiveData<ForecastEntity>(){}
 
-    fun setId(cityId: Int) {
+    fun setId(cityId: Long) {
         this.cityId.value = cityId
     }
 

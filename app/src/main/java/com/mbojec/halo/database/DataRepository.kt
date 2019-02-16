@@ -40,12 +40,12 @@ class DataRepository @Inject constructor(private val database: Database, private
     val forecast: LiveData<ForecastEntity> = forecastDao.loadSimpleForecast()
     val forecasts: LiveData<List<ForecastEntity>> = forecastDao.loadAllForecasts()
 
-    fun saveForecast(feature: SearchCityList.Feature, forecast: Forecast){
+    fun saveForecast(cityId: Long, feature: SearchCityList.Feature, forecast: Forecast){
         appExecutors.diskIO.execute{database.runInTransaction{
             run {
                 forecastDao.saveForecast(
                     ForecastEntity(
-                        1,
+                        cityId,
                         feature,
                         forecast)
                 )
@@ -54,7 +54,7 @@ class DataRepository @Inject constructor(private val database: Database, private
 
     }
 
-    fun loadForecast(cityId: Int): LiveData<ForecastEntity>{
+    fun loadForecast(cityId: Long): LiveData<ForecastEntity>{
         return forecastDao.loadForecast(cityId)
     }
 
@@ -70,7 +70,7 @@ class DataRepository @Inject constructor(private val database: Database, private
 
     val forecastList: LiveData<List<ForecastListEntity>> = forecastListDao.loadForecastList()
 
-    fun saveForecastList(rowId: Int, cityId: Int){
+    fun saveForecastList(rowId: Int, cityId: Long){
         appExecutors.diskIO.execute { database.runInTransaction {
             run {
                 forecastListDao.saveForecastList(

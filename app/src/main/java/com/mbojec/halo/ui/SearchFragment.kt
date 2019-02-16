@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.mbojec.halo.HaloApplication
 import com.mbojec.halo.R
 import com.mbojec.halo.SearchCityListAdapter
 import com.mbojec.halo.dagger.Injectable
@@ -22,6 +23,7 @@ class SearchFragment : Fragment(), Injectable {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject lateinit var viewModel: SearchViewModel
+    @Inject lateinit var application: HaloApplication
     private var searchView: SearchView? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -47,7 +49,7 @@ class SearchFragment : Fragment(), Injectable {
         super.onStart()
         searchView?.let { viewModel.createSearchViewObserver(searchView!!)
             searchView!!.isIconified = false}
-        SearchCityListAdapter.getInstanceAndInit(this, viewModel, activity!!)
+        SearchCityListAdapter.getInstanceAndInit(this, viewModel, activity!!, application)
     }
 
     override fun onStop() {

@@ -6,14 +6,15 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.mbojec.halo.model.SingletonAdapterHolder
 import com.mbojec.halo.model.SingletonHolder
 import com.mbojec.halo.viewmodel.SearchViewModel
 import kotlinx.android.synthetic.main.search_fragment.*
 
-class SearchCityListAdapter(lifecycleOwner: LifecycleOwner, viewModel: SearchViewModel, activity: FragmentActivity): RecyclerView.Adapter<SearchCityListViewHolder>(){
+class SearchCityListAdapter(lifecycleOwner: LifecycleOwner, viewModel: SearchViewModel, activity: FragmentActivity, val application: HaloApplication): RecyclerView.Adapter<SearchCityListViewHolder>(){
     private var list: SearchCityList? = null
 
-    companion object : SingletonHolder<SearchCityListAdapter, LifecycleOwner, SearchViewModel, FragmentActivity>(::SearchCityListAdapter)
+    companion object : SingletonAdapterHolder<SearchCityListAdapter, LifecycleOwner, SearchViewModel, FragmentActivity, HaloApplication>(::SearchCityListAdapter)
 
     init {
         val layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
@@ -38,7 +39,7 @@ class SearchCityListAdapter(lifecycleOwner: LifecycleOwner, viewModel: SearchVie
         list?.features?.get(position)?.let { holder.bindTo(it) }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchCityListViewHolder = SearchCityListViewHolder(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchCityListViewHolder = SearchCityListViewHolder(parent, application)
 
     private fun clearList(){
         list = null

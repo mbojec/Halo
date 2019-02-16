@@ -28,7 +28,7 @@ class ForecastFragment : Fragment(), Injectable {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val arguments: Bundle? = arguments
-        val cityId :Int = arguments?.getInt("CITY_ID")?:1
+        val cityId :Long = arguments?.getLong("CITY_ID")?:1
         viewModel.setId(cityId)
         submitToViewModel()
         return inflater.inflate(R.layout.forecast_fragment, container, false)

@@ -5,4 +5,4 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "list")
 class ForecastListEntity(@field:PrimaryKey var rowId: Int,
-                         var cityId: Int)
+                         var cityId: Long)

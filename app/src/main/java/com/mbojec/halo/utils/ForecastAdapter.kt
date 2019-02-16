@@ -14,13 +14,13 @@ class ForecastAdapter(fragmentManager: FragmentManager, private val cityListFore
         return if (position == 0 ){
             val fragment = ForecastFragment()
             val arguments = Bundle()
-            arguments.putInt("CITY_ID", 1)
+            arguments.putLong("CITY_ID", 1)
             fragment.arguments = arguments
             fragment
         } else {
             val fragment = ForecastFragment()
             val arguments = Bundle()
-            arguments.putInt("CITY_ID", cityListForecast[position].cityId)
+            arguments.putLong("CITY_ID", cityListForecast[position].cityId)
             fragment.arguments = arguments
             fragment
         }

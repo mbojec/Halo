@@ -1,6 +1,5 @@
 package com.mbojec.halo.network
 
-import android.location.Location
 import androidx.lifecycle.MutableLiveData
 import com.mbojec.halo.BuildConfig
 import com.mbojec.halo.HaloApplication
@@ -33,32 +32,54 @@ class NetworkRepository @Inject constructor(private val mapBoxApiClient: MapBoxA
         )
     }
 
-    fun currentCityData(location: Location){
-        val observable: Observable<SearchCityList> = mapBoxApiClient.getCurrentCityData("${location.longitude}", "${location.latitude}", "pl", "place")
+    fun fetchCityData(longitude: Double, latitude: Double, isCurrentLocation: Boolean){
+        val observable: Observable<SearchCityList> = mapBoxApiClient.getCurrentCityData("$longitude", "$latitude", "pl", "place")
         val observer: DisposingObserver<SearchCityList> = DisposingObserver()
         observer.onSubscribe(
             observable.subscribeOn(Schedulers.io())
                 .subscribe(
-                    { searchCityList -> searchCityList?.let { searchCityList.features?.get(0)?.let { feature -> fetchCurrentForecast(location, feature) } }},
+                    { searchCityList -> searchCityList?.let { searchCityList.features?.get(0)?.let { feature ->
+                        fetchCityForecast(longitude, latitude, feature, getCityRowNumber(isCurrentLocation),getCityId(isCurrentLocation,it.features?.get(0)!!))
+                    } }},
                     {throwable: Throwable ->  managingFailureResponse(throwable)},
                     {}
                 )
         )
     }
 
-    private fun fetchCurrentForecast(location: Location, feature: SearchCityList.Feature){
-        val observable: Observable<Forecast> = darkSkyApiClient.getCityForecast(BuildConfig.DARK_SKY_API_KEY, "${location.latitude},${location.longitude}", "pl", "si")
+    private fun fetchCityForecast(longitude: Double, latitude: Double, feature: SearchCityList.Feature, rowId: Int, cityId: Long){
+        val observable: Observable<Forecast> = darkSkyApiClient.getCityForecast(BuildConfig.DARK_SKY_API_KEY, "$latitude,$longitude", "pl", "si")
         val observer: DisposingObserver<Forecast> = DisposingObserver()
         observer.onSubscribe(
             observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                    { it -> it?.let {Timber.i("time zone: ${it.timezone}")}.run {application.dataRepository.saveForecast(feature, it)}.run { application.dataRepository.saveForecastList(1, 1) } },
+                    { it -> it?.let {Timber.i("time zone: ${it.timezone}")}.run {application.dataRepository.saveForecast(cityId,feature, it)}.run { application.dataRepository.saveForecastList(rowId, cityId) } },
                     {throwable: Throwable ->  managingFailureResponse(throwable)},
                     {}
                 )
         )
     }
+
+    private fun getCityId(isCurrentLocation: Boolean, feature: SearchCityList.Feature): Long{
+        return if (isCurrentLocation){
+            1
+        } else {
+            val cityId = feature.feature_id?.split(".")?.get(1)
+            cityId!!.toLong()
+        }
+    }
+
+    private fun getCityRowNumber(isCurrentLocation: Boolean): Int{
+        return if (isCurrentLocation){
+            1
+        } else {
+            val numberOfRows = application.sharedPreferencesUtils.getNumberOfRows()
+            application.sharedPreferencesUtils.saveCityListSize(numberOfRows + 1)
+            numberOfRows + 1
+        }
+    }
+
 
     private fun managingFailureResponse(throwable: Throwable) {
         if (throwable is IOException) {
