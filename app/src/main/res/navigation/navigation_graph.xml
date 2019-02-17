@@ -19,8 +19,8 @@
                 app:destination="@id/about_dest"/>
         <argument
                 android:name="cityId"
-                app:argType="integer"
-                android:defaultValue="1"/>
+                app:argType="long"
+                />
     </fragment>
     <fragment
             android:id="@+id/list_dest"
@@ -29,6 +29,9 @@
         <action
                 android:id="@+id/action_list_dest_to_search_dest"
                 app:destination="@id/search_dest"/>
+        <action
+                android:id="@+id/action_list_dest_to_main_dest"
+                app:destination="@id/main_dest"/>
     </fragment>
     <fragment
             android:id="@+id/search_dest"

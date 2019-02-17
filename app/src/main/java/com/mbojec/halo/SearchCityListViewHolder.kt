@@ -23,7 +23,8 @@ class SearchCityListViewHolder(parent: ViewGroup, application: HaloApplication):
                     false
                 )
             }
-            val action = SearchFragmentDirections.actionSearchDestToMainDest()
+            val cityId = feature.feature_id?.split(".")?.get(1)
+            val action = SearchFragmentDirections.actionSearchDestToMainDest(cityId!!.toLong())
             val handler = Handler()
             val task = Runnable {
                 it.findNavController().navigate(action)

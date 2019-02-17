@@ -6,6 +6,8 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.mbojec.halo.ForecastListAdapter
+import com.mbojec.halo.HaloApplication
 import com.mbojec.halo.viewmodel.ListViewModel
 import com.mbojec.halo.R
 import com.mbojec.halo.dagger.Injectable
@@ -17,6 +19,7 @@ class ListFragment : Fragment(), Injectable {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject lateinit var viewModel: ListViewModel
+    @Inject lateinit var application: HaloApplication
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.list_fragment, container, false)
@@ -33,5 +36,16 @@ class ListFragment : Fragment(), Injectable {
             val navController = findNavController()
             navController.navigate(R.id.search_dest)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        ForecastListAdapter.getInstanceAndInit(this, viewModel, activity!!, application)
+    }
+
+
+    override fun onStop() {
+        super.onStop()
+        ForecastListAdapter.clearInstance()
     }
 }

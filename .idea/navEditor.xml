@@ -31,6 +31,11 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_list_dest_to_main_dest">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_list_dest_to_search_dest">
                               <value>
                                 <LayoutPositions />
