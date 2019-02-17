@@ -1,4 +1,4 @@
-package com.mbojec.halo
+package com.mbojec.halo.adapters
 
 import android.os.Handler
 import android.view.LayoutInflater
@@ -6,6 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.mbojec.halo.HaloApplication
+import com.mbojec.halo.R
+import com.mbojec.halo.model.SearchCityList
 import com.mbojec.halo.ui.SearchFragmentDirections
 
 class SearchCityListViewHolder(parent: ViewGroup, application: HaloApplication): RecyclerView.ViewHolder(

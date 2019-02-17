@@ -4,10 +4,10 @@ import androidx.room.Embedded
 import androidx.room.TypeConverters
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.mbojec.halo.database.DataDailyConverter
-import com.mbojec.halo.database.DataHourlyConverter
-import com.mbojec.halo.database.DataMinutelyConverter
-import com.mbojec.halo.database.StringConverter
+import com.mbojec.halo.database.converters.DataDailyConverter
+import com.mbojec.halo.database.converters.DataHourlyConverter
+import com.mbojec.halo.database.converters.DataMinutelyConverter
+import com.mbojec.halo.database.converters.StringConverter
 
 class Forecast {
 

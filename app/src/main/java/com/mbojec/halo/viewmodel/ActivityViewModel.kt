@@ -3,8 +3,8 @@ package com.mbojec.halo.viewmodel
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import com.mbojec.halo.HaloApplication
-import com.mbojec.halo.database.ForecastEntity
-import com.mbojec.halo.database.LocationEntity
+import com.mbojec.halo.database.entity.ForecastEntity
+import com.mbojec.halo.database.entity.LocationEntity
 import javax.inject.Inject
 
 class ActivityViewModel @Inject constructor(haloApplication: HaloApplication): ViewModel(){

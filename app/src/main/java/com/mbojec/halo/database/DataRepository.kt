@@ -3,7 +3,13 @@ package com.mbojec.halo.database
 import android.location.Location
 import androidx.lifecycle.LiveData
 import com.mbojec.halo.AppExecutors
-import com.mbojec.halo.SearchCityList
+import com.mbojec.halo.model.SearchCityList
+import com.mbojec.halo.database.dao.ForecastDao
+import com.mbojec.halo.database.dao.ForecastListDao
+import com.mbojec.halo.database.dao.LocationDao
+import com.mbojec.halo.database.entity.ForecastEntity
+import com.mbojec.halo.database.entity.ForecastListEntity
+import com.mbojec.halo.database.entity.LocationEntity
 import com.mbojec.halo.model.Forecast
 import javax.inject.Inject
 
@@ -47,7 +53,8 @@ class DataRepository @Inject constructor(private val database: Database, private
                     ForecastEntity(
                         cityId,
                         feature,
-                        forecast)
+                        forecast
+                    )
                 )
             }
         }}

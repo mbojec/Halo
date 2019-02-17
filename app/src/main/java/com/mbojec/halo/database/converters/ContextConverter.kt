@@ -1,21 +1,21 @@
-package com.mbojec.halo.database
+package com.mbojec.halo.database.converters
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.mbojec.halo.model.SearchCityList
 
-
-class DoubleConverter{
+class ContextConverter{
 
     private val gson = Gson()
 
     @TypeConverter
-    fun stringToList(data: String?): List<Double> {
+    fun stringToList(data: String?): List<SearchCityList.Feature.Context> {
         if (data == null) {
             return emptyList()
         }
 
-        val listType = object : TypeToken<List<Double>>() {
+        val listType = object : TypeToken<List<SearchCityList.Feature.Context>>() {
 
         }.type
 
@@ -23,7 +23,7 @@ class DoubleConverter{
     }
 
     @TypeConverter
-    fun listToString(someObjects: List<Double>): String {
+    fun listToString(someObjects: List<SearchCityList.Feature.Context>): String {
         return gson.toJson(someObjects)
     }
 

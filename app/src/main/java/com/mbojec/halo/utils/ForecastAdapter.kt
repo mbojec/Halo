@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import com.mbojec.halo.database.ForecastListEntity
+import com.mbojec.halo.database.entity.ForecastListEntity
 import com.mbojec.halo.ui.ForecastFragment
 
 

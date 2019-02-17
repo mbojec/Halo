@@ -6,7 +6,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel;
 import com.mbojec.halo.HaloApplication
-import com.mbojec.halo.SearchCityList
+import com.mbojec.halo.model.SearchCityList
 import com.mbojec.halo.model.Response
 import com.mbojec.halo.utils.NetworkUtils
 import io.reactivex.Observable

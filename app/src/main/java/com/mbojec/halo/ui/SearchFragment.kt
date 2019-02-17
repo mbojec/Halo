@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.mbojec.halo.HaloApplication
 import com.mbojec.halo.R
-import com.mbojec.halo.SearchCityListAdapter
+import com.mbojec.halo.adapters.SearchCityListAdapter
 import com.mbojec.halo.dagger.Injectable
 import com.mbojec.halo.model.Status
 import com.mbojec.halo.viewmodel.SearchViewModel

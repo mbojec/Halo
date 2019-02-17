@@ -1,7 +1,8 @@
-package com.mbojec.halo.database
+package com.mbojec.halo.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.mbojec.halo.database.entity.ForecastListEntity
 
 @Dao
 interface ForecastListDao{

@@ -6,7 +6,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.mbojec.halo.ForecastListAdapter
+import com.mbojec.halo.adapters.ForecastListAdapter
 import com.mbojec.halo.HaloApplication
 import com.mbojec.halo.viewmodel.ListViewModel
 import com.mbojec.halo.R

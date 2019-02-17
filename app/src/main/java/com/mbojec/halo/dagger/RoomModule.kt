@@ -4,6 +4,9 @@ import android.content.Context
 import androidx.room.Room
 import com.mbojec.halo.AppExecutors
 import com.mbojec.halo.database.*
+import com.mbojec.halo.database.dao.ForecastDao
+import com.mbojec.halo.database.dao.ForecastListDao
+import com.mbojec.halo.database.dao.LocationDao
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable

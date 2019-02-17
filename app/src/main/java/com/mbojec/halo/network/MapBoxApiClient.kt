@@ -1,6 +1,6 @@
 package com.mbojec.halo.network
 
-import com.mbojec.halo.SearchCityList
+import com.mbojec.halo.model.SearchCityList
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -1,21 +1,21 @@
-package com.mbojec.halo.database
+package com.mbojec.halo.database.converters
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mbojec.halo.model.Forecast
 
-class DataMinutelyConverter{
+class DataDailyConverter{
 
     private val gson = Gson()
 
     @TypeConverter
-    fun stringToList(data: String?): List<Forecast.DataMinutely> {
+    fun stringToList(data: String?): List<Forecast.DataDaily> {
         if (data == null) {
             return emptyList()
         }
 
-        val listType = object : TypeToken<List<Forecast.DataMinutely>>() {
+        val listType = object : TypeToken<List<Forecast.DataDaily>>() {
 
         }.type
 
@@ -23,7 +23,7 @@ class DataMinutelyConverter{
     }
 
     @TypeConverter
-    fun listToString(someObjects: List<Forecast.DataMinutely>): String {
+    fun listToString(someObjects: List<Forecast.DataDaily>): String {
         return gson.toJson(someObjects)
     }
 

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel;
 import com.mbojec.halo.HaloApplication
-import com.mbojec.halo.database.ForecastEntity
+import com.mbojec.halo.database.entity.ForecastEntity
 import javax.inject.Inject
 
 class ForecastViewModel @Inject constructor(haloApplication: HaloApplication): ViewModel() {

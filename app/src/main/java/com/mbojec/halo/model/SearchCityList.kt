@@ -1,12 +1,12 @@
-package com.mbojec.halo
+package com.mbojec.halo.model
 
 import androidx.room.Embedded
 import androidx.room.TypeConverters
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.mbojec.halo.database.ContextConverter
-import com.mbojec.halo.database.DoubleConverter
-import com.mbojec.halo.database.StringConverter
+import com.mbojec.halo.database.converters.ContextConverter
+import com.mbojec.halo.database.converters.DoubleConverter
+import com.mbojec.halo.database.converters.StringConverter
 
 class SearchCityList {
     @SerializedName("type")

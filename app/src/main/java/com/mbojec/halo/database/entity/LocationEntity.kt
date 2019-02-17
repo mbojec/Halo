@@ -1,4 +1,4 @@
-package com.mbojec.halo.database
+package com.mbojec.halo.database.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

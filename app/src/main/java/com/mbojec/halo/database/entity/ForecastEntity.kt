@@ -1,9 +1,9 @@
-package com.mbojec.halo.database
+package com.mbojec.halo.database.entity
 
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.mbojec.halo.SearchCityList
+import com.mbojec.halo.model.SearchCityList
 import com.mbojec.halo.model.Forecast
 
 @Entity(tableName = "forecast")
