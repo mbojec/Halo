@@ -8,7 +8,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.mbojec.halo.HaloApplication
 import com.mbojec.halo.R
 import com.mbojec.halo.adapters.SearchCityListAdapter
@@ -35,14 +34,6 @@ class SearchFragment : Fragment(), Injectable {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SearchViewModel::class.java)
         submitViewModel()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        floatingActionButton2.setOnClickListener {
-            val navController = findNavController()
-            navController.navigate(R.id.main_dest)
-        }
     }
 
     override fun onStart() {

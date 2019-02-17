@@ -10,7 +10,7 @@ interface ForecastDao{
     fun saveForecast(forecast: ForecastEntity)
 
     @Query("SELECT * FROM forecast WHERE cityId = 1")
-    fun loadSimpleForecast(): LiveData<ForecastEntity>
+    fun loadCurrentForecast(): LiveData<ForecastEntity>
 
     @Query("SELECT * FROM forecast WHERE cityId = :id")
     fun loadForecast(id: Long): LiveData<ForecastEntity>

@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         val navController = findNavController(R.id.nav_host_fragment)
         NavigationUI.setupWithNavController(toolbar_mainActivity, navController)
         MainActivityStateListener.getInstanceAndInit(application, this, this)
-        submitViewModel()
     }
 
     override fun onBackPressed() {
@@ -49,26 +48,6 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         PermissionUtils.requestPermissionResultSolution(grantResults, this, this, application)
-    }
-
-    private fun submitViewModel(){
-        viewModel.location.observe(this, Observer { location ->
-            /**
-             * Przy pierwszym uruchomieniu
-             * @param location
-             * jest null dlatego jest null-check
-             * */
-//            location?.let { Toast.makeText(this, it.latitude.toString(), Toast.LENGTH_SHORT).show()}
-        })
-
-        viewModel.forecast.observe(this, Observer { forecast ->
-            /**
-             * Przy pierwszym uruchomieniu
-             * @param forecast
-             * jest null dlatego jest null-check
-             * */
-//            forecast?.let { Toast.makeText(this, it.forecast.timezone, Toast.LENGTH_SHORT).show()}
-        })
     }
 
     override fun supportFragmentInjector() = dispatchingAndroidFragmentInjector

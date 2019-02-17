@@ -5,15 +5,13 @@ import androidx.lifecycle.LiveData
 import com.mbojec.halo.AppExecutors
 import com.mbojec.halo.model.SearchCityList
 import com.mbojec.halo.database.dao.ForecastDao
-import com.mbojec.halo.database.dao.ForecastListDao
 import com.mbojec.halo.database.dao.LocationDao
 import com.mbojec.halo.database.entity.ForecastEntity
-import com.mbojec.halo.database.entity.ForecastListEntity
 import com.mbojec.halo.database.entity.LocationEntity
 import com.mbojec.halo.model.Forecast
 import javax.inject.Inject
 
-class DataRepository @Inject constructor(private val database: Database, private val locationDao: LocationDao, private val forecastDao: ForecastDao, private val forecastListDao: ForecastListDao, private val appExecutors: AppExecutors) {
+class DataRepository @Inject constructor(private val database: Database, private val locationDao: LocationDao, private val forecastDao: ForecastDao, private val appExecutors: AppExecutors) {
 
     val location: LiveData<LocationEntity> = locationDao.loadCurrentLocation()
 
@@ -39,11 +37,7 @@ class DataRepository @Inject constructor(private val database: Database, private
         }}
     }
 
-
-
-
-
-    val forecast: LiveData<ForecastEntity> = forecastDao.loadSimpleForecast()
+    val currentForecast: LiveData<ForecastEntity> = forecastDao.loadCurrentForecast()
     val forecasts: LiveData<List<ForecastEntity>> = forecastDao.loadAllForecasts()
 
     fun saveForecast(rowId: Int ,cityId: Long, feature: SearchCityList.Feature, forecast: Forecast){
@@ -82,31 +76,5 @@ class DataRepository @Inject constructor(private val database: Database, private
             run { forecastDao.clearTable() }
         }}
     }
-
-
-
-
-//
-//    val forecastList: LiveData<List<ForecastListEntity>> = forecastListDao.loadForecastList()
-//
-//    fun saveForecastList(rowId: Int, cityId: Long){
-//        appExecutors.diskIO.execute { database.runInTransaction {
-//            run {
-//                forecastListDao.saveForecastList(
-//                    ForecastListEntity(
-//                        rowId,
-//                        cityId
-//                    )
-//                )
-//            }
-//        } }
-//    }
-//
-//    fun clearForecastList(){
-//        appExecutors.diskIO.execute { database.runInTransaction {
-//            run{forecastListDao.clearTable()}
-//        } }
-//    }
-
 
 }
