@@ -30,4 +30,7 @@ class ForecastAdapter(fragmentManager: FragmentManager, private val cityListFore
         return cityListForecast.size
     }
 
+    fun getCurrentPositionCityId(position: Int): Long{
+        return cityListForecast[position].cityId
+    }
 }

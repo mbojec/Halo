@@ -22,8 +22,15 @@ class MainFragment : Fragment(), Injectable {
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject lateinit var viewModel: MainViewModel
     private var adapter: ForecastAdapter? = null
+    private var cityId: Long? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val bundle: Bundle? = arguments
+        cityId = if (bundle != null){
+            bundle["cityId"] as Long
+        } else {
+            savedInstanceState?.getLong("cityId")
+        }
         setHasOptionsMenu(true)
         submitToViewModel()
         return inflater.inflate(R.layout.main_fragment, container, false)
@@ -48,7 +55,23 @@ class MainFragment : Fragment(), Injectable {
             it?.let {
                 adapter = ForecastAdapter(childFragmentManager, it)
                 view_pager.adapter = adapter
+                it.forEach {
+                    if (it.cityId == cityId){
+                        view_pager.currentItem = it.rowId
+                        return@forEach
+                    }
+                }
             }
         })
+    }
+
+    override fun onStop() {
+        super.onStop()
+        cityId = adapter?.getCurrentPositionCityId(view_pager.currentItem)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        cityId?.let { outState.putLong("cityId", cityId!!) }
     }
 }
