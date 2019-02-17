@@ -14,7 +14,7 @@ import com.mbojec.halo.database.entity.ForecastEntity
 import com.mbojec.halo.database.entity.ForecastListEntity
 import com.mbojec.halo.database.entity.LocationEntity
 
-@Database(entities = [LocationEntity::class, ForecastEntity::class, ForecastListEntity::class], version = 5)
+@Database(entities = [LocationEntity::class, ForecastEntity::class, ForecastListEntity::class], version = 6)
 @TypeConverters(StringConverter::class, DataDailyConverter::class, DataHourlyConverter::class, DataMinutelyConverter::class)
 abstract class Database: RoomDatabase(){
 

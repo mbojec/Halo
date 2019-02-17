@@ -54,7 +54,7 @@ class NetworkRepository @Inject constructor(private val mapBoxApiClient: MapBoxA
             observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                    { it -> it?.let {Timber.i("time zone: ${it.timezone}")}.run {application.dataRepository.saveForecast(cityId,feature, it)}.run { application.dataRepository.saveForecastList(rowId, cityId) } },
+                    { it -> it?.let {Timber.i("time zone: ${it.timezone}")}.run {application.dataRepository.saveForecast(rowId ,cityId,feature, it)} },
                     {throwable: Throwable ->  managingFailureResponse(throwable)},
                     {}
                 )
@@ -72,7 +72,7 @@ class NetworkRepository @Inject constructor(private val mapBoxApiClient: MapBoxA
 
     private fun getCityRowNumber(isCurrentLocation: Boolean): Int{
         return if (isCurrentLocation){
-            1
+            0
         } else {
             val numberOfRows = application.sharedPreferencesUtils.getNumberOfRows()
             application.sharedPreferencesUtils.saveCityListSize(numberOfRows + 1)

@@ -7,6 +7,7 @@ import com.mbojec.halo.model.SearchCityList
 import com.mbojec.halo.model.Forecast
 
 @Entity(tableName = "forecast")
-class ForecastEntity(@field:PrimaryKey var cityId: Long,
+class ForecastEntity(@field:PrimaryKey var rowId: Int,
+                     var cityId: Long,
                      @field:Embedded var feature: SearchCityList.Feature,
                      @field:Embedded var forecast: Forecast)

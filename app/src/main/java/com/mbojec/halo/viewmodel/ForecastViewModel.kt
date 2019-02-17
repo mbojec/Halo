@@ -18,6 +18,6 @@ class ForecastViewModel @Inject constructor(haloApplication: HaloApplication): V
     }
 
     init {
-        forecast = Transformations.switchMap(cityId) { id -> haloApplication.dataRepository.forecastDao.loadForecast(id)}
+        forecast = Transformations.switchMap(cityId) { id -> haloApplication.dataRepository.loadForecast(id)}
     }
 }
