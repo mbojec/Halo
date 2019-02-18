@@ -56,7 +56,7 @@ class DataRepository @Inject constructor(private val database: Database, private
 
     }
 
-    fun updateList(forecastList: List<ForecastEntity>){
+    fun updateList(forecastList: ArrayList<ForecastEntity>){
         appExecutors.diskIO.execute{database.runInTransaction{
             run {
                 forecastDao.clearTable()

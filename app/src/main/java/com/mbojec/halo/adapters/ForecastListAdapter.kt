@@ -16,7 +16,7 @@ import java.util.*
 
 class ForecastListAdapter(lifecycleOwner: LifecycleOwner, viewModel: ListViewModel, activity: FragmentActivity, val application: HaloApplication): RecyclerView.Adapter<ForecastListViewHolder>(), ItemTouchHelperAdapter{
 
-    private var list: List<ForecastEntity>? = null
+    private var list: ArrayList<ForecastEntity>? = null
     private var touchHelper: ItemTouchHelper
 
     companion object : SingletonAdapterHolder<ForecastListAdapter, LifecycleOwner, ListViewModel, FragmentActivity, HaloApplication>(::ForecastListAdapter)
@@ -29,11 +29,13 @@ class ForecastListAdapter(lifecycleOwner: LifecycleOwner, viewModel: ListViewMod
         touchHelper.attachToRecyclerView(activity.forecast_list)
 
         viewModel.forecastList.observe(lifecycleOwner, Observer {
-            it?.let { loadList(it) }?:clearList()
+            if (list == null){
+                it?.let { loadList(it as ArrayList<ForecastEntity>) }
+            }
         })
     }
 
-    private fun loadList(forecastList: List<ForecastEntity>){
+    private fun loadList(forecastList: ArrayList<ForecastEntity>){
         list = forecastList
         notifyDataSetChanged()
     }
@@ -56,28 +58,31 @@ class ForecastListAdapter(lifecycleOwner: LifecycleOwner, viewModel: ListViewMod
 
     override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
         if (fromPosition < toPosition) {
-            for (i in fromPosition + 1 until toPosition) {
-//                Collections.swap(list, i, i + 1)
-                list!![i].rowId -= 1
+            for (i in fromPosition until toPosition) {
+                Collections.swap(list, i, i + 1)
             }
-//            list!![fromPosition].rowId = toPosition
         } else {
-            for (i in fromPosition - 1 downTo toPosition) {
-//                Collections.swap(list, i, i-1)
-                list!![i].rowId += 1
+            for (i in fromPosition downTo toPosition + 1) {
+                Collections.swap(list, i, i - 1)
             }
-//            list!![fromPosition].rowId = toPosition
         }
-        list!![fromPosition].rowId = toPosition
         notifyItemMoved(fromPosition, toPosition)
-//        application.database.forecastDao().updateData(list!!)
-        application.dataRepository.updateList(list!!)
-        notifyDataSetChanged()
+        updateList()
         return true
     }
 
     override fun onItemDismiss(position: Int) {
+        list!!.removeAt(position)
+        notifyItemRemoved(position)
+        updateList()
+    }
 
+    private fun updateList(){
+//        notifyDataSetChanged()
+        for (i in 0 until list!!.size ){
+            list!![i].rowId = i
+        }
+        application.dataRepository.updateList(list!!)
     }
 
 }

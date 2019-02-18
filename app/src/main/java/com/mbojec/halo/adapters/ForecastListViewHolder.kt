@@ -4,6 +4,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.mbojec.halo.HaloApplication
@@ -11,8 +12,15 @@ import com.mbojec.halo.R
 import com.mbojec.halo.database.entity.ForecastEntity
 import com.mbojec.halo.ui.ListFragmentDirections
 
-class ForecastListViewHolder(parent: ViewGroup, application: HaloApplication): RecyclerView.ViewHolder(
-    LayoutInflater.from(parent.context).inflate(R.layout.search_city_list_item, parent, false)){
+class ForecastListViewHolder(parent: ViewGroup, val application: HaloApplication): RecyclerView.ViewHolder(
+    LayoutInflater.from(parent.context).inflate(R.layout.search_city_list_item, parent, false)), ItemTouchHelperViewHolder{
+    override fun onItemSelected() {
+        itemView.setBackgroundColor(ResourcesCompat.getColor(application.resources, R.color.bright_foreground_dark_disabled, null))
+    }
+
+    override fun onItemClear() {
+        itemView.setBackgroundColor(0)
+    }
 
     private val cityAddress = itemView.findViewById<TextView>(R.id.cityAddress)
     private lateinit var forecastEntity: ForecastEntity
@@ -25,7 +33,7 @@ class ForecastListViewHolder(parent: ViewGroup, application: HaloApplication): R
             val task = Runnable {
                 it.findNavController().navigate(action)
             }
-            handler.postDelayed(task, 1000)
+            handler.postDelayed(task, 500)
         }
     }
 

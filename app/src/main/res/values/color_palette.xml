@@ -101,6 +101,7 @@
     <color name="lightGray_87">#DEF1F1F1</color>
     <color name="lightGray_54">#8AF1F1F1</color>
     <color name="lightGray_38">#61F1F1F1</color>
+    <color name="bright_foreground_dark_disabled">#80ffffff</color>
 
     <color name="white">#ffffff</color>
     <color name="white_87">#DEFFFFFF</color>
