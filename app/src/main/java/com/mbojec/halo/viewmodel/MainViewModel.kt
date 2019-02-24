@@ -11,7 +11,7 @@ class MainViewModel @Inject constructor(haloApplication: HaloApplication): ViewM
     var forecastList: MediatorLiveData<List<ForecastEntity>> = MediatorLiveData()
 
     init {
-        forecastList.addSource(haloApplication.dataRepository.forecasts){
+        forecastList.addSource(haloApplication.dataRepository.allForecasts){
             this.forecastList.postValue(it)
         }
     }

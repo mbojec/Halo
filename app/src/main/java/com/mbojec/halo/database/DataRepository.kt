@@ -38,7 +38,8 @@ class DataRepository @Inject constructor(private val database: Database, private
     }
 
     val currentForecast: LiveData<ForecastEntity> = forecastDao.loadCurrentForecast()
-    val forecasts: LiveData<List<ForecastEntity>> = forecastDao.loadAllForecasts()
+    val forecast: LiveData<List<ForecastEntity>> = forecastDao.loadForecasts()
+    val allForecasts: LiveData<List<ForecastEntity>> = forecastDao.loadAllForecasts()
 
     fun saveForecast(rowId: Int ,cityId: Long, feature: SearchCityList.Feature, forecast: Forecast){
         appExecutors.diskIO.execute{database.runInTransaction{

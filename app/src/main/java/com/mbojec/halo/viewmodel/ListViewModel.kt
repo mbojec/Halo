@@ -6,5 +6,6 @@ import javax.inject.Inject
 
 class ListViewModel @Inject constructor(haloApplication: HaloApplication) : ViewModel() {
 
-    val forecastList = haloApplication.dataRepository.forecasts
+    val currentForecast = haloApplication.dataRepository.currentForecast
+    val forecastList = haloApplication.dataRepository.forecast
 }

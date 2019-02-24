@@ -1,5 +1,6 @@
 package com.mbojec.halo.adapters
 
+import android.content.Context
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LifecycleOwner
@@ -22,7 +23,7 @@ class ForecastListAdapter(lifecycleOwner: LifecycleOwner, viewModel: ListViewMod
     companion object : SingletonAdapterHolder<ForecastListAdapter, LifecycleOwner, ListViewModel, FragmentActivity, HaloApplication>(::ForecastListAdapter)
 
     init {
-        val layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+        val layoutManager = LinearLayoutManager(activity as Context, RecyclerView.VERTICAL, false)
         activity.forecast_list.layoutManager = layoutManager
         activity.forecast_list.adapter = this
         touchHelper = ItemTouchHelper(SimpleItemTouchHelperCallback(this))
@@ -78,7 +79,6 @@ class ForecastListAdapter(lifecycleOwner: LifecycleOwner, viewModel: ListViewMod
     }
 
     private fun updateList(){
-//        notifyDataSetChanged()
         for (i in 0 until list!!.size ){
             list!![i].rowId = i
         }
