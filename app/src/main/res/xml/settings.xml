@@ -1,0 +1,22 @@
+<androidx.preference.PreferenceScreen
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+            android:id="@+id/switch_local_time_zone"
+            android:defaultValue="@string/pref_time_zone_enabled"
+            android:key="@string/pref_time_zone_key"
+            android:summaryOff="@string/pref_time_zone_summary_off"
+            android:summaryOn="@string/pref_time_zone_summary_on"
+            android:title="@string/pref_time_zone_label"/>
+
+    <ListPreference
+            android:title="@string/pref_units_label"
+            android:key="@string/pref_units_key"
+            android:defaultValue="@string/pref_units_metric"
+            android:entryValues="@array/pref_units_values"
+            android:entries="@array/pref_units_options"
+            android:dialogTitle="@string/pref_units_label"
+            app:useSimpleSummaryProvider="true"/>
+
+</androidx.preference.PreferenceScreen>
