@@ -1,5 +1,6 @@
 package com.mbojec.halo.ui
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,11 +8,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.mbojec.halo.HaloApplication
 import com.mbojec.halo.viewmodel.ForecastViewModel
 import com.mbojec.halo.R
+import com.mbojec.halo.adapters.LongTermForecastAdapter
 import com.mbojec.halo.dagger.Injectable
+import com.mbojec.halo.database.entity.ForecastEntity
 import kotlinx.android.synthetic.main.forecast_fragment.*
 import javax.inject.Inject
 
@@ -20,6 +27,7 @@ class ForecastFragment : Fragment(), Injectable {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject lateinit var viewModel: ForecastViewModel
+    @Inject lateinit var application: HaloApplication
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -36,9 +44,16 @@ class ForecastFragment : Fragment(), Injectable {
 
     private fun submitToViewModel(){
         viewModel.forecast.observe(this, Observer {
-//            it?.let { Toast.makeText(activity, it.forecast.timezone, Toast.LENGTH_SHORT).show() }
-            it?.let { text_view.text = it.feature.placeName }
+            it?.let { text_view.text = it.feature.placeName
+            createAdapter(it)}
         })
+    }
+
+    private fun createAdapter(forecastEntity: ForecastEntity){
+        val adapter = LongTermForecastAdapter(forecastEntity.forecast.daily!!.dataDailies!!, application)
+        val layoutManager = LinearLayoutManager(activity as Context, RecyclerView.HORIZONTAL, false)
+        longTermForecastRecyclerView.layoutManager = layoutManager
+        longTermForecastRecyclerView.adapter = adapter
     }
 
 }
