@@ -52,11 +52,6 @@ class ForecastListAdapter(lifecycleOwner: LifecycleOwner, viewModel: ListViewMod
         list?.get(position)?.let { holder.bindTo(it) }
     }
 
-    private fun clearList(){
-        list = null
-        notifyDataSetChanged()
-    }
-
     override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
         if (fromPosition < toPosition) {
             for (i in fromPosition until toPosition) {

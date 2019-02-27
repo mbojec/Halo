@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Halo</string>
     <string name="location_permission_denied_info">Permission denied. Change them in the settings.</string>
     <string name="location_permission_denied_positive">Go to settings</string>
@@ -7,6 +7,9 @@
     <string name="network_connection_alert_message">Please check your internet connection and try again</string>
     <string name="city_list_size_key" translatable="false">city_list_size</string>
 
+
+
+    <!-- Strings for preferences -->
     <!-- Key name for local time zone preference in SharedPreferences -->
     <string name="pref_time_zone_key" translatable="false">time_zone</string>
 
@@ -16,9 +19,13 @@
     <!-- Value in SharedPreferences for negative location access option -->
     <string name="pref_time_zone_disabled" translatable="false">false</string>
 
+    <!-- Label for time zone in preferences -->
     <string name="pref_time_zone_label">Local time zones</string>
 
+    <!-- Summary on label for time zone in preferences -->
     <string name="pref_time_zone_summary_on">Show time according to local time zones</string>
+
+    <!-- Summary off label for time zone in preferences -->
     <string name="pref_time_zone_summary_off">Show time according to current time zones</string>
 
     <string name="pref_units_label">Temperature</string>
@@ -37,4 +44,45 @@
 
     <!-- Value in SharedPreferences for imperial temperature unit option -->
     <string name="pref_units_imperial" translatable="false">imperial</string>
+
+
+
+
+    <!-- Strings for formatting weather-related data -->
+    <!-- Temperature format -->
+    <string name="format_temperature" translatable="false"><xliff:g id="temp">%1.0f</xliff:g>\u00B0</string>
+
+    <!-- Wind speed formats -->
+    <!-- Wind in mph  -->
+    <string name="format_wind_mph" translatable="false"><xliff:g id="speed">%1$1.0f</xliff:g> mph </string>
+    <!-- Wind in kph  -->
+    <string name="format_wind_kmh" translatable="false"><xliff:g id="speed">%1$1.0f</xliff:g> km/h </string>
+
+    <!-- Pressure format -->
+    <string name="format_pressure" translatable="false"><xliff:g id="pressure">%1.0f</xliff:g> hPa</string>
+
+    <!-- Humidity format -->
+    <string name="format_humidity" translatable="false"><xliff:g id="humidity">%1.0f</xliff:g> %%</string>
+
+    <!-- Rain volume format -->
+    <string name="format_rain" translatable="false"><xliff:g id="volume">%1$1.0f</xliff:g> mm</string>
+
+    <!-- Cloudiness volume format -->
+    <string name="format_cloudiness" translatable="false"><xliff:g id="cloudiness">%d</xliff:g> %%</string>
+
+    <!-- UV index format -->
+    <string name="format_uv_index" translatable="false"><xliff:g id="temp">%1.0f</xliff:g></string>
+
+
+    <!-- Wind direction -->
+    <string name="n">north</string>
+    <string name="s">south</string>
+    <string name="e">east</string>
+    <string name="w">west</string>
+    <string name="ne">north-east</string>
+    <string name="nw">north-west</string>
+    <string name="se">south-east</string>
+    <string name="sw">south-west</string>
+
+
 </resources>
