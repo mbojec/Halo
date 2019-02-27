@@ -20,7 +20,8 @@
                 android:id="@+id/toolbar_mainActivity"
                 style="@style/Widget.Halo.Toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize">
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/gray2">
 
             <TextView
                     android:id="@+id/toolbar_title"

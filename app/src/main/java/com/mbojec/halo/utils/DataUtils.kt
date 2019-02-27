@@ -65,14 +65,14 @@ object DataUtils {
         } ?: return "--"
     }
 
-    fun getFormattedCurrentHour(timeInMillis: Long?, timeZone: String?, context: Context): String {
-        timeInMillis?.let {
+    fun getFormattedCurrentHour(timeZone: String?, context: Context): String {
+//        timeInMillis?.let {
             timeZone?.let {
                 val timeDayFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
                 timeDayFormat.timeZone= isLocal(context, timeZone)
-                return timeDayFormat.format(timeInMillis)
+                return timeDayFormat.format(getCurrentTime())
             } ?: return "--"
-        } ?: return "--"
+//        } ?: return "--"
     }
 
     fun getFormattedUvIndex(context: Context, uvValue: Double?): String {
