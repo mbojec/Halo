@@ -74,6 +74,16 @@
     <string name="format_uv_index" translatable="false"><xliff:g id="temp">%1.0f</xliff:g></string>
 
 
+    <!-- Language-specific constants -->
+    <string name="today">Today</string>
+
+    <!-- For labelling tomorrow's forecast -->
+    <string name="tomorrow">Tomorrow</string>
+
+    <!-- Date format -->
+    <string name="format_full_friendly_date" translatable="false"><xliff:g id="month">%1$s</xliff:g>, <xliff:g id="day">%2$s</xliff:g></string>
+
+
     <!-- Wind direction -->
     <string name="n">north</string>
     <string name="s">south</string>
@@ -83,6 +93,21 @@
     <string name="nw">north-west</string>
     <string name="se">south-east</string>
     <string name="sw">south-west</string>
+
+    <!-- Forecast information label's -->
+    <string name="label_sunset">Sunset</string>
+    <string name="label_sunrise">Sunrise</string>
+    <string name="label_pressure">Pressure</string>
+    <string name="label_humidity">Humidity</string>
+    <string name="label_cloudiness">Cloudiness</string>
+    <string name="label_rain">Rain volume</string>
+    <string name="label_snow">Snow volume</string>
+    <string name="label_wind_speed">Wind speed</string>
+    <string name="label_wind">Wind</string>
+    <string name="label_uv_index">UV Index</string>
+
+    <!-- Forecast image view description -->
+    <string name="content_desc" translatable="false">holder for forecast image</string>
 
 
 </resources>
