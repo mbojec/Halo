@@ -66,13 +66,11 @@ object DataUtils {
     }
 
     fun getFormattedCurrentHour(timeZone: String?, context: Context): String {
-//        timeInMillis?.let {
-            timeZone?.let {
-                val timeDayFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-                timeDayFormat.timeZone= isLocal(context, timeZone)
-                return timeDayFormat.format(getCurrentTime())
-            } ?: return "--"
-//        } ?: return "--"
+        timeZone?.let {
+            val timeDayFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+            timeDayFormat.timeZone= isLocal(context, timeZone)
+            return timeDayFormat.format(getCurrentTime())
+        } ?: return "--"
     }
 
     fun getFormattedUvIndex(context: Context, uvValue: Double?): String {
@@ -150,7 +148,7 @@ object DataUtils {
         }?: return "--"
     }
 
-    fun getImageResourceForWeatherCondition(weatherId: String): Int {
+    fun getImageResourceForWeatherCondition(weatherId: String?): Int {
         return when (weatherId) {
             "clear-day" -> R.drawable.clear_day
             "clear-night" -> R.drawable.clear_night
@@ -165,11 +163,11 @@ object DataUtils {
             "hail" -> R.drawable.hail
             "thunderstorm" -> R.drawable.thunderstorm
             "tornado" -> R.drawable.thunderstorm
-            else -> -1
+            else -> R.drawable.clear_day
         }
     }
 
-    fun getCurrentTime(): Long {
+    private fun getCurrentTime(): Long {
         return System.currentTimeMillis()
     }
 

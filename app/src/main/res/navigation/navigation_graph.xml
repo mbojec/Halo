@@ -7,7 +7,7 @@
     <fragment
             android:id="@+id/main_dest"
             android:name="com.mbojec.halo.ui.MainFragment"
-            android:label="MainFragment">
+            android:label=" ">
         <action
                 android:id="@+id/action_main_dest_to_list_dest"
                 app:destination="@id/list_dest"/>

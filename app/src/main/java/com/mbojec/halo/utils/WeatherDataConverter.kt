@@ -14,11 +14,11 @@ object WeatherDataConverter {
     fun createCurrentForecast(forecastEntity: ForecastEntity, application: HaloApplication): CurrentForecast{
         return CurrentForecast(
             forecastEntity.cityId,
-            forecastEntity.feature.placeNamePl?: "--",
+            forecastEntity.feature.text?: "--",
             DataUtils.formatTemperature(application.applicationContext, forecastEntity.forecast.currently?.temperature),
             forecastEntity.forecast.currently?.summary?: "--",
             capitalizeSpelling(DataUtils.getCurrentDayName(forecastEntity.forecast.currently?.time, forecastEntity.forecast.timezone, application.applicationContext)),
-            DataUtils.getImageResourceForWeatherCondition(forecastEntity.forecast.currently?.icon ?: "clear-day"),
+            DataUtils.getImageResourceForWeatherCondition(forecastEntity.forecast.currently?.icon),
             DataUtils.getFormattedCurrentHour(forecastEntity.forecast.timezone, application.applicationContext),
             getProperBackgroundColor(forecastEntity, application))
     }
@@ -31,7 +31,7 @@ object WeatherDataConverter {
             resultList.add(ShortTermForecast(
                 DataUtils.getFormattedHour(shortTermForecastList?.get(i)?.time, forecastEntity.forecast.timezone, application.applicationContext),
                 DataUtils.formatTemperature(context, shortTermForecastList?.get(i)?.temperature),
-                DataUtils.getImageResourceForWeatherCondition(shortTermForecastList?.get(i)?.icon ?: "clear-day"),
+                DataUtils.getImageResourceForWeatherCondition(shortTermForecastList?.get(i)?.icon),
                 getProperBackgroundColor(forecastEntity, application)))
         }
         return resultList.toList()
@@ -44,7 +44,7 @@ object WeatherDataConverter {
         for(i in 0..7){
             resultList.add(LongTermForecast(
                 capitalizeSpelling(DataUtils.getDayName(longTermForecastList?.get(i)?.time, forecastEntity.forecast.timezone, application.applicationContext)),
-                DataUtils.getImageResourceForWeatherCondition(longTermForecastList?.get(i)?.icon ?: "clear-day"),
+                DataUtils.getImageResourceForWeatherCondition(longTermForecastList?.get(i)?.icon),
                 DataUtils.formatTemperature(context, longTermForecastList?.get(i)?.temperatureHigh),
                 DataUtils.formatTemperature(context, longTermForecastList?.get(i)?.temperatureLow),
                 getProperBackgroundColor(forecastEntity, application)))
@@ -80,7 +80,7 @@ object WeatherDataConverter {
         }
     }
 
-    fun getProperBackgroundColor(forecastEntity: ForecastEntity, application: HaloApplication): Int {
+    private fun getProperBackgroundColor(forecastEntity: ForecastEntity, application: HaloApplication): Int {
         return if (DataUtils.isItDay(forecastEntity)){
             ResourcesCompat.getColor(application.applicationContext.resources, R.color.dayColor, null)
 

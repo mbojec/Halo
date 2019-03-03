@@ -1,7 +1,10 @@
 package com.mbojec.halo.ui
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
@@ -32,9 +35,14 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ActivityViewModel::class.java)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowTitleEnabled(true)
+        supportActionBar!!.title = ""
         val navController = findNavController(R.id.nav_host_fragment)
         NavigationUI.setupWithNavController(toolbar_mainActivity, navController)
         MainActivityStateListener.getInstanceAndInit(application, this, this)
+
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = Color.TRANSPARENT
     }
 
     override fun onBackPressed() {
