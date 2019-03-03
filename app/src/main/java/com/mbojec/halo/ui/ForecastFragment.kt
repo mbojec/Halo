@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -73,6 +74,9 @@ class ForecastFragment : Fragment(), Injectable {
         val toolbarLayout = in_toolbar as CoordinatorLayout
         val toolbar = toolbarLayout.toolbar_forecast as Toolbar
         toolbar.title = mainForecast.cityName
+        if(mainForecast.id <= 1){
+            toolbar.setNavigationIcon(R.drawable.ic_location)
+        }
         mainForecastLayout.tv_forecast_desc.text = mainForecast.weatherDesc
         mainForecastLayout.tv_current_day_name.text = mainForecast.dayName
         mainForecastLayout.tv_main_temp.text = mainForecast.temp

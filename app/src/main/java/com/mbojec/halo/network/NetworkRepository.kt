@@ -54,7 +54,7 @@ class NetworkRepository @Inject constructor(private val mapBoxApiClient: MapBoxA
             observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                    { it -> it?.let {Timber.i("time zone: ${it.timezone}")}.run {application.dataRepository.saveForecast(rowId ,cityId,feature, it)} },
+                    { it -> it?.run {application.dataRepository.saveForecast(rowId ,cityId,feature, it)} },
                     {throwable: Throwable ->  managingFailureResponse(throwable)},
                     {}
                 )

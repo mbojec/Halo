@@ -34,19 +34,19 @@
                     layout="@layout/main_forecast" />
 
 
-            <!--<include layout="@layout/horizontal_divider"/>-->
+            <include layout="@layout/horizontal_divider"/>
 
             <include
                     android:id="@+id/in_short_term_forecast"
                     layout="@layout/short_term_forecast" />
 
-            <!--<include layout="@layout/horizontal_divider"/>-->
+            <include layout="@layout/horizontal_divider"/>
 
             <include
                     android:id="@+id/in_long_term_forecast"
                     layout="@layout/long_term_forecast" />
 
-            <!--<include layout="@layout/horizontal_divider"/>-->
+            <include layout="@layout/horizontal_divider"/>
 
             <include
                     android:id="@+id/in_additional_forecast_info"

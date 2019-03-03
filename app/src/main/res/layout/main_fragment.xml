@@ -24,18 +24,5 @@
 
         </androidx.viewpager.widget.ViewPager>
 
-        <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
-                android:layout_width="0dp"
-                android:layout_height="18dp"
-                android:layout_gravity="top"
-                android:background="@null"
-                android:layout_marginTop="81dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/view_pager"
-                app:tabGravity="center"
-                app:tabIndicatorHeight="0dp" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
