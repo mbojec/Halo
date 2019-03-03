@@ -1,7 +1,5 @@
 package com.mbojec.halo.ui
 
-import android.app.ActionBar
-import android.content.Context
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,20 +12,16 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mbojec.halo.HaloApplication
 import com.mbojec.halo.viewmodel.ForecastViewModel
 import com.mbojec.halo.R
-import com.mbojec.halo.adapters.LongTermForecastAdapter
 import com.mbojec.halo.adapters.ShortTermForecastAdapter
 import com.mbojec.halo.dagger.Injectable
-import com.mbojec.halo.database.entity.ForecastEntity
 import com.mbojec.halo.model.CurrentForecast
 import com.mbojec.halo.model.ForecastInfo
 import com.mbojec.halo.model.LongTermForecast
 import com.mbojec.halo.model.ShortTermForecast
-import com.mbojec.halo.utils.DataUtils
 import kotlinx.android.synthetic.main.additional_forecast_info.view.*
 import kotlinx.android.synthetic.main.background_view.view.*
 import kotlinx.android.synthetic.main.forecast_fragment.*

@@ -80,7 +80,7 @@ object WeatherDataConverter {
         }
     }
 
-    private fun getProperBackgroundColor(forecastEntity: ForecastEntity, application: HaloApplication): Int {
+    fun getProperBackgroundColor(forecastEntity: ForecastEntity, application: HaloApplication): Int {
         return if (DataUtils.isItDay(forecastEntity)){
             ResourcesCompat.getColor(application.applicationContext.resources, R.color.dayColor, null)
 

@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:background="?attr/colorPrimary">
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceScreen
+            android:title="@string/developer_label"
+            android:key="developer"
+            android:summary="@string/developer_mail">
+    </PreferenceScreen>
+
+    <PreferenceScreen
+            android:title="@string/version_label"
+            android:key="@string/version_key">
+    </PreferenceScreen>
 
 </PreferenceScreen>

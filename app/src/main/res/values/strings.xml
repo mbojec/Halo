@@ -7,6 +7,12 @@
     <string name="network_connection_alert_message">Please check your internet connection and try again</string>
     <string name="city_list_size_key" translatable="false">city_list_size</string>
 
+    <string name="version_label">Version</string>
+    <string name="developer_label">Developer</string>
+    <string name="about_label">About</string>
+    <string name="version_key" translatable="false">version</string>
+    <string name="developer_mail" translatable="false">mbojec.dev@gmail.com</string>
+
 
 
     <!-- Strings for preferences -->
