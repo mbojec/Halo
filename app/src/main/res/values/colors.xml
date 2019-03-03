@@ -3,4 +3,6 @@
     <color name="colorPrimary">@color/black</color>
     <color name="colorPrimaryDark">@android:color/background_dark</color>
     <color name="colorAccent">@color/azureBlue</color>
+    <color name="dayColor">@color/skyBlue</color>
+    <color name="nightColor">@color/midnightBlue</color>
 </resources>
