@@ -14,6 +14,13 @@
     <string name="developer_mail" translatable="false">mbojec.dev@gmail.com</string>
 
 
+    <!-- Strings for new version alert dialog -->
+    <string name="new_version_label">New version available</string>
+    <string name="new_version_text">Please, update app to new version to benefit from tha latest solutions.</string>
+    <string name="new_version_positive_button">Update</string>
+    <string name="new_version_negative_button">No, thanks</string>
+
+
 
     <!-- Strings for preferences -->
     <!-- Key name for local time zone preference in SharedPreferences -->

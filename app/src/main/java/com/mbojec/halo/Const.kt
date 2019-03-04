@@ -11,5 +11,8 @@ class Const {
         const val CURRENT_LOCATION_UPDATE_TIME = "CURRENT_LOCATION_UPDATE_TIME"
         const val DATA_SYNC_UPDATE_TIME = "CURRENT_LOCATION_UPDATE_TIME"
         const val UPDATE_TIME = 3600000
+        const val KEY_UPDATE_REQUIRED = "force_update_required"
+        const val KEY_CURRENT_VERSION = "force_update_current_version"
+        const val KEY_UPDATE_URL = "force_update_store_url"
     }
 }
