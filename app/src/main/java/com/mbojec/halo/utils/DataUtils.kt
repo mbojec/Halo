@@ -167,7 +167,7 @@ object DataUtils {
         }
     }
 
-    private fun getCurrentTime(): Long {
+    fun getCurrentTime(): Long {
         return System.currentTimeMillis()
     }
 

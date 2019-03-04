@@ -10,6 +10,7 @@ class ForecastWorker(context: Context, workerParameters: WorkerParameters): Work
         return try {
             val list = (applicationContext as HaloApplication).database.forecastDao().loadForecastsList()
             (applicationContext as HaloApplication).networkRepository.updateForecast(list)
+            (applicationContext as HaloApplication).sharedPreferencesUtils.saveDataUpdateTime()
             Timber.i("Worker attempt")
             Result.success()
         } catch (exception: Exception){

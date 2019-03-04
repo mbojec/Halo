@@ -1,6 +1,7 @@
 package com.mbojec.halo.utils
 
 import android.annotation.SuppressLint
+import android.location.Location
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.mbojec.halo.Const.Companion.CURRENT_LOCATION_ID
@@ -20,11 +21,15 @@ object LocationProvider{
                     Timber.i("location is available")
                     mFusedLocationClient.lastLocation.addOnSuccessListener { location ->
                         if (location != null) {
-                            Timber.i("location obtained")
-                            Timber.i("location latitude: ${location.latitude}")
-                            Timber.i("location longitude: ${location.longitude}")
-                            application.networkRepository.fetchCityData(location.longitude, location.latitude, true)
-                            application.dataRepository.saveLocation(location, CURRENT_LOCATION_ID)
+                            if (!checkIfLocationIsNear(location, application)){
+                                application.networkRepository.fetchCityData(location.longitude, location.latitude, true)
+                                application.dataRepository.saveLocation(location, CURRENT_LOCATION_ID)
+                                application.sharedPreferencesUtils.saveNewLocation(location)
+                            } else if (checkIfUpdateNeeded(application)){
+                                application.networkRepository.fetchCityData(location.longitude, location.latitude, true)
+                                application.dataRepository.saveLocation(location, CURRENT_LOCATION_ID)
+                                application.sharedPreferencesUtils.saveNewLocation(location)
+                            }
                         } else {
                             Timber.i("location null")
                         }
@@ -32,5 +37,21 @@ object LocationProvider{
                 }
             }
         }
+    }
+
+    private fun checkIfLocationIsNear(newLocation: Location, application: HaloApplication): Boolean{
+        val currentLocation = application.sharedPreferencesUtils.getCurrentLocation()?.split(",")
+        val currentLatitude = currentLocation?.get(0)?.toDouble() ?: 1.0
+        val currentLongitude = currentLocation?.get(1)?.toDouble() ?: 1.0
+        val currentLocationObject = Location("currentLocation")
+        currentLocationObject.latitude = currentLatitude
+        currentLocationObject.longitude = currentLongitude
+        val distance = currentLocationObject.distanceTo(newLocation)/1000
+        return distance < 5
+    }
+
+    private fun checkIfUpdateNeeded(application: HaloApplication): Boolean {
+        val lastUpdateTime = application.sharedPreferencesUtils.getLatUpdateTime()
+        return (DataUtils.getCurrentTime() - lastUpdateTime) > 900000
     }
 }

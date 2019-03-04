@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
     override fun onStart() {
         super.onStart()
-        WorkerManager.startSyncDataDownload()
+        WorkerManager.startSyncDataDownload(application)
     }
 }
 
