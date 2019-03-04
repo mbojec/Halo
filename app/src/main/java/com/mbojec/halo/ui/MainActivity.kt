@@ -59,5 +59,10 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
     }
 
     override fun supportFragmentInjector() = dispatchingAndroidFragmentInjector
+
+    override fun onStart() {
+        super.onStart()
+        WorkerManager.startSyncDataDownload()
+    }
 }
 

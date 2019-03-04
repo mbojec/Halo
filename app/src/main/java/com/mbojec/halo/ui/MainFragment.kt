@@ -26,11 +26,12 @@ class MainFragment : Fragment(), Injectable {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val bundle: Bundle? = arguments
-        cityId = if (bundle != null){
+        cityId = if (bundle != null && bundle["cityId"] != null){
             bundle["cityId"] as Long
         } else {
             savedInstanceState?.getLong("cityId")
         }
+        arguments?.clear()
         setHasOptionsMenu(true)
         submitToViewModel()
         return inflater.inflate(R.layout.main_fragment, container, false)

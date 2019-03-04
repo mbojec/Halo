@@ -13,16 +13,22 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.gms.common.util.DataUtils
 import com.mbojec.halo.adapters.ForecastListAdapter
 import com.mbojec.halo.HaloApplication
 import com.mbojec.halo.viewmodel.ListViewModel
 import com.mbojec.halo.R
+import com.mbojec.halo.adapters.SimpleItemTouchHelperCallback
 import com.mbojec.halo.dagger.Injectable
+import com.mbojec.halo.database.entity.ForecastEntity
 import com.mbojec.halo.utils.WeatherDataConverter
 import kotlinx.android.synthetic.main.forecast_city_list_item.view.*
 import kotlinx.android.synthetic.main.list_fragment.*
+import java.util.ArrayList
 import javax.inject.Inject
 
 
@@ -53,13 +59,6 @@ class ListFragment : Fragment(), Injectable {
     override fun onStart() {
         super.onStart()
         submitToVIewModel()
-        ForecastListAdapter.getInstanceAndInit(this, viewModel, activity!!, application)
-    }
-
-
-    override fun onStop() {
-        super.onStop()
-        ForecastListAdapter.clearInstance()
     }
 
     private fun submitToVIewModel(){
@@ -84,5 +83,18 @@ class ListFragment : Fragment(), Injectable {
                 }
             }
         })
+
+        viewModel.forecastList.observe(this, Observer {
+            it?.let { setAdapter(it as ArrayList<ForecastEntity>) }
+        })
+    }
+
+    private fun setAdapter(list: ArrayList<ForecastEntity>){
+        val layoutManager = LinearLayoutManager(activity as Context, RecyclerView.VERTICAL, false)
+        forecast_list.layoutManager = layoutManager
+        val forecastListAdapter = ForecastListAdapter(list, application)
+        forecast_list.adapter = forecastListAdapter
+        val touchHelper = ItemTouchHelper(SimpleItemTouchHelperCallback(forecastListAdapter))
+        touchHelper.attachToRecyclerView(forecast_list)
     }
 }

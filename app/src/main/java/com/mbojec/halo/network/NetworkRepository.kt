@@ -3,6 +3,7 @@ package com.mbojec.halo.network
 import androidx.lifecycle.MutableLiveData
 import com.mbojec.halo.BuildConfig
 import com.mbojec.halo.HaloApplication
+import com.mbojec.halo.database.entity.ForecastEntity
 import com.mbojec.halo.model.SearchCityList
 import com.mbojec.halo.model.DisposingObserver
 import com.mbojec.halo.model.Forecast
@@ -60,6 +61,46 @@ class NetworkRepository @Inject constructor(private val mapBoxApiClient: MapBoxA
                 )
         )
     }
+
+//    fun updateForecast(forecastEntity: ForecastEntity){
+//        val observable: Observable<Forecast> = darkSkyApiClient.getCityForecast(BuildConfig.DARK_SKY_API_KEY, "${forecastEntity.feature.geometry!!.coordinates!![1]},${forecastEntity.feature.geometry!!.coordinates!![0]}", "pl", "si")
+//        val observer: DisposingObserver<Forecast> = DisposingObserver()
+//        observer.onSubscribe(
+//            observable.subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(
+//                    { it -> it?.run {application.dataRepository.saveForecast(forecastEntity.rowId ,forecastEntity.cityId,forecastEntity.feature, it)} },
+//                    {throwable: Throwable ->  managingFailureResponse(throwable)},
+//                    {}
+//                )
+//        )
+//    }
+
+    fun updateForecast(list: List<ForecastEntity>){
+        val observableList: ArrayList<Observable<Forecast>> = ArrayList()
+        val forecastList: ArrayList<Forecast> = ArrayList()
+        list.forEach {
+            val observable: Observable<Forecast> = darkSkyApiClient.getCityForecast(BuildConfig.DARK_SKY_API_KEY, "${it.feature.geometry!!.coordinates!![1]},${it.feature.geometry!!.coordinates!![0]}", "pl", "si")
+            observableList.add(observable)
+        }
+        val mergeredObservable = Observable.merge(observableList)
+        val observer: DisposingObserver<Forecast> = DisposingObserver()
+        observer.onSubscribe(
+            mergeredObservable.subscribeOn(Schedulers.io())
+                .subscribe(
+                    {it -> forecastList.add(it) },
+                    {throwable: Throwable ->  managingFailureResponse(throwable)},
+                    {updateData(list, forecastList)}
+                ))
+    }
+
+    private fun updateData(list: List<ForecastEntity>, list2: ArrayList<Forecast>){
+        for (i in list.indices) {
+            list[i].forecast = list2[i]
+        }
+        application.dataRepository.forecastDao.updateData(list)
+    }
+
 
     private fun getCityId(isCurrentLocation: Boolean, feature: SearchCityList.Feature): Long{
         return if (isCurrentLocation){

@@ -18,15 +18,17 @@ interface ForecastDao{
     @Query("SELECT * FROM forecast  WHERE cityId != 1")
     fun loadForecasts(): LiveData<List<ForecastEntity>>
 
+    @Query("SELECT * FROM forecast  WHERE cityId != 1")
+    fun loadForecastsList(): List<ForecastEntity>
+
     @Query("SELECT * FROM forecast")
     fun loadAllForecasts(): LiveData<List<ForecastEntity>>
 
     @Transaction
     fun updateData(forecastList: List<ForecastEntity>) {
-        clearTable()
         forecastList.forEach { saveForecast(it)}
     }
 
-    @Query("DELETE FROM forecast")
+    @Query("DELETE FROM forecast WHERE cityId != 1")
     fun clearTable()
 }
