@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.google.firebase.perf.metrics.AddTrace
 import com.mbojec.halo.*
 import com.mbojec.halo.utils.FirebaseRemoteConfigUtils
 import com.mbojec.halo.utils.NotificationUtils
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject lateinit var viewModel: ActivityViewModel
 
+    @AddTrace(name = "onCreateTrace", enabled = true)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
