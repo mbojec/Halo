@@ -10,7 +10,10 @@ class Const {
         const val CURRENT_LOCATION = "CURRENT_LOCATION"
         const val CURRENT_LOCATION_UPDATE_TIME = "CURRENT_LOCATION_UPDATE_TIME"
         const val DATA_SYNC_UPDATE_TIME = "CURRENT_LOCATION_UPDATE_TIME"
-        const val UPDATE_TIME = 3600000
+
+        const val KEY_CURRENT_LOCATION_UPDATE_TIME_LIMIT = "current_location_update_time_limit"
+        const val KEY_CURRENT_LOCATION_UPDATE_DISTANCE_LIMIT = "current_location_update_distance_limit"
+        const val KEY_DATA_UPDATE_TIME_LIMIT = "data_update_time_limit"
         const val KEY_UPDATE_REQUIRED = "force_update_required"
         const val KEY_CURRENT_VERSION = "force_update_current_version"
         const val KEY_UPDATE_URL = "force_update_store_url"

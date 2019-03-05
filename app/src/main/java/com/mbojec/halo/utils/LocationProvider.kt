@@ -11,7 +11,7 @@ import timber.log.Timber
 object LocationProvider{
 
     @SuppressLint("MissingPermission")
-    fun getCurrentLocation(application: HaloApplication){
+    fun getCurrentLocation(application: HaloApplication, distanceLimit: Long, timeLimit: Long){
         val mFusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(application.applicationContext)
         if (PermissionUtils.checkIfPermissionGranted(application.applicationContext)) {
             mFusedLocationClient.locationAvailability.addOnSuccessListener { locationAvailability ->
@@ -21,11 +21,11 @@ object LocationProvider{
                     Timber.i("location is available")
                     mFusedLocationClient.lastLocation.addOnSuccessListener { location ->
                         if (location != null) {
-                            if (!checkIfLocationIsNear(location, application)){
+                            if (!checkIfLocationIsNear(location, application, distanceLimit)){
                                 application.networkRepository.fetchCityData(location.longitude, location.latitude, true)
                                 application.dataRepository.saveLocation(location, CURRENT_LOCATION_ID)
                                 application.sharedPreferencesUtils.saveNewLocation(location)
-                            } else if (checkIfUpdateNeeded(application)){
+                            } else if (checkIfUpdateNeeded(application, timeLimit)){
                                 application.networkRepository.fetchCityData(location.longitude, location.latitude, true)
                                 application.dataRepository.saveLocation(location, CURRENT_LOCATION_ID)
                                 application.sharedPreferencesUtils.saveNewLocation(location)
@@ -39,7 +39,7 @@ object LocationProvider{
         }
     }
 
-    private fun checkIfLocationIsNear(newLocation: Location, application: HaloApplication): Boolean{
+    private fun checkIfLocationIsNear(newLocation: Location, application: HaloApplication, distanceLimit: Long): Boolean{
         val currentLocation = application.sharedPreferencesUtils.getCurrentLocation()?.split(",")
         val currentLatitude = currentLocation?.get(0)?.toDouble() ?: 1.0
         val currentLongitude = currentLocation?.get(1)?.toDouble() ?: 1.0
@@ -47,11 +47,11 @@ object LocationProvider{
         currentLocationObject.latitude = currentLatitude
         currentLocationObject.longitude = currentLongitude
         val distance = currentLocationObject.distanceTo(newLocation)/1000
-        return distance < 5
+        return distance < distanceLimit
     }
 
-    private fun checkIfUpdateNeeded(application: HaloApplication): Boolean {
+    private fun checkIfUpdateNeeded(application: HaloApplication, timeLimit: Long): Boolean {
         val lastUpdateTime = application.sharedPreferencesUtils.getLatUpdateTime()
-        return (DataUtils.getCurrentTime() - lastUpdateTime) > 900000
+        return (DataUtils.getCurrentTime() - lastUpdateTime) > timeLimit
     }
 }

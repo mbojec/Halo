@@ -15,17 +15,20 @@ class MainActivityStateListener(val application: HaloApplication, lifecycleOwner
     companion object : SingletonHolder<MainActivityStateListener, HaloApplication, LifecycleOwner, MainActivity, FirebaseRemoteConfig>(::MainActivityStateListener)
 
     override fun onStart(owner: LifecycleOwner) {
+        val updateArgData = FirebaseRemoteConfigUtils.fetchConfig(firebaseRemoteConfig, application as Context, activity)
         if (PermissionUtils.checkIfPermissionGranted(application.applicationContext)){
-            LocationProvider.getCurrentLocation(application)
+            val distanceLimit = updateArgData[Const.KEY_CURRENT_LOCATION_UPDATE_DISTANCE_LIMIT] as Long
+            val timeLimit = updateArgData[Const.KEY_CURRENT_LOCATION_UPDATE_TIME_LIMIT] as Long
+            LocationProvider.getCurrentLocation(application, distanceLimit, timeLimit)
         } else {
             PermissionUtils.requestPermissions(activity)
         }
         if (!NetworkUtils.isNetworkConnected(activity)) {
             NetworkUtils.showInfo(activity.findViewById(R.id.activity_main_layout))
         } else {
-            WorkerManager.startSyncDataDownload(application)
+            val dataUpdateTimeLimit = updateArgData[Const.KEY_DATA_UPDATE_TIME_LIMIT] as Long
+            WorkerManager.startSyncDataDownload(application, dataUpdateTimeLimit)
         }
-        FirebaseRemoteConfigUtils.fetchConfig(firebaseRemoteConfig, application as Context, activity)
     }
 
     override fun onStop(owner: LifecycleOwner) {

@@ -5,8 +5,8 @@ import androidx.work.WorkManager
 import com.mbojec.halo.utils.DataUtils
 
 object WorkerManager {
-    fun startSyncDataDownload(application: HaloApplication) {
-        if ((DataUtils.getCurrentTime() - (application.sharedPreferencesUtils.getDataUpdateTime())) > Const.UPDATE_TIME){
+    fun startSyncDataDownload(application: HaloApplication, dataUpdateTimeLimit: Long) {
+        if ((DataUtils.getCurrentTime() - (application.sharedPreferencesUtils.getDataUpdateTime())) > dataUpdateTimeLimit){
             val workManager = WorkManager.getInstance()
             setForecastDownload(workManager)
         }

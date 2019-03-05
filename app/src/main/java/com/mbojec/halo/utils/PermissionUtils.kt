@@ -48,7 +48,7 @@ object PermissionUtils {
 
     fun requestPermissionResultSolution(grantResults: IntArray, activity: MainActivity, context: Context, application: Application){
         if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            LocationProvider.getCurrentLocation(application as HaloApplication)
+            LocationProvider.getCurrentLocation(application as HaloApplication, 1, 1)
         } else if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_DENIED){
             navigateToPermissionSettings(context, activity)
         }

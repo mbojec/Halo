@@ -11,7 +11,10 @@ import androidx.appcompat.view.ContextThemeWrapper
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.mbojec.halo.BuildConfig
+import com.mbojec.halo.Const.Companion.KEY_CURRENT_LOCATION_UPDATE_DISTANCE_LIMIT
+import com.mbojec.halo.Const.Companion.KEY_CURRENT_LOCATION_UPDATE_TIME_LIMIT
 import com.mbojec.halo.Const.Companion.KEY_CURRENT_VERSION
+import com.mbojec.halo.Const.Companion.KEY_DATA_UPDATE_TIME_LIMIT
 import com.mbojec.halo.Const.Companion.KEY_UPDATE_REQUIRED
 import com.mbojec.halo.Const.Companion.KEY_UPDATE_URL
 import com.mbojec.halo.R
@@ -26,6 +29,9 @@ object FirebaseRemoteConfigUtils {
         remoteConfigDefaults[KEY_UPDATE_REQUIRED] = false
         remoteConfigDefaults[KEY_CURRENT_VERSION] = "1.0"
         remoteConfigDefaults[KEY_UPDATE_URL] = "https://play.google.com/store/apps/details?id=com.bojec.marek.weatherapp"
+        remoteConfigDefaults[KEY_CURRENT_LOCATION_UPDATE_DISTANCE_LIMIT] = 5
+        remoteConfigDefaults[KEY_CURRENT_LOCATION_UPDATE_TIME_LIMIT] = 900000
+        remoteConfigDefaults[KEY_DATA_UPDATE_TIME_LIMIT] = 3600000
 
         firebaseRemoteConfig.setConfigSettings(firebaseRemoteConfigSettings)
         firebaseRemoteConfig.setDefaults(remoteConfigDefaults)
@@ -33,7 +39,7 @@ object FirebaseRemoteConfigUtils {
     }
 
 
-    fun fetchConfig(firebaseRemoteConfig: FirebaseRemoteConfig, context: Context, activity: MainActivity){
+    fun fetchConfig(firebaseRemoteConfig: FirebaseRemoteConfig, context: Context, activity: MainActivity): HashMap<String, Any>{
         var cachexpiration: Long = 43200
 
         if (firebaseRemoteConfig.info.configSettings.isDeveloperModeEnabled){
@@ -49,6 +55,20 @@ object FirebaseRemoteConfigUtils {
                 Timber.e(e)
             }
         ForceUpdateChecker(context, activity).check()
+        return fetchData()
+    }
+
+
+    private fun fetchData(): HashMap<String, Any>{
+        val data = HashMap<String, Any>()
+        val remoteConfig = FirebaseRemoteConfig.getInstance()
+        val currentLocationUpdateDistanceLimit = remoteConfig.getLong(KEY_CURRENT_LOCATION_UPDATE_DISTANCE_LIMIT)
+        val currentLocationUpdateTimeLimit= remoteConfig.getLong(KEY_CURRENT_LOCATION_UPDATE_TIME_LIMIT)
+        val dataUpdateTimeLimit = remoteConfig.getLong(KEY_DATA_UPDATE_TIME_LIMIT)
+        data[KEY_CURRENT_LOCATION_UPDATE_DISTANCE_LIMIT] = currentLocationUpdateDistanceLimit
+        data[KEY_CURRENT_LOCATION_UPDATE_TIME_LIMIT] = currentLocationUpdateTimeLimit
+        data[KEY_DATA_UPDATE_TIME_LIMIT] = dataUpdateTimeLimit
+        return data
     }
 
 

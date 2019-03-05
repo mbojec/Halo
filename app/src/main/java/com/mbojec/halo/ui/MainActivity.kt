@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         val navController = findNavController(R.id.nav_host_fragment)
         NavigationUI.setupWithNavController(toolbar_mainActivity, navController)
         MainActivityStateListener.getInstanceAndInit(application, this, this, FirebaseRemoteConfigUtils.setRemoteConfig())
-
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.statusBarColor = Color.TRANSPARENT
