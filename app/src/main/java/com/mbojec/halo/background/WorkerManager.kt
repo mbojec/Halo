@@ -1,7 +1,8 @@
-package com.mbojec.halo
+package com.mbojec.halo.background
 
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
+import com.mbojec.halo.HaloApplication
 import com.mbojec.halo.utils.DataUtils
 
 object WorkerManager {

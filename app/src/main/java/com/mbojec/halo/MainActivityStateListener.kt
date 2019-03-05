@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.mbojec.halo.background.WorkerManager
 import com.mbojec.halo.model.SingletonHolder
 import com.mbojec.halo.ui.MainActivity
 import com.mbojec.halo.utils.*

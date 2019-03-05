@@ -1,8 +1,9 @@
-package com.mbojec.halo
+package com.mbojec.halo.background
 
 import android.content.Context
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import com.mbojec.halo.HaloApplication
 import timber.log.Timber
 
 class ForecastWorker(context: Context, workerParameters: WorkerParameters): Worker(context, workerParameters){

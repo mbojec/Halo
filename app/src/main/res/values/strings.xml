@@ -20,6 +20,10 @@
     <string name="new_version_positive_button">Update</string>
     <string name="new_version_negative_button">No, thanks</string>
 
+    <!-- Notification's strings -->
+    <string name="system_notification_channel_id" translatable="false">system_channel</string>
+    <string name="system_notification_channel_name">System notifications</string>
+    <string name="system_notification_title">Weather Forecast</string>
 
 
     <!-- Strings for preferences -->
