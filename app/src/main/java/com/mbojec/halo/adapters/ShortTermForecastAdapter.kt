@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mbojec.halo.HaloApplication
@@ -39,9 +40,10 @@ class ShortTermForecastAdapter(list: List<ShortTermForecast>, val application: H
         private val temp = itemView.findViewById<TextView>(R.id.tv_detail_temp)
         private val hour = itemView.findViewById<TextView>(R.id.tv_detail_hour)
         private val image = itemView.findViewById<ImageView>(R.id.iv_detail_forecast_image)
-
+        private val layout: ConstraintLayout = itemView.findViewById(R.id.list_item_single_hour_forecast_layout)
 
         fun bindTo(shortTermForecast: ShortTermForecast){
+            layout.setBackgroundColor(shortTermForecast.backgroundColor)
             temp.text = shortTermForecast.temp
             hour.text = shortTermForecast.hour
             Glide.with(image.context).load(shortTermForecast.weatherImage).into(image)

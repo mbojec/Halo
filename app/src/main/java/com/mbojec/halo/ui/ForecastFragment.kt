@@ -13,6 +13,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mbojec.halo.HaloApplication
 import com.mbojec.halo.viewmodel.ForecastViewModel
@@ -38,7 +39,7 @@ class ForecastFragment : Fragment(), Injectable {
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject lateinit var viewModel: ForecastViewModel
     @Inject lateinit var application: HaloApplication
-//    private var recyclerView: RecyclerView? = null
+    private var recyclerView: RecyclerView? = null
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -52,6 +53,7 @@ class ForecastFragment : Fragment(), Injectable {
         val binding: ForecastFragmentBinding = DataBindingUtil.inflate(inflater,R.layout.forecast_fragment, container, false)
         binding.apply { viewModel = this@ForecastFragment.viewModel
         setLifecycleOwner (this@ForecastFragment)}
+        recyclerView = binding.inShortTermForecast.rv_short_term_forecast
         submitToViewModel()
         return binding.root
     }
@@ -77,10 +79,9 @@ class ForecastFragment : Fragment(), Injectable {
     }
 
     private fun setShortTermForecast(shortTermForecast: List<ShortTermForecast>){
-        val shortTermLayout = in_short_term_forecast as CoordinatorLayout
+        recyclerView!!.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         val adapter = ShortTermForecastAdapter(shortTermForecast, application)
-        shortTermLayout.rv_short_term_forecast.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        shortTermLayout.rv_short_term_forecast.adapter = adapter
+        recyclerView!!.adapter = adapter
     }
 
 }
