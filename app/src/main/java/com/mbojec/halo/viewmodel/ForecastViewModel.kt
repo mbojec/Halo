@@ -21,9 +21,9 @@ class ForecastViewModel @Inject constructor(haloApplication: HaloApplication): V
         this.cityId.value = cityId
     }
 
-    var mainForecastInfo: LiveData<CurrentForecast> = object : LiveData<CurrentForecast>(){}
+    var mainForecast: LiveData<CurrentForecast> = object : LiveData<CurrentForecast>(){}
 
-    var longTermForecast: LiveData<List<LongTermForecast>> = object: LiveData<List<LongTermForecast>>(){}
+    var longTermForecastList: LiveData<List<LongTermForecast>> = object: LiveData<List<LongTermForecast>>(){}
 
     var shortTermForecast: LiveData<List<ShortTermForecast>> = object: LiveData<List<ShortTermForecast>>(){}
 
@@ -32,11 +32,11 @@ class ForecastViewModel @Inject constructor(haloApplication: HaloApplication): V
     private val forecastEntity = Transformations.switchMap(cityId) { id -> haloApplication.dataRepository.loadForecast(id)}
 
     init {
-        mainForecastInfo = Transformations.map(forecastEntity){it: ForecastEntity? ->
+        mainForecast = Transformations.map(forecastEntity){ it: ForecastEntity? ->
             it?.let { return@map WeatherDataConverter.createCurrentForecast(it, haloApplication) }
         }
 
-        longTermForecast = Transformations.map(forecastEntity){it: ForecastEntity? ->
+        longTermForecastList = Transformations.map(forecastEntity){ it: ForecastEntity? ->
             it?.let {return@map WeatherDataConverter.createLongTermForecastList(it, haloApplication)}
         }
 

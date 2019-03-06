@@ -6,10 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +19,7 @@ import com.mbojec.halo.viewmodel.ForecastViewModel
 import com.mbojec.halo.R
 import com.mbojec.halo.adapters.ShortTermForecastAdapter
 import com.mbojec.halo.dagger.Injectable
+import com.mbojec.halo.databinding.ForecastFragmentBinding
 import com.mbojec.halo.model.CurrentForecast
 import com.mbojec.halo.model.ForecastInfo
 import com.mbojec.halo.model.LongTermForecast
@@ -37,6 +38,7 @@ class ForecastFragment : Fragment(), Injectable {
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject lateinit var viewModel: ForecastViewModel
     @Inject lateinit var application: HaloApplication
+//    private var recyclerView: RecyclerView? = null
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -47,12 +49,15 @@ class ForecastFragment : Fragment(), Injectable {
         val arguments: Bundle? = arguments
         val cityId :Long = arguments?.getLong("CITY_ID")?:1
         viewModel.setId(cityId)
+        val binding: ForecastFragmentBinding = DataBindingUtil.inflate(inflater,R.layout.forecast_fragment, container, false)
+        binding.apply { viewModel = this@ForecastFragment.viewModel
+        setLifecycleOwner (this@ForecastFragment)}
         submitToViewModel()
-        return inflater.inflate(R.layout.forecast_fragment, container, false)
+        return binding.root
     }
 
     private fun submitToViewModel(){
-        viewModel.mainForecastInfo.observe(this, Observer {
+        viewModel.mainForecast.observe(this, Observer {
             it?.let { setMainForecast(it) }
         })
 
@@ -60,7 +65,7 @@ class ForecastFragment : Fragment(), Injectable {
             it?.let { setShortTermForecast(it) }
         })
 
-        viewModel.longTermForecast.observe(this, Observer {
+        viewModel.longTermForecastList.observe(this, Observer {
             it?.let { setLongTermForecast(it) }
         })
 
@@ -70,18 +75,12 @@ class ForecastFragment : Fragment(), Injectable {
     }
 
     private fun setMainForecast(mainForecast: CurrentForecast){
-        val mainForecastLayout = in_main_forecast as ConstraintLayout
         val toolbarLayout = in_toolbar as CoordinatorLayout
         val toolbar = toolbarLayout.toolbar_forecast as Toolbar
         toolbar.title = mainForecast.cityName
         if(mainForecast.id <= 1){
             toolbar.setNavigationIcon(R.drawable.ic_location)
         }
-        mainForecastLayout.tv_forecast_desc.text = mainForecast.weatherDesc
-        mainForecastLayout.tv_current_day_name.text = mainForecast.dayName
-        mainForecastLayout.tv_main_temp.text = mainForecast.temp
-        mainForecastLayout.tv_current_time.text = mainForecast.currentTime
-        Glide.with(this).load(mainForecast.weatherImage).into(mainForecastLayout.imageView)
     }
 
     private fun setShortTermForecast(shortTermForecast: List<ShortTermForecast>){
@@ -92,10 +91,7 @@ class ForecastFragment : Fragment(), Injectable {
     }
 
     private fun setLongTermForecast(longTermForecast: List<LongTermForecast>){
-        val mainForecastLayout = in_main_forecast as ConstraintLayout
         val longTermForecastLayout = in_long_term_forecast as ConstraintLayout
-        mainForecastLayout.tv_main_day_temp.text = longTermForecast[0].dayTemp
-        mainForecastLayout.tv_main_night_temp.text = longTermForecast[0].nightTemp
 
         longTermForecastLayout.tv_2day_date.text = longTermForecast[1].dayName
         longTermForecastLayout.tv_3day_date.text = longTermForecast[2].dayName
