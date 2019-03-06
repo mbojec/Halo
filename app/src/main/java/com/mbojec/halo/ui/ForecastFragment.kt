@@ -1,5 +1,6 @@
 package com.mbojec.halo.ui
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -59,23 +60,10 @@ class ForecastFragment : Fragment(), Injectable {
     }
 
     private fun submitToViewModel(){
-        viewModel.mainForecast.observe(this, Observer {
-            it?.let { setMainForecast(it) }
-        })
-
         viewModel.shortTermForecast.observe(this, Observer {
             it?.let { setShortTermForecast(it) }
         })
 
-    }
-
-    private fun setMainForecast(mainForecast: CurrentForecast){
-        val toolbarLayout = in_toolbar as CoordinatorLayout
-        val toolbar = toolbarLayout.toolbar_forecast as Toolbar
-        toolbar.title = mainForecast.cityName
-        if(mainForecast.id <= 1){
-            toolbar.setNavigationIcon(R.drawable.ic_location)
-        }
     }
 
     private fun setShortTermForecast(shortTermForecast: List<ShortTermForecast>){

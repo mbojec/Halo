@@ -19,7 +19,9 @@
                 android:id="@+id/toolbar_forecast"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:layout_marginTop="25dp">
+                android:layout_marginTop="25dp"
+                android:title="@{currentForecast.cityName}"
+                app:navigationIcon="@{currentForecast.id}">
         </androidx.appcompat.widget.Toolbar>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
