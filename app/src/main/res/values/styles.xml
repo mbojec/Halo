@@ -5,19 +5,20 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="actionOverflowMenuStyle">@style/Widget.Halo.OverflowMenu</item>
+        <item name="actionOverflowMenuStyle">@style/Widget.Custom.OverflowMenu</item>
+        <item name="android:textViewStyle">@style/TextViewStyle.Serif</item>
     </style>
 
-    <style name="Widget.Halo.Toolbar" parent="Widget.MaterialComponents.Toolbar">
-        <item name="titleTextAppearance">@style/TextAppearance.Halo.Toolbar</item>
+    <style name="Widget.Custom.Toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="titleTextAppearance">@style/TextAppearance.Custom.Toolbar</item>
         <item name="titleMargin">0dp</item>
     </style>
 
-    <style name="TextAppearance.Halo.Toolbar" parent="TextAppearance.MaterialComponents.Headline6">
+    <style name="TextAppearance.Custom.Toolbar" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="Widget.Halo.OverflowMenu" parent="android:Widget.Material.PopupMenu.Overflow">
+    <style name="Widget.Custom.OverflowMenu" parent="android:Widget.Material.PopupMenu.Overflow">
         <item name="android:windowDisablePreview">true</item>
         <item name="overlapAnchor">false</item>
         <item name="android:dropDownVerticalOffset">5.0dp</item>
@@ -29,8 +30,6 @@
         <item name="colorPrimary">@color/colorAccent</item>
     </style>
 
-
-
     <!--Fonts styles. -->
     <style name="TextViewStyle.Condensed" parent="android:Widget.TextView">
         <item name="android:fontFamily">sans-serif-condensed</item>
@@ -40,6 +39,8 @@
         <item name="android:fontFamily">serif</item>
     </style>
 
+
+
     <!--Base TextView style. -->
     <style name="BasicTextView">
         <item name="android:layout_height">wrap_content</item>
@@ -47,15 +48,15 @@
     </style>
 
     <style name="BasicTextView.RightMargin">
-        <item name="android:layout_marginEnd">@dimen/margin_small</item>
+        <item name="android:layout_marginEnd">@dimen/margin_normal</item>
     </style>
 
     <style name="BasicTextView.RightMarginBig">
-        <item name="android:layout_marginEnd">@dimen/margin_big</item>
+        <item name="android:layout_marginEnd">@dimen/margin_large</item>
     </style>
 
     <style name="BasicTextView.LeftMargin">
-        <item name="android:layout_marginStart">@dimen/margin_small</item>
+        <item name="android:layout_marginStart">@dimen/margin_normal</item>
     </style>
 
     <style name="BasicTextView.LeftLargeMargin">
@@ -76,16 +77,14 @@
         <item name="android:layout_margin">@dimen/margin_small</item>
     </style>
 
-    <style name="TextInfoStyle" parent="BasicTextView">
-        <item name="android:layout_marginRight">@dimen/margin_normal</item>
-        <item name="android:layout_marginLeft">@dimen/margin_normal</item>
-        <item name="android:gravity">center</item>
-        <item name="android:layout_gravity">center</item>
+    <style name="TextAppearance.Custom.Medium" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="NightTemperatureTextAppearance" parent="TextAppearance.AppCompat.Medium">
-        <!--<item name="android:textColor">@color/textColorTertiary</item>-->
+    <style name="TextAppearance.Custom.Medium2" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/white_54</item>
     </style>
+
 
     <!-- Base ImageView style. -->
     <style name="BasicImageView">

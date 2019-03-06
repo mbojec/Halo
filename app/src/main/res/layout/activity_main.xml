@@ -26,7 +26,7 @@
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar_mainActivity"
-                style="@style/Widget.Halo.Toolbar"
+                style="@style/Widget.Custom.Toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"/>
 

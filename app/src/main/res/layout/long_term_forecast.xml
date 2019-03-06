@@ -12,7 +12,7 @@
     <TextView
             android:id="@+id/tv_2day_date"
             style="@style/BasicTextView"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.Custom.Medium"
             app:layout_constraintBottom_toBottomOf="@+id/iv_2day_forecast_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_2day_forecast_image"
@@ -21,7 +21,7 @@
     <TextView
             android:id="@+id/tv_3day_date"
             style="@style/BasicTextView"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.Custom.Medium"
             app:layout_constraintBottom_toBottomOf="@+id/iv_3day_forecast_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_3day_forecast_image"
@@ -30,9 +30,7 @@
     <TextView
             android:id="@+id/tv_4day_date"
             style="@style/BasicTextView"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.Custom.Medium"
             app:layout_constraintBottom_toTopOf="@+id/iv_5day_forecast_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_4day_forecast_image"
@@ -41,7 +39,7 @@
     <TextView
             android:id="@+id/tv_5day_date"
             style="@style/BasicTextView"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.Custom.Medium"
             app:layout_constraintBottom_toBottomOf="@+id/iv_5day_forecast_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_5day_forecast_image"
@@ -89,7 +87,7 @@
     <TextView
             android:id="@+id/tv_2day_temp_night"
             style="@style/BasicTextView"
-            android:textAppearance="@style/NightTemperatureTextAppearance"
+            android:textAppearance="@style/TextAppearance.Custom.Medium2"
             app:layout_constraintBottom_toTopOf="@+id/iv_3day_forecast_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_2day_forecast_image"
@@ -98,7 +96,7 @@
     <TextView
             android:id="@+id/tv_3day_temp_night"
             style="@style/BasicTextView"
-            android:textAppearance="@style/NightTemperatureTextAppearance"
+            android:textAppearance="@style/TextAppearance.Custom.Medium2"
             app:layout_constraintBottom_toTopOf="@+id/iv_4day_forecast_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_3day_forecast_image"
@@ -107,7 +105,7 @@
     <TextView
             android:id="@+id/tv_4day_temp_night"
             style="@style/BasicTextView"
-            android:textAppearance="@style/NightTemperatureTextAppearance"
+            android:textAppearance="@style/TextAppearance.Custom.Medium2"
             app:layout_constraintBottom_toTopOf="@+id/iv_5day_forecast_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_4day_forecast_image"
@@ -116,7 +114,7 @@
     <TextView
             android:id="@+id/tv_5day_temp_night"
             style="@style/BasicTextView"
-            android:textAppearance="@style/NightTemperatureTextAppearance"
+            android:textAppearance="@style/TextAppearance.Custom.Medium2"
             app:layout_constraintBottom_toBottomOf="@+id/iv_5day_forecast_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_5day_forecast_image"
@@ -125,7 +123,7 @@
     <TextView
             android:id="@+id/tv_2day_temp_day"
             style="@style/BasicTextView.RightMarginBig"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.Custom.Medium"
             app:layout_constraintBottom_toTopOf="@+id/iv_3day_forecast_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_2day_forecast_image"
@@ -134,7 +132,7 @@
     <TextView
             android:id="@+id/tv_3day_temp_day"
             style="@style/BasicTextView.RightMarginBig"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.Custom.Medium"
             app:layout_constraintBottom_toTopOf="@+id/iv_4day_forecast_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_3day_forecast_image"
@@ -143,7 +141,7 @@
     <TextView
             android:id="@+id/tv_4day_temp_day"
             style="@style/BasicTextView.RightMarginBig"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.Custom.Medium"
             app:layout_constraintBottom_toTopOf="@+id/iv_5day_forecast_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_4day_forecast_image"
@@ -152,7 +150,7 @@
     <TextView
             android:id="@+id/tv_5day_temp_day"
             style="@style/BasicTextView.RightMarginBig"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.Custom.Medium"
             app:layout_constraintBottom_toBottomOf="@+id/iv_5day_forecast_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_5day_forecast_image"
@@ -161,7 +159,7 @@
     <TextView
             android:id="@+id/tv_6day_date"
             style="@style/BasicTextView"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.Custom.Medium"
             app:layout_constraintBottom_toBottomOf="@+id/iv_6day_forecast_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_6day_forecast_image"
@@ -170,7 +168,7 @@
     <TextView
             android:id="@+id/tv_7day_date"
             style="@style/BasicTextView"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.Custom.Medium"
             app:layout_constraintBottom_toBottomOf="@+id/iv_7day_forecast_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_7day_forecast_image"
@@ -179,7 +177,7 @@
     <TextView
             android:id="@+id/tv_6day_temp_day"
             style="@style/BasicTextView.RightMarginBig"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.Custom.Medium"
             app:layout_constraintBottom_toBottomOf="@+id/iv_6day_forecast_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_6day_forecast_image"
@@ -188,7 +186,7 @@
     <TextView
             android:id="@+id/tv_7day_temp_day"
             style="@style/BasicTextView.RightMarginBig"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.Custom.Medium"
             app:layout_constraintBottom_toBottomOf="@+id/iv_7day_forecast_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_7day_forecast_image"
@@ -197,7 +195,7 @@
     <TextView
             android:id="@+id/tv_6day_temp_night"
             style="@style/BasicTextView"
-            android:textAppearance="@style/NightTemperatureTextAppearance"
+            android:textAppearance="@style/TextAppearance.Custom.Medium2"
             app:layout_constraintBottom_toBottomOf="@+id/iv_6day_forecast_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_6day_forecast_image"
@@ -224,7 +222,7 @@
     <TextView
             android:id="@+id/tv_7day_temp_night"
             style="@style/BasicTextView"
-            android:textAppearance="@style/NightTemperatureTextAppearance"
+            android:textAppearance="@style/TextAppearance.Custom.Medium2"
             app:layout_constraintBottom_toBottomOf="@+id/iv_7day_forecast_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_7day_forecast_image"

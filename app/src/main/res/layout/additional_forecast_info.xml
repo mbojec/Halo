@@ -21,7 +21,7 @@
     <TextView
             android:id="@+id/tv_sunrise"
             style="@style/BasicTextView.LeftMargin"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.Custom.Medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
             tools:text="04:43" />
@@ -38,7 +38,7 @@
     <TextView
             android:id="@+id/tv_sunset"
             style="@style/BasicTextView.LeftLargeMargin"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.Custom.Medium"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/textView3"
             tools:text="21:08" />
@@ -70,7 +70,7 @@
     <TextView
             android:id="@+id/tv_pressure"
             style="@style/BasicTextView.LeftMargin"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.Custom.Medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5"
             tools:text="1014 hPa" />
@@ -78,7 +78,7 @@
     <TextView
             android:id="@+id/tv_humidity"
             style="@style/BasicTextView.LeftLargeMargin"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.Custom.Medium"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/textView6"
             tools:text="0 %" />
@@ -86,7 +86,7 @@
     <TextView
             android:id="@+id/tv_clouidiness"
             style="@style/BasicTextView.LeftLargeMargin"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.Custom.Medium"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/textView7"
             tools:text="0 %" />
@@ -94,7 +94,7 @@
     <TextView
             android:id="@+id/tv_rain_volume"
             style="@style/BasicTextView.LeftLargeMargin"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.Custom.Medium"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/textView18"
             tools:text="3 mm" />
@@ -102,7 +102,7 @@
     <TextView
             android:id="@+id/tv_wind_speed"
             style="@style/BasicTextView.LeftMargin"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.Custom.Medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView20"
             tools:text="3 km/h" />
@@ -150,7 +150,7 @@
     <TextView
             android:id="@+id/tv_uv_index"
             style="@style/BasicTextView.LeftMargin"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.Custom.Medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
             tools:text="7" />

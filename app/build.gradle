@@ -12,6 +12,9 @@ localProperties.load(new FileInputStream(localPropertiesFile))
 
 android {
     compileSdkVersion 28
+    dataBinding {
+        enabled = true
+    }
     defaultConfig {
         applicationId "com.mbojec.halo"
         minSdkVersion 21
