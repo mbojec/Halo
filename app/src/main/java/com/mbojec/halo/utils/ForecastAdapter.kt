@@ -8,7 +8,7 @@ import com.mbojec.halo.database.entity.ForecastEntity
 import com.mbojec.halo.ui.ForecastFragment
 
 
-class ForecastAdapter(fragmentManager: FragmentManager, private val cityListForecast: List<ForecastEntity>): FragmentStatePagerAdapter(fragmentManager){
+class ForecastAdapter(fragmentManager: FragmentManager, private val cityListForecast: List<ForecastEntity>?): FragmentStatePagerAdapter(fragmentManager){
 
     override fun getItem(position: Int): Fragment {
         return if (position == 0 ){
@@ -20,17 +20,17 @@ class ForecastAdapter(fragmentManager: FragmentManager, private val cityListFore
         } else {
             val fragment = ForecastFragment()
             val arguments = Bundle()
-            arguments.putLong("CITY_ID", cityListForecast[position].cityId)
+            cityListForecast?.get(position)?.cityId?.let { arguments.putLong("CITY_ID", it) }
             fragment.arguments = arguments
             fragment
         }
     }
 
     override fun getCount(): Int {
-        return cityListForecast.size
+        return cityListForecast?.size?: 0
     }
 
-    fun getCurrentPositionCityId(position: Int): Long{
-        return cityListForecast[position].cityId
+    fun getCurrentPositionCityId(position: Int): Long?{
+        return cityListForecast?.get(position)?.cityId
     }
 }

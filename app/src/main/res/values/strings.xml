@@ -1,5 +1,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">Halo</string>
+    <string name="app_name">Weather</string>
     <string name="location_permission_denied_info">Permission denied. Change them in the settings.</string>
     <string name="location_permission_denied_positive">Go to settings</string>
     <string name="location_permission_denied_negative">Exit</string>
@@ -23,7 +23,7 @@
     <!-- Notification's strings -->
     <string name="system_notification_channel_id" translatable="false">system_channel</string>
     <string name="system_notification_channel_name">System notifications</string>
-    <string name="system_notification_title">Weather Forecast</string>
+    <string name="system_notification_title">Weather</string>
 
 
     <!-- Strings for preferences -->
