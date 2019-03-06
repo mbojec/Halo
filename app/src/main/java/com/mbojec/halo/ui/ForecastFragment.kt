@@ -65,10 +65,6 @@ class ForecastFragment : Fragment(), Injectable {
             it?.let { setShortTermForecast(it) }
         })
 
-        viewModel.longTermForecastList.observe(this, Observer {
-            it?.let { setLongTermForecast(it) }
-        })
-
     }
 
     private fun setMainForecast(mainForecast: CurrentForecast){
@@ -87,38 +83,4 @@ class ForecastFragment : Fragment(), Injectable {
         shortTermLayout.rv_short_term_forecast.adapter = adapter
     }
 
-    private fun setLongTermForecast(longTermForecast: List<LongTermForecast>){
-        val longTermForecastLayout = in_long_term_forecast as ConstraintLayout
-
-        longTermForecastLayout.tv_2day_date.text = longTermForecast[1].dayName
-        longTermForecastLayout.tv_3day_date.text = longTermForecast[2].dayName
-        longTermForecastLayout.tv_4day_date.text = longTermForecast[3].dayName
-        longTermForecastLayout.tv_5day_date.text = longTermForecast[4].dayName
-        longTermForecastLayout.tv_6day_date.text = longTermForecast[5].dayName
-        longTermForecastLayout.tv_7day_date.text = longTermForecast[6].dayName
-
-        longTermForecastLayout.tv_2day_temp_day.text = longTermForecast[1].dayTemp
-        longTermForecastLayout.tv_3day_temp_day.text = longTermForecast[2].dayTemp
-        longTermForecastLayout.tv_4day_temp_day.text = longTermForecast[3].dayTemp
-        longTermForecastLayout.tv_5day_temp_day.text = longTermForecast[4].dayTemp
-        longTermForecastLayout.tv_6day_temp_day.text = longTermForecast[5].dayTemp
-        longTermForecastLayout.tv_7day_temp_day.text = longTermForecast[6].dayTemp
-
-        longTermForecastLayout.tv_2day_temp_night.text = longTermForecast[1].nightTemp
-        longTermForecastLayout.tv_3day_temp_night.text = longTermForecast[2].nightTemp
-        longTermForecastLayout.tv_4day_temp_night.text = longTermForecast[3].nightTemp
-        longTermForecastLayout.tv_5day_temp_night.text = longTermForecast[4].nightTemp
-        longTermForecastLayout.tv_6day_temp_night.text = longTermForecast[5].nightTemp
-        longTermForecastLayout.tv_7day_temp_night.text = longTermForecast[6].nightTemp
-
-        Glide.with(this).load(longTermForecast[1].weatherImage).into(longTermForecastLayout.iv_2day_forecast_image)
-        Glide.with(this).load(longTermForecast[2].weatherImage).into(longTermForecastLayout.iv_3day_forecast_image)
-        Glide.with(this).load(longTermForecast[3].weatherImage).into(longTermForecastLayout.iv_4day_forecast_image)
-        Glide.with(this).load(longTermForecast[4].weatherImage).into(longTermForecastLayout.iv_5day_forecast_image)
-        Glide.with(this).load(longTermForecast[5].weatherImage).into(longTermForecastLayout.iv_6day_forecast_image)
-        Glide.with(this).load(longTermForecast[6].weatherImage).into(longTermForecastLayout.iv_7day_forecast_image)
-
-
-    }
-    
 }

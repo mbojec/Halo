@@ -54,7 +54,8 @@
 
                 <include
                         android:id="@+id/in_long_term_forecast"
-                        layout="@layout/long_term_forecast" />
+                        layout="@layout/long_term_forecast"
+                        app:longTermForecastList="@{viewModel.longTermForecastList}"/>
 
                 <include layout="@layout/horizontal_divider"/>
 
