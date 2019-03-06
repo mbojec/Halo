@@ -60,7 +60,8 @@
 
                 <include
                         android:id="@+id/in_additional_forecast_info"
-                        layout="@layout/additional_forecast_info" />
+                        layout="@layout/additional_forecast_info"
+                        app:forecastInfo="@{viewModel.forecastInfo}"/>
 
 
             </LinearLayout>

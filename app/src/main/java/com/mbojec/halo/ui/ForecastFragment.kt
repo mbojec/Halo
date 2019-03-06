@@ -69,9 +69,6 @@ class ForecastFragment : Fragment(), Injectable {
             it?.let { setLongTermForecast(it) }
         })
 
-        viewModel.forecastInfo.observe(this, Observer {
-            it?.let { setAdditionalInfo(it) }
-        })
     }
 
     private fun setMainForecast(mainForecast: CurrentForecast){
@@ -123,18 +120,5 @@ class ForecastFragment : Fragment(), Injectable {
 
 
     }
-
-    private fun setAdditionalInfo(forecastInfo: ForecastInfo){
-        val forecastInfoLayout = in_additional_forecast_info as ConstraintLayout
-        forecastInfoLayout.tv_sunrise.text = forecastInfo.sunrise
-        forecastInfoLayout.tv_sunset.text = forecastInfo.sunset
-        forecastInfoLayout.tv_clouidiness.text = forecastInfo.cloudiness
-        forecastInfoLayout.tv_humidity.text = forecastInfo.humidity
-        forecastInfoLayout.tv_pressure.text = forecastInfo.pressure
-        forecastInfoLayout.tv_rain_volume.text = forecastInfo.precip
-        forecastInfoLayout.tv_wind_direction.text = forecastInfo.windDirection
-        forecastInfoLayout.tv_wind_speed.text = forecastInfo.windSpeed
-        forecastInfoLayout.tv_uv_index.text = forecastInfo.uvIndex
-    }
-
+    
 }
