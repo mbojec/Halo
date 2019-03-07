@@ -1,11 +1,15 @@
 package com.mbojec.halo.utils
 
+import android.os.Handler
 import android.view.View
 import android.widget.ImageView
+import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mbojec.halo.model.RecyclerViewConfiguration
+import com.mbojec.halo.ui.ListFragmentDirections
 
 @BindingAdapter("imageUrl")
 fun setImageUrl(imageView: ImageView, resourceId: Int) {
@@ -50,5 +54,17 @@ fun bindRecyclerViewConfiguration(view: RecyclerView, config: RecyclerViewConfig
         view.layoutManager = config.getLayoutManager()
         view.adapter = config.getAdapter()
 
+    }
+}
+
+@BindingAdapter("app:click")
+fun setClickListener(cardView: CardView, cityId: Long){
+    cardView.setOnClickListener {
+        val action = ListFragmentDirections.actionListDestToMainDest(cityId)
+        val handler = Handler()
+        val task = Runnable {
+            it.findNavController().navigate(action)
+        }
+        handler.postDelayed(task, 500)
     }
 }

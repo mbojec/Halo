@@ -22,6 +22,7 @@
                 android:layout_height="72dp"
                 card_view:cardCornerRadius="8dp"
                 card_view:cardBackgroundColor="@{currentForecast.backgroundColor}"
+                app:click="@{currentForecast.id}"
                 android:layout_margin="8dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -67,7 +68,8 @@
                         app:layout_constraintTop_toTopOf="@+id/tv_list_item_city_name"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
-                        android:layout_marginEnd="16dp"/>
+                        android:layout_marginEnd="16dp"
+                        app:imageUrl="@{currentForecast.weatherImage}"/>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
