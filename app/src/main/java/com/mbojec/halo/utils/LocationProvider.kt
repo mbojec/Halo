@@ -52,6 +52,7 @@ object LocationProvider{
 
     private fun checkIfUpdateNeeded(application: HaloApplication, timeLimit: Long): Boolean {
         val lastUpdateTime = application.sharedPreferencesUtils.getLatUpdateTime()
-        return (DataUtils.getCurrentTime() - lastUpdateTime) > timeLimit
+        val currentTime = DataUtils.getCurrentTime()
+        return (currentTime - lastUpdateTime) > timeLimit
     }
 }

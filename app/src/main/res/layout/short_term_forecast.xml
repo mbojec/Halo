@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/dayColor">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_short_term_forecast"
+    <data>
+        <variable
+                type="com.mbojec.halo.model.RecyclerViewConfiguration"
+                name="recyclerView"/>
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            android:layout_height="wrap_content"
+            android:background="@color/dayColor">
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_short_term_forecast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:configuration="@{recyclerView}"/>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

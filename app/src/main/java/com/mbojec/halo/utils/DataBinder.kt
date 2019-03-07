@@ -2,10 +2,10 @@ package com.mbojec.halo.utils
 
 import android.view.View
 import android.widget.ImageView
-import android.widget.Toolbar
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.mbojec.halo.R
+import com.mbojec.halo.model.RecyclerViewConfiguration
 
 @BindingAdapter("imageUrl")
 fun setImageUrl(imageView: ImageView, resourceId: Int) {
@@ -37,9 +37,18 @@ fun setTitle(toolbar: androidx.appcompat.widget.Toolbar, title: String?){
 fun setIcon(toolbar: androidx.appcompat.widget.Toolbar, cityId: Long?){
     cityId?.let {
         if (cityId <= 1){
-            toolbar.setNavigationIcon(R.drawable.ic_location)
+            toolbar.setNavigationIcon(com.mbojec.halo.R.drawable.ic_location)
         } else {
             toolbar.navigationIcon = null
         }
+    }
+}
+
+@BindingAdapter("app:configuration")
+fun bindRecyclerViewConfiguration(view: RecyclerView, config: RecyclerViewConfiguration?) {
+    if (config != null) {
+        view.layoutManager = config.getLayoutManager()
+        view.adapter = config.getAdapter()
+
     }
 }
