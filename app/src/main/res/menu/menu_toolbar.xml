@@ -6,7 +6,7 @@
             android:id="@+id/list_dest"
             android:orderInCategory="300"
             android:title="List"
-            android:icon="@drawable/ic_launcher_foreground"
+            android:icon="@drawable/ic_city_list"
             app:showAsAction="ifRoom"/>
 
     <item

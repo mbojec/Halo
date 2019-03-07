@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pogoda</string>
+    <string name="system_notification_title">Pogoda</string>
+    <string name="today">Dzisiaj</string>
+    <string name="tomorrow">Jutro</string>
+    <string name="n">północny</string>
+    <string name="s">południowy</string>
+    <string name="e">wschodni</string>
+    <string name="w">zachodni</string>
+    <string name="ne">pólnocno-wschodni</string>
+    <string name="nw">północno-zachodni</string>
+    <string name="se">południowo-wschodni</string>
+    <string name="sw">połódniowo-zachodni</string>
+    <string name="label_sunset">Zachód</string>
+    <string name="label_sunrise">Wschód</string>
+    <string name="label_pressure">Ciśnienie</string>
+    <string name="label_humidity">Wilgotność</string>
+    <string name="label_cloudiness">Zachmurzenie</string>
+    <string name="label_rain">Opady deszczu</string>
+    <string name="label_snow">Opady śniegu</string>
+    <string name="label_wind_speed">Prędkość wiatru</string>
+    <string name="label_wind">Wiatr</string>
+    <string name="label_uv_index">Indeks UV</string>
+    <string name="pref_time_zone_label">Lokalne strefy czasowe</string>
+    <string name="pref_time_zone_summary_on">Pokaż czas zgodnie z lokalnymi strefami czasowymi</string>
+    <string name="pref_time_zone_summary_off">" Pokaż czas zgodnie z aktualną strefą czasową"</string>
+    <string name="pref_units_label">Temperatura</string>
+    <string name="pref_units_label_metric">Celcjusz</string>
+    <string name="pref_units_label_imperial">Fahrenheit</string>
+    <string name="system_notification_channel_name">Powiadomienia systemowe</string>
+    <string name="new_version_positive_button">Aktualizuj</string>
+    <string name="new_version_negative_button">Nie, dziękuje</string>
+    <string name="new_version_label">Nowa wersja dostępna</string>
+    <string name="new_version_text">Zaktualizuj aplikację do nowej wersji, aby korzystać z najnowszych rozwiązań.
+    </string>
+    <string name="about_label">O aplikacji</string>
+    <string name="version_label">Wersja</string>
+    <string name="developer_label">Deweloper</string>
+    <string name="network_connection_alert_message">Sprawdź swoje połączenie z internetem i spróbuj ponownie</string>
+    <string name="network_connection_failed">Brak połączenia z internetem</string>
+    <string name="location_permission_denied_negative">Zakończ</string>
+    <string name="location_permission_denied_positive">Przejdź do ustawień</string>
+    <string name="location_permission_denied_info">Odmowa wymaganych uprawnień. Zmień je w ustawieniach.</string>
+    <string name="fragment_label_settings">Ustawienia</string>
+    <string name="fragment_label_city_list">Wybierz miasto</string>
+    <string name="fragment_label_city_search">Wprowadź nazwę miasta</string>
+    <string name="fragment_label_about_app">O aplikacji</string>
+</resources>
