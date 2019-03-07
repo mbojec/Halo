@@ -3,13 +3,6 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-                type="com.mbojec.halo.model.RecyclerViewConfiguration"
-                name="recyclerView"/>
-
-    </data>
-
     <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -18,7 +11,6 @@
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_short_term_forecast"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:configuration="@{recyclerView}"/>
+                android:layout_height="wrap_content"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

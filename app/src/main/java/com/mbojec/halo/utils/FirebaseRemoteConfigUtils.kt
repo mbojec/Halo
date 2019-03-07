@@ -31,7 +31,7 @@ object FirebaseRemoteConfigUtils {
         remoteConfigDefaults[KEY_UPDATE_URL] = "https://play.google.com/store/apps/details?id=com.bojec.marek.weatherapp"
         remoteConfigDefaults[KEY_CURRENT_LOCATION_UPDATE_DISTANCE_LIMIT] = 5
         remoteConfigDefaults[KEY_CURRENT_LOCATION_UPDATE_TIME_LIMIT] = 900000
-        remoteConfigDefaults[KEY_DATA_UPDATE_TIME_LIMIT] = 3600000
+        remoteConfigDefaults[KEY_DATA_UPDATE_TIME_LIMIT] = 900000
 
         firebaseRemoteConfig.setConfigSettings(firebaseRemoteConfigSettings)
         firebaseRemoteConfig.setDefaults(remoteConfigDefaults)

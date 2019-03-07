@@ -16,13 +16,14 @@ import javax.inject.Inject
 class ForecastViewModel @Inject constructor(val haloApplication: HaloApplication): ViewModel() {
 
     private val cityId: MutableLiveData<Long> = MutableLiveData()
-    var recyclerView = RecyclerViewConfiguration()
 
     fun setId(cityId: Long) {
         this.cityId.value = cityId
     }
 
     var mainForecast: LiveData<CurrentForecast> = object : LiveData<CurrentForecast>(){}
+
+    var shortTermForecast: LiveData<List<ShortTermForecast>> = object: LiveData<List<ShortTermForecast>>(){}
 
     var longTermForecastList: LiveData<List<LongTermForecast>> = object: LiveData<List<LongTermForecast>>(){}
 
@@ -32,10 +33,11 @@ class ForecastViewModel @Inject constructor(val haloApplication: HaloApplication
 
     init {
         mainForecast = Transformations.map(forecastEntity){ it: ForecastEntity? ->
-            it?.let {
-                val adapter = ShortTermForecastAdapter(WeatherDataConverter.createShortTermForecastList(it, haloApplication), haloApplication)
-                recyclerView.setConfig(LinearLayoutManager(haloApplication,  LinearLayoutManager.HORIZONTAL, false), adapter)
-                return@map WeatherDataConverter.createCurrentForecast(it, haloApplication) }
+            it?.let { return@map WeatherDataConverter.createCurrentForecast(it, haloApplication) }
+        }
+
+        shortTermForecast = Transformations.map(forecastEntity){it: ForecastEntity? ->
+            it?.let {return@map WeatherDataConverter.createShortTermForecastList(it, haloApplication)}
         }
 
         longTermForecastList = Transformations.map(forecastEntity){ it: ForecastEntity? ->

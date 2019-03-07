@@ -49,8 +49,7 @@
 
                 <include
                         android:id="@+id/in_short_term_forecast"
-                        layout="@layout/short_term_forecast"
-                        app:recyclerView="@{viewModel.recyclerView}"/>
+                        layout="@layout/short_term_forecast"/>
 
                 <include layout="@layout/horizontal_divider"/>
 
