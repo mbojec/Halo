@@ -10,13 +10,25 @@
             android:label=" ">
         <action
                 android:id="@+id/action_main_dest_to_list_dest"
-                app:destination="@id/list_dest"/>
+                app:destination="@id/list_dest"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
         <action
                 android:id="@+id/action_main_dest_to_settings_dest"
-                app:destination="@id/settings_dest"/>
+                app:destination="@id/settings_dest"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
         <action
                 android:id="@+id/action_main_dest_to_about_dest"
-                app:destination="@id/about_dest"/>
+                app:destination="@id/about_dest"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
         <argument
                 android:name="cityId"
                 app:argType="long"
@@ -28,10 +40,16 @@
             android:label="@string/fragment_label_city_list">
         <action
                 android:id="@+id/action_list_dest_to_search_dest"
-                app:destination="@id/search_dest"/>
+                app:destination="@id/search_dest"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
         <action
                 android:id="@+id/action_list_dest_to_main_dest"
-                app:destination="@id/main_dest"/>
+                app:destination="@id/main_dest"
+                app:enterAnim="@anim/slide_in_left"
+                app:exitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
             android:id="@+id/search_dest"
@@ -39,7 +57,9 @@
             android:label=" ">
         <action
                 android:id="@+id/action_search_dest_to_main_dest"
-                app:destination="@id/main_dest"/>
+                app:destination="@id/main_dest"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"/>
     </fragment>
     <fragment
             android:id="@+id/settings_dest"
