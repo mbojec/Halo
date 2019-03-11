@@ -1,13 +1,18 @@
 package com.mbojec.halo.utils
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Handler
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.mbojec.halo.Const
 import com.mbojec.halo.model.RecyclerViewConfiguration
 import com.mbojec.halo.ui.ListFragmentDirections
 
@@ -66,5 +71,26 @@ fun setClickListener(cardView: CardView, cityId: Long){
             it.findNavController().navigate(action)
         }
         handler.postDelayed(task, 500)
+    }
+}
+
+@BindingAdapter("app:fabClick")
+fun setFABClickListener(button: FloatingActionButton, boolean: Boolean){
+    if (boolean){
+        button.setOnClickListener {
+            val action = ListFragmentDirections.actionListDestToSearchDest()
+            it.findNavController().navigate(action)
+        }
+    }
+}
+
+@BindingAdapter("app:onClick")
+fun setLogoClickListener(view: TextView, boolean: Boolean){
+    if (boolean){
+        view.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(Const.DARK_SKY_SITE_URL))
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            it.context.applicationContext.startActivity(intent)
+        }
     }
 }

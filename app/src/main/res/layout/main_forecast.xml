@@ -84,17 +84,6 @@
                 tools:text="12"
                 android:text="@{longTermForecastList[0].nightTemp}"/>
 
-        <TextView
-                android:id="@+id/tv_current_time"
-                style="@style/BasicTextView.LeftMargin"
-                android:textAppearance="@style/TextAppearance.Custom.Medium"
-                tools:text="12:00"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tv_main_day_temp"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/textView2"
-                android:text="@{currentForecast.currentTime}"/>
-
         <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="0dp"

@@ -17,5 +17,7 @@ class Const {
         const val KEY_UPDATE_REQUIRED = "force_update_required"
         const val KEY_CURRENT_VERSION = "force_update_current_version"
         const val KEY_UPDATE_URL = "force_update_store_url"
+
+        const val DARK_SKY_SITE_URL = "https://darksky.net/poweredby/"
     }
 }
