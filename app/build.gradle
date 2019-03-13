@@ -11,6 +11,14 @@ def localProperties = new Properties()
 localProperties.load(new FileInputStream(localPropertiesFile))
 
 android {
+    signingConfigs {
+        release {
+            keyAlias localProperties['MyKeyAlias']
+            keyPassword localProperties['MyKeyPassword']
+            storeFile file(localProperties['MyStoreFile'])
+            storePassword localProperties['MyStorePassword']
+        }
+    }
     compileSdkVersion 28
     dataBinding {
         enabled = true
@@ -31,15 +39,33 @@ android {
         }
     }
     buildTypes {
-        release {
+        debug {
+            debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+    android {
+
+        packagingOptions {
+            exclude 'META-INF/proguard/androidx-annotations.pro'
+        }
+
     }
     buildToolsVersion '28.0.3'
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    sourceSets {
+        debug {
+            manifest.srcFile 'src/debug/AndroidManifest.xml'
+        }
     }
 }
 
