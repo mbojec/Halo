@@ -20,7 +20,7 @@ class MainActivityStateListener(val application: HaloApplication, lifecycleOwner
         if (PermissionUtils.checkIfPermissionGranted(application.applicationContext)){
             val distanceLimit = updateArgData[Const.KEY_CURRENT_LOCATION_UPDATE_DISTANCE_LIMIT] as Long
             val timeLimit = updateArgData[Const.KEY_CURRENT_LOCATION_UPDATE_TIME_LIMIT] as Long
-            LocationProvider.getCurrentLocation(application, distanceLimit, timeLimit)
+            LocationProvider.getCurrentLocation(application, distanceLimit, timeLimit, activity)
         } else {
             PermissionUtils.requestPermissions(activity)
         }
@@ -28,7 +28,11 @@ class MainActivityStateListener(val application: HaloApplication, lifecycleOwner
             NetworkUtils.showInfo(activity.findViewById(R.id.activity_main_layout))
         } else {
             val dataUpdateTimeLimit = updateArgData[Const.KEY_DATA_UPDATE_TIME_LIMIT] as Long
-            WorkerManager.startSyncDataDownload(application, dataUpdateTimeLimit)
+            val currentTime = DataUtils.getCurrentTime()
+            val updateTime = application.sharedPreferencesUtils.getDataUpdateTime()
+            if ((currentTime - updateTime) > dataUpdateTimeLimit){
+                WorkerManager.startSyncDataDownload()
+            }
         }
     }
 

@@ -45,15 +45,6 @@ class ListFragment : Fragment(), Injectable {
         return binding.root
     }
 
-
-//    override fun onResume() {
-//        super.onResume()
-//        floatingActionButton.setOnClickListener {
-//            val navController = findNavController()
-//            navController.navigate(R.id.search_dest)
-//        }
-//    }
-
     override fun onStart() {
         super.onStart()
         submitToViewModel()

@@ -40,7 +40,7 @@ class NetworkRepository @Inject constructor(private val mapBoxApiClient: MapBoxA
             observable.subscribeOn(Schedulers.io())
                 .subscribe(
                     { searchCityList -> searchCityList?.let { searchCityList.features?.get(0)?.let { feature ->
-                        fetchCityForecast(longitude, latitude, feature, getCityRowNumber(isCurrentLocation),getCityId(isCurrentLocation,it.features?.get(0)!!))
+                        fetchCityForecast(longitude, latitude, feature, getCityRowNumber(isCurrentLocation),getCityId(isCurrentLocation,it.features?.get(0)!!), isCurrentLocation)
                     } }},
                     {throwable: Throwable ->  managingFailureResponse(throwable)},
                     {}
@@ -48,33 +48,22 @@ class NetworkRepository @Inject constructor(private val mapBoxApiClient: MapBoxA
         )
     }
 
-    private fun fetchCityForecast(longitude: Double, latitude: Double, feature: SearchCityList.Feature, rowId: Int, cityId: Long){
+    private fun fetchCityForecast(longitude: Double, latitude: Double, feature: SearchCityList.Feature, rowId: Int, cityId: Long, isCurrentLocation: Boolean){
         val observable: Observable<Forecast> = darkSkyApiClient.getCityForecast(BuildConfig.DARK_SKY_API_KEY, "$latitude,$longitude", "pl", "si")
         val observer: DisposingObserver<Forecast> = DisposingObserver()
         observer.onSubscribe(
             observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                    { it -> it?.run {application.dataRepository.saveForecast(rowId ,cityId,feature, it)} },
+                    { it -> it?.run {application.dataRepository.saveForecast(rowId ,cityId,feature, it)}
+                    if (isCurrentLocation){
+                        application.sharedPreferencesUtils.saveDataUpdateTime((it?.hourly?.dataHourlies?.get(0)?.time!!)* 1000)
+                    }},
                     {throwable: Throwable ->  managingFailureResponse(throwable)},
                     {}
                 )
         )
     }
-
-//    fun updateForecast(forecastEntity: ForecastEntity){
-//        val observable: Observable<Forecast> = darkSkyApiClient.getCityForecast(BuildConfig.DARK_SKY_API_KEY, "${forecastEntity.feature.geometry!!.coordinates!![1]},${forecastEntity.feature.geometry!!.coordinates!![0]}", "pl", "si")
-//        val observer: DisposingObserver<Forecast> = DisposingObserver()
-//        observer.onSubscribe(
-//            observable.subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(
-//                    { it -> it?.run {application.dataRepository.saveForecast(forecastEntity.rowId ,forecastEntity.cityId,forecastEntity.feature, it)} },
-//                    {throwable: Throwable ->  managingFailureResponse(throwable)},
-//                    {}
-//                )
-//        )
-//    }
 
     fun updateForecast(list: List<ForecastEntity>){
         val observableList: ArrayList<Observable<Forecast>> = ArrayList()
