@@ -27,7 +27,12 @@ object DataUtils {
 
     fun formatTemperature(context: Context, temperature: Double?): String {
         temperature?.let {
-            var finaleTemperature = temperature
+            var finaleTemperature = 0.00
+            if(temperature in -0.99..-0.01 || temperature in 0.01..0.99){
+                finaleTemperature = 0.00
+            } else {
+                finaleTemperature = temperature
+            }
             if (!isMetric(context)) {
                 finaleTemperature = temperature * 1.8 + 32
             }
