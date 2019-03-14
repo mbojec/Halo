@@ -12,7 +12,7 @@ import com.mbojec.halo.database.dao.LocationDao
 import com.mbojec.halo.database.entity.ForecastEntity
 import com.mbojec.halo.database.entity.LocationEntity
 
-@Database(entities = [LocationEntity::class, ForecastEntity::class], version = 7)
+@Database(entities = [LocationEntity::class, ForecastEntity::class], version = 4)
 @TypeConverters(StringConverter::class, DataDailyConverter::class, DataHourlyConverter::class, DataMinutelyConverter::class)
 abstract class Database: RoomDatabase(){
 

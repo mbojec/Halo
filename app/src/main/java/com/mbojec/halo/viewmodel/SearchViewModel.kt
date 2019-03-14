@@ -6,6 +6,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel;
 import com.mbojec.halo.HaloApplication
+import com.mbojec.halo.R
 import com.mbojec.halo.model.SearchCityList
 import com.mbojec.halo.model.Response
 import com.mbojec.halo.utils.NetworkUtils
@@ -64,6 +65,7 @@ class SearchViewModel @Inject constructor(val haloApplication: HaloApplication):
                 }
             }
             searchView.setOnQueryTextListener(onQueryTextListener)
+            searchView.queryHint = haloApplication.resources.getString(R.string.city_search_vie_hint)
 
             emitter.setCancellable {
                 searchView.setOnQueryTextListener(null)

@@ -64,5 +64,5 @@
 -dontwarn javax.annotation.**
 -dontwarn kotlin.Unit
 
--keep class android.support.v7.widget.SearchView { *; }
--keep class android.support.v7.graphics.drawable.DrawerArrowDrawable { *; }
+-keep class androidx.appcompat.widget.SearchView { *; }
+-keep class androidx.appcompat.graphics.drawable.DrawerArrowDrawable { *; }

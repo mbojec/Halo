@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 4,
-    "identityHash": "679583fc21a26557740f360dc162aa40",
+    "identityHash": "8233349e7113a14fda3f0e1576dad131",
     "entities": [
       {
         "tableName": "location",
@@ -44,8 +44,14 @@
       },
       {
         "tableName": "forecast",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`cityId` INTEGER NOT NULL, `feature_id` TEXT, `type` TEXT, `placeType` TEXT, `relevance` REAL, `textPl` TEXT, `placeNamePl` TEXT, `text` TEXT, `placeName` TEXT, `bbox` TEXT, `center` TEXT, `context` TEXT, `languagePl` TEXT, `language` TEXT, `wikidata` TEXT, `geometrytype` TEXT, `geometrycoordinates` TEXT, `latitude` REAL, `longitude` REAL, `timezone` TEXT, `offset` INTEGER, `currentlytime` INTEGER, `currentlysummary` TEXT, `currentlyicon` TEXT, `currentlynearestStormDistance` INTEGER, `currentlynearestStormBearing` INTEGER, `currentlyprecipIntensity` REAL, `currentlyprecipProbability` REAL, `currentlytemperature` REAL, `currentlyapparentTemperature` REAL, `currentlydewPoint` REAL, `currentlyhumidity` REAL, `currentlypressure` REAL, `currentlywindSpeed` REAL, `currentlywindGust` REAL, `currentlywindBearing` INTEGER, `currentlycloudCover` REAL, `currentlyuvIndex` INTEGER, `currentlyvisibility` REAL, `currentlyozone` REAL, `minutelysummary` TEXT, `minutelyicon` TEXT, `minutelydataMinutelies` TEXT, `hourlysummary` TEXT, `hourlyicon` TEXT, `hourlydataHourlies` TEXT, `dailysummary` TEXT, `dailyicon` TEXT, `dailydataDailies` TEXT, `sources` TEXT, `nearestStation` REAL, `units` TEXT, PRIMARY KEY(`cityId`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`rowId` INTEGER NOT NULL, `cityId` INTEGER NOT NULL, `feature_id` TEXT, `type` TEXT, `placeType` TEXT, `relevance` REAL, `textPl` TEXT, `placeNamePl` TEXT, `text` TEXT, `placeName` TEXT, `bbox` TEXT, `center` TEXT, `context` TEXT, `languagePl` TEXT, `language` TEXT, `wikidata` TEXT, `geometrytype` TEXT, `geometrycoordinates` TEXT, `latitude` REAL, `longitude` REAL, `timezone` TEXT, `offset` INTEGER, `currentlytime` INTEGER, `currentlysummary` TEXT, `currentlyicon` TEXT, `currentlynearestStormDistance` INTEGER, `currentlynearestStormBearing` INTEGER, `currentlyprecipIntensity` REAL, `currentlyprecipProbability` REAL, `currentlytemperature` REAL, `currentlyapparentTemperature` REAL, `currentlydewPoint` REAL, `currentlyhumidity` REAL, `currentlypressure` REAL, `currentlywindSpeed` REAL, `currentlywindGust` REAL, `currentlywindBearing` INTEGER, `currentlycloudCover` REAL, `currentlyuvIndex` INTEGER, `currentlyvisibility` REAL, `currentlyozone` REAL, `minutelysummary` TEXT, `minutelyicon` TEXT, `minutelydataMinutelies` TEXT, `hourlysummary` TEXT, `hourlyicon` TEXT, `hourlydataHourlies` TEXT, `dailysummary` TEXT, `dailyicon` TEXT, `dailydataDailies` TEXT, `sources` TEXT, `nearestStation` REAL, `units` TEXT, PRIMARY KEY(`rowId`))",
         "fields": [
+          {
+            "fieldPath": "rowId",
+            "columnName": "rowId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
           {
             "fieldPath": "cityId",
             "columnName": "cityId",
@@ -361,32 +367,6 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "cityId"
-          ],
-          "autoGenerate": false
-        },
-        "indices": [],
-        "foreignKeys": []
-      },
-      {
-        "tableName": "list",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`rowId` INTEGER NOT NULL, `cityId` INTEGER NOT NULL, PRIMARY KEY(`rowId`))",
-        "fields": [
-          {
-            "fieldPath": "rowId",
-            "columnName": "rowId",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "cityId",
-            "columnName": "cityId",
-            "affinity": "INTEGER",
-            "notNull": true
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
             "rowId"
           ],
           "autoGenerate": false
@@ -398,7 +378,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"679583fc21a26557740f360dc162aa40\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"8233349e7113a14fda3f0e1576dad131\")"
     ]
   }
 }
