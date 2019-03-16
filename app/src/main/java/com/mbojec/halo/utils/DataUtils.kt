@@ -172,6 +172,25 @@ object DataUtils {
         }
     }
 
+    fun getImageResourceForWeatherConditionLarge(weatherId: String?): Int {
+        return when (weatherId) {
+            "clear-day" -> R.drawable.clear_day_big
+            "clear-night" -> R.drawable.clear_night_big
+            "rain" -> R.drawable.rain_big
+            "snow" -> R.drawable.snow_big
+            "sleet" -> R.drawable.sleet_big
+            "wind" -> R.drawable.wind_big
+            "fog" -> R.drawable.fog_big
+            "cloudy" -> R.drawable.cloudy_big
+            "partly-cloudy-day" -> R.drawable.partly_cloudy_day_big
+            "partly-cloudy-night" -> R.drawable.partly_cloudy_night_big
+            "hail" -> R.drawable.hail_big
+            "thunderstorm" -> R.drawable.thunderstorm_big
+            "tornado" -> R.drawable.thunderstorm_big
+            else -> R.drawable.clear_day_big
+        }
+    }
+
     fun getCurrentTime(): Long {
         return System.currentTimeMillis()
     }

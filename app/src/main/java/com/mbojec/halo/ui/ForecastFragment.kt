@@ -39,7 +39,8 @@ class ForecastFragment : Fragment(), Injectable {
         val binding: ForecastFragmentBinding = DataBindingUtil.inflate(inflater,
             com.mbojec.halo.R.layout.forecast_fragment, container, false)
         binding.apply { viewModel = this@ForecastFragment.viewModel
-        setLifecycleOwner (this@ForecastFragment)}
+            lifecycleOwner = this@ForecastFragment
+        }
         recyclerView = binding.inShortTermForecast.rvShortTermForecast
         submitToViewModel()
         return binding.root

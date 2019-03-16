@@ -18,7 +18,7 @@ object WeatherDataConverter {
             DataUtils.formatTemperature(application.applicationContext, forecastEntity.forecast.currently?.temperature),
             forecastEntity.forecast.currently?.summary?: "--",
             capitalizeSpelling(DataUtils.getCurrentDayName(forecastEntity.forecast.currently?.time, forecastEntity.forecast.timezone, application.applicationContext)),
-            DataUtils.getImageResourceForWeatherCondition(forecastEntity.forecast.currently?.icon),
+            DataUtils.getImageResourceForWeatherConditionLarge(forecastEntity.forecast.currently?.icon),
             DataUtils.getFormattedCurrentHour(forecastEntity.forecast.timezone, application.applicationContext),
             getProperBackgroundColor(forecastEntity, application))
     }
