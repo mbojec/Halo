@@ -1,6 +1,7 @@
 package com.mbojec.halo.viewmodel
 
 import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel;
 import com.mbojec.halo.HaloApplication
 import com.mbojec.halo.database.entity.ForecastEntity
@@ -10,9 +11,16 @@ class MainViewModel @Inject constructor(haloApplication: HaloApplication): ViewM
 
     var forecastList: MediatorLiveData<List<ForecastEntity>> = MediatorLiveData()
 
+    var progressBarVisibility: MutableLiveData<Boolean> = object : MutableLiveData<Boolean>(){}
+
     init {
         forecastList.addSource(haloApplication.dataRepository.allForecasts){
-            this.forecastList.postValue(it)
+            it?.let {
+                if (!it.isEmpty()){
+                    progressBarVisibility.value = false
+                }
+                this.forecastList.postValue(it)
+            }
         }
     }
 }

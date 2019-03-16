@@ -52,6 +52,13 @@ class MainFragment : Fragment(), Injectable {
     }
 
     private fun submitToViewModel(){
+        viewModel.progressBarVisibility.observe(this, Observer {
+            it?.let {
+                if (!it){
+                    pb_forecast.visibility = View.INVISIBLE
+                }
+            }
+        })
         viewModel.forecastList.observe(this, Observer { it ->
             it?.let {
                 adapter = ForecastAdapter(childFragmentManager, it)

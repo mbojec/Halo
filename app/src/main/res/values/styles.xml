@@ -95,4 +95,15 @@
     <style name="BasicImageView.Margin">
         <item name="android:layout_margin">@dimen/margin_normal</item>
     </style>
+
+
+    <style name="ProgressBarStyle" parent="Widget.AppCompat.ProgressBar">
+        <item name="android:layout_height">@dimen/progress_bar_height_and_width</item>
+        <item name="android:layout_width">@dimen/progress_bar_height_and_width</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:indeterminate">true</item>
+        <item name="android:indeterminateTint">@color/white</item>
+        <item name="android:indeterminateTintMode">src_atop</item>
+
+    </style>
 </resources>
