@@ -8,6 +8,7 @@ import com.mbojec.halo.model.SearchCityList
 import com.mbojec.halo.model.DisposingObserver
 import com.mbojec.halo.model.Forecast
 import com.mbojec.halo.model.Response
+import com.mbojec.halo.utils.DataUtils
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -19,7 +20,7 @@ class NetworkRepository @Inject constructor(private val mapBoxApiClient: MapBoxA
 
     fun fetchCityList(searchCityName: String, responseStatus: MutableLiveData<Response>, searchCityList: MutableLiveData<SearchCityList>){
         responseStatus.postValue(Response.loading())
-        val observable: Observable<SearchCityList> = mapBoxApiClient.getCitySearchList(searchCityName, "pl", "place", "true", "10")
+        val observable: Observable<SearchCityList> = mapBoxApiClient.getCitySearchList(searchCityName, DataUtils.getCurrentLanguage(), "place", "true", "10")
         val observer: DisposingObserver<SearchCityList> = DisposingObserver()
         observer.onSubscribe(
             observable.subscribeOn(Schedulers.io())
@@ -34,7 +35,7 @@ class NetworkRepository @Inject constructor(private val mapBoxApiClient: MapBoxA
     }
 
     fun fetchCityData(longitude: Double, latitude: Double, isCurrentLocation: Boolean){
-        val observable: Observable<SearchCityList> = mapBoxApiClient.getCurrentCityData("$longitude", "$latitude", "pl", "place")
+        val observable: Observable<SearchCityList> = mapBoxApiClient.getCurrentCityData("$longitude", "$latitude", DataUtils.getCurrentLanguage(), "place")
         val observer: DisposingObserver<SearchCityList> = DisposingObserver()
         observer.onSubscribe(
             observable.subscribeOn(Schedulers.io())
@@ -49,7 +50,7 @@ class NetworkRepository @Inject constructor(private val mapBoxApiClient: MapBoxA
     }
 
     private fun fetchCityForecast(longitude: Double, latitude: Double, feature: SearchCityList.Feature, rowId: Int, cityId: Long, isCurrentLocation: Boolean){
-        val observable: Observable<Forecast> = darkSkyApiClient.getCityForecast(BuildConfig.DARK_SKY_API_KEY, "$latitude,$longitude", "pl", "si")
+        val observable: Observable<Forecast> = darkSkyApiClient.getCityForecast(BuildConfig.DARK_SKY_API_KEY, "$latitude,$longitude", DataUtils.getCurrentLanguage(), "si")
         val observer: DisposingObserver<Forecast> = DisposingObserver()
         observer.onSubscribe(
             observable.subscribeOn(Schedulers.io())

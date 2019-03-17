@@ -195,4 +195,8 @@ object DataUtils {
         return System.currentTimeMillis()
     }
 
+    fun getCurrentLanguage(): String {
+        return Locale.getDefault().language
+    }
+
 }
