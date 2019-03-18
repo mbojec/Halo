@@ -16,15 +16,11 @@ import com.mbojec.halo.ui.ListFragmentDirections
 import com.mbojec.halo.utils.WeatherDataConverter
 import java.util.*
 
-class ForecastListAdapter(list: ArrayList<ForecastEntity>, val application: HaloApplication): RecyclerView.Adapter<ForecastListAdapter.ForecastListViewHolder>(), ItemTouchHelperAdapter{
+class ForecastListAdapter(val application: HaloApplication): RecyclerView.Adapter<ForecastListAdapter.ForecastListViewHolder>(), ItemTouchHelperAdapter{
 
     private var list: ArrayList<ForecastEntity>? = null
 
-    init {
-        loadList(list)
-    }
-
-    private fun loadList(forecastList: ArrayList<ForecastEntity>){
+    fun loadList(forecastList: ArrayList<ForecastEntity>){
         list = forecastList
         notifyDataSetChanged()
     }

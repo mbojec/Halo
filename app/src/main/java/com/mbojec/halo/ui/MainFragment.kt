@@ -9,10 +9,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
+import com.mbojec.halo.HaloApplication
 import com.mbojec.halo.viewmodel.MainViewModel
 import com.mbojec.halo.R
 import com.mbojec.halo.dagger.Injectable
 import com.mbojec.halo.utils.ForecastAdapter
+import com.mbojec.halo.utils.SharedPreferencesUtils
 import kotlinx.android.synthetic.main.main_fragment.*
 import javax.inject.Inject
 
@@ -21,6 +23,7 @@ class MainFragment : Fragment(), Injectable {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject lateinit var viewModel: MainViewModel
+    @Inject lateinit var application: HaloApplication
     private var adapter: ForecastAdapter? = null
     private var cityId: Long? = null
 
@@ -29,8 +32,9 @@ class MainFragment : Fragment(), Injectable {
         cityId = if (bundle != null && bundle["cityId"] != null){
             bundle["cityId"] as Long
         } else {
-            savedInstanceState?.getLong("cityId")
+            application.sharedPreferencesUtils.getCityId()
         }
+
         arguments?.clear()
         setHasOptionsMenu(true)
         submitToViewModel()
@@ -76,10 +80,6 @@ class MainFragment : Fragment(), Injectable {
     override fun onStop() {
         super.onStop()
         cityId = adapter?.getCurrentPositionCityId(view_pager.currentItem)
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        cityId?.let { outState.putLong("cityId", cityId!!) }
+        cityId?.let { application.sharedPreferencesUtils.saveCityId(it) }
     }
 }

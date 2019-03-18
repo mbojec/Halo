@@ -31,6 +31,7 @@ class ListFragment : Fragment(), Injectable {
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject lateinit var viewModel: ListViewModel
     @Inject lateinit var application: HaloApplication
+    lateinit var adapter: ForecastListAdapter
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -41,26 +42,29 @@ class ListFragment : Fragment(), Injectable {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding: ListFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.list_fragment, container, false)
         binding.apply { viewModel = this@ListFragment.viewModel
-        setLifecycleOwner(this@ListFragment)}
+            lifecycleOwner = this@ListFragment
+        }
         return binding.root
     }
 
     override fun onStart() {
         super.onStart()
+        setAdapter()
         submitToViewModel()
     }
 
     private fun submitToViewModel(){
         viewModel.forecastList.observe(this, Observer {
-            it?.let { setAdapter(it as ArrayList<ForecastEntity>) }
+            it?.let {
+                adapter.loadList(it as ArrayList<ForecastEntity>) }
         })
     }
 
-    private fun setAdapter(list: ArrayList<ForecastEntity>){
+    private fun setAdapter(){
         forecast_list.layoutManager = LinearLayoutManager(activity as Context, RecyclerView.VERTICAL, false)
-        val forecastListAdapter = ForecastListAdapter(list, application)
-        forecast_list.adapter = forecastListAdapter
-        val touchHelper = ItemTouchHelper(SimpleItemTouchHelperCallback(forecastListAdapter))
+        adapter = ForecastListAdapter(application)
+        forecast_list.adapter = adapter
+        val touchHelper = ItemTouchHelper(SimpleItemTouchHelperCallback(adapter))
         touchHelper.attachToRecyclerView(forecast_list)
     }
 }

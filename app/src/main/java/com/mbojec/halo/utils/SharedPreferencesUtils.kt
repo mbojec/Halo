@@ -24,9 +24,16 @@ class SharedPreferencesUtils @Inject constructor(private val haloApplication: Ha
         editor.apply()
     }
 
+    fun saveCityId(cityId: Long) {
+        editor.putLong(Const.CITY_ID, cityId)
+        editor.apply()
+    }
+
     fun getNumberOfRows(): Int = sharedPreferences.getInt(haloApplication.getString(R.string.city_list_size_key), 0)
 
     fun getCurrentLocation(): String? = sharedPreferences.getString(Const.CURRENT_LOCATION, "1.0,1.0")
 
     fun getDataUpdateTime(): Long = sharedPreferences.getLong(Const.DATA_SYNC_UPDATE_TIME, 1)
+
+    fun getCityId(): Long = sharedPreferences.getLong(Const.CITY_ID, 1)
 }
