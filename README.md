@@ -45,6 +45,9 @@ Some additional libraries used in this project include:
 - CardView
 - Google Play Location services for gathering the users location
 
+## Google Play Store
+Currently Halo is present in the Polish Google Play store and it's called ["Pogoda"](https://play.google.com/store/apps/details?id=com.mbojec.halo). In the future I will redistribute it other European countries as soon as I do the translation's. I will be grateful for every donwload and comment in the Google Play store. 
+
 ## License
 
 Copyright 2019 mbojec

@@ -28,7 +28,7 @@ object FirebaseRemoteConfigUtils {
         val remoteConfigDefaults = HashMap<String, Any>()
         remoteConfigDefaults[KEY_UPDATE_REQUIRED] = false
         remoteConfigDefaults[KEY_CURRENT_VERSION] = "1.0"
-        remoteConfigDefaults[KEY_UPDATE_URL] = "https://play.google.com/store/apps/details?id=com.bojec.marek.weatherapp"
+        remoteConfigDefaults[KEY_UPDATE_URL] = "https://play.google.com/store/apps/details?id=com.mbojec.halo"
         remoteConfigDefaults[KEY_CURRENT_LOCATION_UPDATE_DISTANCE_LIMIT] = 5
         remoteConfigDefaults[KEY_CURRENT_LOCATION_UPDATE_TIME_LIMIT] = 3600000
         remoteConfigDefaults[KEY_DATA_UPDATE_TIME_LIMIT] = 3600000
