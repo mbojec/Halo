@@ -8,6 +8,8 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mbojec.halo.HaloApplication
 import com.mbojec.halo.R
 import com.mbojec.halo.adapters.SearchCityListAdapter
@@ -24,6 +26,8 @@ class SearchFragment : Fragment(), Injectable {
     @Inject lateinit var viewModel: SearchViewModel
     @Inject lateinit var application: HaloApplication
     private var searchView: SearchView? = null
+    private var recyclerView: RecyclerView? = null
+    private lateinit var adapter: SearchCityListAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         setHasOptionsMenu(true)
@@ -40,13 +44,12 @@ class SearchFragment : Fragment(), Injectable {
         super.onStart()
         searchView?.let { viewModel.createSearchViewObserver(searchView!!)
             searchView!!.isIconified = false}
-        SearchCityListAdapter.getInstanceAndInit(this, viewModel, activity!!, application)
+        setAdapter()
     }
 
     override fun onStop() {
         super.onStop()
         viewModel.hideSoftKeyboard(activity as Activity)
-        SearchCityListAdapter.clearInstance()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -67,5 +70,16 @@ class SearchFragment : Fragment(), Injectable {
                 Status.LOADING ->progressBar.visibility = View.VISIBLE
             } }
         })
+
+        viewModel.searchCityList.observe(this, Observer {it ->
+            it?.let { adapter.loadList(it) }?: adapter.clearList()
+        })
+    }
+
+    private fun setAdapter(){
+        recyclerView = searchCityListRecycleView
+        recyclerView?.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+        adapter = SearchCityListAdapter(application)
+        searchCityListRecycleView.adapter = adapter
     }
 }

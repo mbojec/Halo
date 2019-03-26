@@ -132,6 +132,7 @@ obj/
 .idea/uiDesigner.xml
 .idea/codeStyles/
 .idea/codeStyles/Project.xml
+.idea/navEditor.xml
 
 # OS-specific files
 .DS_Store
@@ -177,3 +178,5 @@ fabric.properties
 
 ### AndroidStudio Patch ###
 !/gradle/wrapper/gradle-wrapper.jar
+
+

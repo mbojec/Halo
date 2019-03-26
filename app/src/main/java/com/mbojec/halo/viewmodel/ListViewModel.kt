@@ -10,6 +10,7 @@ import com.mbojec.halo.adapters.ShortTermForecastAdapter
 import com.mbojec.halo.database.entity.ForecastEntity
 import com.mbojec.halo.model.CurrentForecast
 import com.mbojec.halo.model.RecyclerViewConfiguration
+import com.mbojec.halo.utils.DataUtils
 import com.mbojec.halo.utils.WeatherDataConverter
 import java.util.ArrayList
 import javax.inject.Inject
@@ -23,7 +24,9 @@ class ListViewModel @Inject constructor(haloApplication: HaloApplication) : View
     init {
         mainForecast = Transformations.map(currentForecast){ it: ForecastEntity? ->
             it?.let {
-                return@map WeatherDataConverter.createCurrentForecast(it, haloApplication) }
+                val forecast = WeatherDataConverter.createCurrentForecast(it, haloApplication)
+                forecast.weatherImage = DataUtils.getImageResourceForWeatherCondition(it.forecast.currently?.icon)
+                return@map forecast }
         }
     }
 }
