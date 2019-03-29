@@ -28,11 +28,11 @@ object LocationProvider{
                     mFusedLocationClient.lastLocation.addOnSuccessListener { location ->
                         if (location != null) {
                             if (!checkIfLocationIsNear(location, application, distanceLimit)){
-                                application.networkRepository.fetchCityData(location.longitude, location.latitude, true)
+                                application.networkRepository.fetchCityData(location.longitude, location.latitude, true, null)
                                 application.dataRepository.saveLocation(location, CURRENT_LOCATION_ID)
                                 application.sharedPreferencesUtils.saveNewLocation(location)
                             } else if (checkIfUpdateNeeded(application, timeLimit)){
-                                application.networkRepository.fetchCityData(location.longitude, location.latitude, true)
+                                application.networkRepository.fetchCityData(location.longitude, location.latitude, true, null)
                                 application.dataRepository.saveLocation(location, CURRENT_LOCATION_ID)
                                 application.sharedPreferencesUtils.saveNewLocation(location)
                             }

@@ -20,29 +20,61 @@ class NetworkRepository @Inject constructor(private val mapBoxApiClient: MapBoxA
 
     fun fetchCityList(searchCityName: String, responseStatus: MutableLiveData<Response>, searchCityList: MutableLiveData<SearchCityList>){
         responseStatus.postValue(Response.loading())
-        val observable: Observable<SearchCityList> = mapBoxApiClient.getCitySearchList(searchCityName, DataUtils.getCurrentLanguage(), "place", "true", "10")
+        var mergedSearchCityList: SearchCityList? = null
+        val observableList: ArrayList<Observable<SearchCityList>> = ArrayList()
+        val observable: Observable<SearchCityList> = mapBoxApiClient.getCitySearchList(searchCityName, DataUtils.getCurrentLanguage(), "place", "true", "5")
+        val observable2: Observable<SearchCityList> = mapBoxApiClient.getCitySearchList(searchCityName, DataUtils.getCurrentLanguage(), "locality", "true", "5")
+        observableList.add(observable)
+        observableList.add(observable2)
+        val mergeredObservable = Observable.merge(observableList)
         val observer: DisposingObserver<SearchCityList> = DisposingObserver()
         observer.onSubscribe(
-            observable.subscribeOn(Schedulers.io())
+            mergeredObservable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext { responseStatus.postValue(Response.loading()) }
                 .subscribe(
-                    { it -> it?.let {searchCityList.postValue(it)}.also { responseStatus.postValue(Response.success())} },
+                    { it -> it?.let {if (mergedSearchCityList == null){
+                                        mergedSearchCityList = it
+                                        } else {
+                                        var concatedList: ArrayList<SearchCityList.Feature> = ArrayList()
+                                        concatedList.addAll(mergedSearchCityList!!.features as ArrayList)
+                                            concatedList.addAll(it.features as ArrayList)
+                                        mergedSearchCityList!!.features = concatedList
+                                        }
+                                    }
+                    },
                     {throwable: Throwable ->  managingFailureResponse(throwable).also { responseStatus.postValue(Response.error(throwable)) }},
-                    {}
+                    {mergedSearchCityList?.let { searchCityList.postValue(mergedSearchCityList) }.also { responseStatus.postValue(Response.success())}}
                 )
         )
     }
 
-    fun fetchCityData(longitude: Double, latitude: Double, isCurrentLocation: Boolean){
+    fun fetchCityData(longitude: Double, latitude: Double, isCurrentLocation: Boolean, cityName: String?){
+        val observableList: ArrayList<Observable<SearchCityList>> = ArrayList()
         val observable: Observable<SearchCityList> = mapBoxApiClient.getCurrentCityData("$longitude", "$latitude", DataUtils.getCurrentLanguage(), "place")
+        val observable2: Observable<SearchCityList> = mapBoxApiClient.getCurrentCityData("$longitude", "$latitude", DataUtils.getCurrentLanguage(), "locality")
+        observableList.add(observable)
+        observableList.add(observable2)
+        val mergeredObservable = Observable.merge(observableList)
         val observer: DisposingObserver<SearchCityList> = DisposingObserver()
         observer.onSubscribe(
-            observable.subscribeOn(Schedulers.io())
+            mergeredObservable.subscribeOn(Schedulers.io())
                 .subscribe(
-                    { searchCityList -> searchCityList?.let { searchCityList.features?.get(0)?.let { feature ->
-                        fetchCityForecast(longitude, latitude, feature, getCityRowNumber(isCurrentLocation),getCityId(isCurrentLocation,it.features?.get(0)!!), isCurrentLocation)
-                    } }},
+                    { searchCityList -> searchCityList?.let {
+                        if (searchCityList.features?.get(0)?.text == cityName){
+                            searchCityList.features?.get(0)?.let {
+                                    feature ->
+                                fetchCityForecast(longitude, latitude, feature, getCityRowNumber(isCurrentLocation),getCityId(isCurrentLocation,it.features?.get(0)!!), isCurrentLocation)
+                            }
+                        }
+                        if (isCurrentLocation){
+                            searchCityList.features?.get(0)?.let {
+                                    feature ->
+                                fetchCityForecast(longitude, latitude, feature, getCityRowNumber(isCurrentLocation),getCityId(isCurrentLocation,it.features?.get(0)!!), isCurrentLocation)
+                            }
+                        }
+                    }
+                    },
                     {throwable: Throwable ->  managingFailureResponse(throwable)},
                     {}
                 )

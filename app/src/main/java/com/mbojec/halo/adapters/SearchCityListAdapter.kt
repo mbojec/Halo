@@ -48,7 +48,8 @@ class SearchCityListAdapter(val application: HaloApplication): RecyclerView.Adap
                     application.networkRepository.fetchCityData(
                         longitude,
                         feature.geometry!!.coordinates!![1],
-                        false
+                        false,
+                        feature.text
                     )
                 }
                 val cityId = feature.feature_id?.split(".")?.get(1)
