@@ -99,9 +99,10 @@ object DataUtils {
             val windFormat: Int
             if (DataUtils.isMetric(context)) {
                 windFormat = R.string.format_wind_kmh
+                finalWindSpreed *= 3.6
             } else {
                 windFormat = R.string.format_wind_mph
-                finalWindSpreed *= .621371192237334f
+                finalWindSpreed *= 2.23693629
             }
             return String.format(context.getString(windFormat), finalWindSpreed)
         } ?: return "--"
