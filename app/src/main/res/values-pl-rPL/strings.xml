@@ -17,7 +17,7 @@
     <string name="label_pressure">Ciśnienie</string>
     <string name="label_humidity">Wilgotność</string>
     <string name="label_cloudiness">Zachmurzenie</string>
-    <string name="label_rain">Opady deszczu</string>
+    <string name="label_rain">Szansa opadów</string>
     <string name="label_snow">Opady śniegu</string>
     <string name="label_wind_speed">Prędkość wiatru</string>
     <string name="label_wind">Wiatr</string>

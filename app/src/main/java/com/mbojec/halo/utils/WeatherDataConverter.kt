@@ -55,14 +55,14 @@ object WeatherDataConverter {
     fun createForecastInfo(forecastEntity: ForecastEntity, application: HaloApplication): ForecastInfo {
         return  ForecastInfo(forecastEntity.cityId,
             DataUtils.getFormattedPressure(application.applicationContext, forecastEntity.forecast.currently?.pressure),
-            DataUtils.getFormattedHumidity(application.applicationContext, forecastEntity.forecast.currently?.humidity),
+            DataUtils.getFormattedHumidity(application.applicationContext, (forecastEntity.forecast.currently?.humidity!! * 100).toInt()),
             DataUtils.getFormattedWindSpeed(application.applicationContext, forecastEntity.forecast.currently?.windSpeed),
             DataUtils.getFormattedWindDirection(application.applicationContext, forecastEntity.forecast.currently?.windBearing?.toDouble()),
             DataUtils.getFormattedHour(forecastEntity.forecast.daily?.dataDailies?.get(0)?.sunsetTime, forecastEntity.forecast.timezone, application.applicationContext ),
             DataUtils.getFormattedHour(forecastEntity.forecast.daily?.dataDailies?.get(0)?.sunriseTime, forecastEntity.forecast.timezone, application.applicationContext),
-            DataUtils.getFormattedRainVolume(application.applicationContext, forecastEntity.forecast.currently?.precipIntensity),
+            DataUtils.getFormattedRainVolume(application.applicationContext, (forecastEntity.forecast.currently?.precipProbability!! * 100).toInt()),
             DataUtils.getFormattedCloudiness(application.applicationContext, (forecastEntity.forecast.currently?.cloudCover!! * 100).toInt()),
-            DataUtils.getFormattedUvIndex(application.applicationContext, forecastEntity.forecast.currently?.uvIndex?.toDouble()),
+            DataUtils.getFormattedUvIndex(application.applicationContext, forecastEntity.forecast.currently?.uvIndex),
             getProperBackgroundColor(forecastEntity, application))
     }
 

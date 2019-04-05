@@ -75,7 +75,7 @@
 
     <!-- Strings for formatting weather-related data -->
     <!-- Temperature format -->
-    <string name="format_temperature" translatable="false"><xliff:g id="temp">%1.0f</xliff:g>\u00B0</string>
+    <string name="format_temperature" translatable="false"><xliff:g id="temp">%1$1.0f</xliff:g>\u00B0</string>
 
     <!-- Wind speed formats -->
     <!-- Wind in mph  -->
@@ -84,19 +84,19 @@
     <string name="format_wind_kmh" translatable="false"><xliff:g id="speed">%1$1.0f</xliff:g> km/h </string>
 
     <!-- Pressure format -->
-    <string name="format_pressure" translatable="false"><xliff:g id="pressure">%1.0f</xliff:g> hPa</string>
+    <string name="format_pressure" translatable="false"><xliff:g id="pressure">%1$1.0f</xliff:g> hPa</string>
 
     <!-- Humidity format -->
-    <string name="format_humidity" translatable="false"><xliff:g id="humidity">%1.0f</xliff:g> %%</string>
+    <string name="format_humidity" translatable="false"><xliff:g id="humidity">%d</xliff:g> %%</string>
 
     <!-- Rain volume format -->
-    <string name="format_rain" translatable="false"><xliff:g id="volume">%1$1.0f</xliff:g> mm</string>
+    <string name="format_rain" translatable="false"><xliff:g id="probality">%d</xliff:g> %%</string>
 
     <!-- Cloudiness volume format -->
     <string name="format_cloudiness" translatable="false"><xliff:g id="cloudiness">%d</xliff:g> %%</string>
 
     <!-- UV index format -->
-    <string name="format_uv_index" translatable="false"><xliff:g id="temp">%1.0f</xliff:g></string>
+    <string name="format_uv_index" translatable="false"><xliff:g id="temp">%d</xliff:g></string>
 
 
     <!-- Language-specific constants -->
@@ -125,7 +125,7 @@
     <string name="label_pressure">Pressure</string>
     <string name="label_humidity">Humidity</string>
     <string name="label_cloudiness">Cloudiness</string>
-    <string name="label_rain">Rain volume</string>
+    <string name="label_rain">Rain probability</string>
     <string name="label_snow">Snow volume</string>
     <string name="label_wind_speed">Wind speed</string>
     <string name="label_wind">Wind</string>

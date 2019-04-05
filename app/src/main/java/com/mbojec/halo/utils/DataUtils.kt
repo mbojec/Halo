@@ -78,7 +78,7 @@ object DataUtils {
         } ?: return "--"
     }
 
-    fun getFormattedUvIndex(context: Context, uvValue: Double?): String {
+    fun getFormattedUvIndex(context: Context, uvValue: Int?): String {
         uvValue?.let {
             return String.format(context.getString(R.string.format_uv_index), uvValue)
         } ?: return "--"
@@ -133,14 +133,14 @@ object DataUtils {
         }?: return "--"
     }
 
-    fun getFormattedHumidity(context: Context, humidity: Double?): String {
+    fun getFormattedHumidity(context: Context, humidity: Int?): String {
         humidity?.let {
             val humidityFormat = R.string.format_humidity
             return String.format(context.getString(humidityFormat), humidity)
         }?: return "--"
     }
 
-    fun getFormattedRainVolume(context: Context, rainVolume: Double?): String {
+    fun getFormattedRainVolume(context: Context, rainVolume: Int?): String {
         rainVolume?.let {
             val rainVolumeFormat = R.string.format_rain
             return String.format(context.getString(rainVolumeFormat), rainVolume)
